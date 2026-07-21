@@ -1,0 +1,42 @@
+@model BookNest.ViewModels.WelcomeViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Welcome";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookNest</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="welcome-screen-body">
+    <div class="welcome-card" id="welcomeCard">
+        <img src="~/images/logo.png" alt="BookNest logo" class="welcome-logo" />
+        <h1 class="welcome-title">@Model.Title</h1>
+        @if (!string.IsNullOrWhiteSpace(Model.Subtitle))
+        {
+            <p class="welcome-subtitle">@Model.Subtitle</p>
+        }
+        <p class="welcome-quote">“@Model.Quote”</p>
+        <p class="welcome-hint">Taking you home in a moment…</p>
+    </div>
+
+    <script>
+        const card = document.getElementById('welcomeCard');
+        const redirectUrl = '@Url.Action("Index", "Home")';
+        const delay = @Model.RedirectDelayMilliseconds;
+
+        window.setTimeout(function () {
+            card.classList.add('is-leaving');
+            window.setTimeout(function () {
+                window.location.href = redirectUrl;
+            }, 350);
+        }, delay);
+    </script>
+</body>
+</html>

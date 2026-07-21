@@ -1,0 +1,23 @@
+@model IEnumerable<BookNest.Models.Book>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h2 class="mb-4">Books</h2>
+<div class="row g-4">
+    @foreach (var book in Model)
+    {
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@book.Title</h5>
+                    <p class="text-muted mb-2">By @book.Author?.Name</p>
+                    <p class="small text-secondary">Genre: @book.Genre?.Name</p>
+                    <p class="small text-secondary">Language: @book.Language?.Name</p>
+                    <p class="card-text">@book.Description</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
