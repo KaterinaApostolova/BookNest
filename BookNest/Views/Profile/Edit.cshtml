@@ -1,0 +1,300 @@
+@model BookNest.ViewModels.EditProfileViewModel
+
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                <h1 class="h4 mb-1">
+                    Edit Profile
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Update your profile information and privacy settings.
+                </p>
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3">
+                </div>
+
+                <form asp-action="Edit"
+                      method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <!-- Full Name -->
+
+                    <div class="mb-3">
+
+                        <label asp-for="FullName"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="FullName"
+                               class="form-control" />
+
+                        <span asp-validation-for="FullName"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Username -->
+
+                    <div class="mb-3">
+
+                        <label asp-for="Username"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="Username"
+                               class="form-control" />
+
+                        <span asp-validation-for="Username"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="mb-3">
+
+                        <label asp-for="Email"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="Email"
+                               class="form-control" />
+
+                        <span asp-validation-for="Email"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Profile Picture -->
+
+                    <div class="mb-3">
+
+                        <label asp-for="ProfilePictureUrl"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="ProfilePictureUrl"
+                               class="form-control"
+                               placeholder="https://example.com/profile.jpg" />
+
+                        <span asp-validation-for="ProfilePictureUrl"
+                              class="text-danger">
+                        </span>
+
+                        <div class="form-text">
+                            Optional. Add an image URL for your profile picture.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Bio -->
+
+                    <div class="mb-4">
+
+                        <label asp-for="Bio"
+                               class="form-label">
+                        </label>
+
+                        <textarea asp-for="Bio"
+                                  class="form-control"
+                                  rows="5"
+                                  placeholder="Tell other readers something about yourself..."></textarea>
+
+                        <span asp-validation-for="Bio"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+                    <!-- Favourite Genre -->
+
+                    <div class="mb-3">
+
+                       <label asp-for="FavouriteGenre"
+                              class="form-label">
+                          Favourite Genre
+                       </label>
+
+                       <input asp-for="FavouriteGenre"
+                              class="form-control"
+                              placeholder="e.g. Fantasy" />
+
+                      <span asp-validation-for="FavouriteGenre"
+                            class="text-danger">
+                      </span>
+
+                      <div class="form-text">
+                        Optional. Tell other readers which genre you enjoy the most.
+                      </div>
+
+                    </div>
+
+                    <!-- Favourite Book -->
+
+                    <div class="mb-4">
+
+                       <label asp-for="FavouriteBook"
+                              class="form-label">
+                           Favourite Book
+                       </label>
+
+                      <input asp-for="FavouriteBook"
+                             class="form-control"
+                             placeholder="e.g. Harry Potter and the Philosopher's Stone" />
+
+                      <span asp-validation-for="FavouriteBook"
+                                         class="text-danger">
+                      </span>
+
+                      <div class="form-text">
+                         Optional. Add the title of your favourite book.
+                      </div>
+
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="FavouriteQuote" class="form-label"></label>
+                        <textarea asp-for="FavouriteQuote" class="form-control" rows="3" maxlength="1000" placeholder="A line from a book you love..."></textarea>
+                        <span asp-validation-for="FavouriteQuote" class="text-danger"></span>
+                        <div class="form-text">Optional. Up to 1000 characters.</div>
+                    </div>
+
+                    <!-- Profile Visibility -->
+
+                    <div class="border rounded-4 p-3 mb-4">
+
+                        <h2 class="h6 mb-2">
+                            Profile Visibility
+                        </h2>
+
+                        <p class="text-muted small mb-3">
+                            Choose whether other users can view your public profile.
+                        </p>
+
+                        <div class="form-check form-switch">
+
+                            <input asp-for="IsProfilePublic"
+                                   class="form-check-input"
+                                   role="switch" />
+
+                            <label asp-for="IsProfilePublic"
+                                   class="form-check-label">
+                                Make my profile public
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <hr class="my-4" />
+
+                    <h2 class="h6 mb-3">
+                        Change Password
+                    </h2>
+
+                    <p class="text-muted small">
+                        Leave these fields empty if you don't want to change your password.
+                    </p>
+
+
+                    <div class="mb-3">
+
+                        <label asp-for="CurrentPassword"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="CurrentPassword"
+                               type="password"
+                               class="form-control" />
+
+                        <span asp-validation-for="CurrentPassword"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label asp-for="Password"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="Password"
+                               type="password"
+                               class="form-control" />
+
+                        <span asp-validation-for="Password"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <div class="mb-4">
+
+                        <label asp-for="ConfirmPassword"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="ConfirmPassword"
+                               type="password"
+                               class="form-control" />
+
+                        <span asp-validation-for="ConfirmPassword"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="d-flex gap-2">
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Save Changes
+                        </button>
+
+                        <a asp-action="Profile"
+                           class="btn btn-outline-secondary">
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

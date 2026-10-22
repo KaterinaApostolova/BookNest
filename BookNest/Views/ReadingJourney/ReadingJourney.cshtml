@@ -1,0 +1,122 @@
+@model BookNest.ViewModels.ReadingJourneyViewModel
+
+@{
+    ViewData["Title"] = "Reading Journey";
+}
+
+<div class="card shadow-sm rounded-4 p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="h4 mb-1">Reading Journey</h2>
+            <p class="text-muted mb-0">Organize your books and move the same title between Want to Read, Currently Reading, and Finished.</p>
+        </div>
+        <a class="btn btn-outline-secondary" asp-controller="Books" asp-action="Index">Browse Books</a>
+    </div>
+
+    <div class="row gy-4">
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
+                <h3 class="h5">Want to Read</h3>
+                @if (!Model.WantToRead.Any())
+                {
+                    <p class="text-muted">Add your favorite books to this list from the book details page.</p>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model.WantToRead)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="fw-bold">@item.Book?.Title</div>
+                                    <div class="text-muted small">@string.Join(", ", item.Book?.Authors.Select(a => a.Name) ?? Enumerable.Empty<string>())</div>
+                                </div>
+                                <div class="text-end">
+                                    <form asp-action="UpdateReadingJourney" method="post" class="d-inline">
+                                        <input type="hidden" name="bookId" value="@item.BookId" />
+                                        <input type="hidden" name="statusName" value="Reading" />
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Start Reading</button>
+                                    </form>
+                                    <form asp-action="RemoveFromReadingJourney" method="post" class="d-inline ms-2">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                    </form>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
+                <h3 class="h5">Currently Reading</h3>
+                @if (!Model.CurrentlyReading.Any())
+                {
+                    <p class="text-muted">Move a book here when you begin reading it.</p>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model.CurrentlyReading)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="fw-bold">@item.Book?.Title</div>
+                                    <div class="text-muted small">@string.Join(", ", item.Book?.Authors.Select(a => a.Name) ?? Enumerable.Empty<string>())</div>
+                                </div>
+                                <div class="text-end">
+                                    <form asp-action="UpdateReadingJourney" method="post" class="d-inline">
+                                        <input type="hidden" name="bookId" value="@item.BookId" />
+                                        <input type="hidden" name="statusName" value="Completed" />
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Mark Finished</button>
+                                    </form>
+                                    <form asp-action="RemoveFromReadingJourney" method="post" class="d-inline ms-2">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                    </form>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
+                <h3 class="h5">Finished</h3>
+                @if (!Model.Finished.Any())
+                {
+                    <p class="text-muted">Books you finish will appear here.</p>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model.Finished)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="fw-bold">@item.Book?.Title</div>
+                                    <div class="text-muted small">@string.Join(", ", item.Book?.Authors.Select(a => a.Name) ?? Enumerable.Empty<string>())</div>
+                                </div>
+                                <div class="text-end">
+                                    <form asp-action="UpdateReadingJourney" method="post" class="d-inline">
+                                        <input type="hidden" name="bookId" value="@item.BookId" />
+                                        <input type="hidden" name="statusName" value="Reading" />
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Read Again</button>
+                                    </form>
+                                    <form asp-action="RemoveFromReadingJourney" method="post" class="d-inline ms-2">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                    </form>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>

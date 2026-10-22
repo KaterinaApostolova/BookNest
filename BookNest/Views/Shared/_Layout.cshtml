@@ -1,0 +1,92 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookNest</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+       <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+         <div class="container">
+           <a class="navbar-brand fw-bold text-primary d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
+            <img src="~/images/icon_only.png" alt="BookNest logo" style="height:40px; width:auto; object-fit:contain;" />
+            <span>BookNest</span>
+           </a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Books" asp-action="Index">@Localizer["Books"]</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Community" asp-action="Index">@Localizer["Community"]</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="ReadingJourney" asp-action="ReadingJourney">@Localizer["Reading Journey"]</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Lyra" asp-action="Index">@Localizer["BookBuddy"]</a></li>
+                @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
+                {
+                    <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="Index">Admin</a></li>
+                }
+            </ul>
+            <ul class="navbar-nav align-items-lg-center gap-2">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <li class="nav-item"><a class="nav-link" asp-controller="Profile" asp-action="Profile">@Localizer["Profile"]</a></li>
+                    <li class="nav-item">
+                        <form class="d-inline" asp-controller="Account" asp-action="Logout" method="post">
+                            <button type="submit" class="btn btn-outline-primary btn-sm">@Localizer["Logout"]</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Login"]</a></li>
+                    <li class="nav-item"><a class="btn btn-primary btn-sm" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a></li>
+                }
+                <li class="nav-item">
+                    <form asp-controller="Culture" asp-action="Set" method="post" class="d-flex align-items-center">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+                        <select name="culture" class="form-select form-select-sm" aria-label="@Localizer["Language"]" onchange="this.form.submit()">
+                            <option value="en" selected="@(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "en" ? "selected" : null)">English</option>
+                            <option value="bg" selected="@(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "bg" ? "selected" : null)">Български</option>
+                        </select>
+                    </form>
+                </li>
+            </ul>
+         </div>
+         </div>
+       </nav>
+    </header>
+
+    <main class="py-5">
+        <div class="container">
+            @if (TempData["WelcomeMessage"] is string welcome)
+            {
+                <div class="alert alert-success" role="alert">@welcome</div>
+            }
+            @if (TempData["InfoMessage"] is string info)
+            {
+                <div class="alert alert-info" role="alert">@info</div>
+            }
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="border-top py-4 mt-5 bg-light">
+        <div class="container text-center text-muted">
+            <p class="mb-0">&copy; 2026 BookNest. Because no story should end with the last page.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

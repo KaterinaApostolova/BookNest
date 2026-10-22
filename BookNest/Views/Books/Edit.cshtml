@@ -1,0 +1,71 @@
+@model BookNest.ViewModels.BookFormViewModel
+
+@{
+    ViewData["Title"] = "Edit Book";
+}
+
+<h2>Edit Book</h2>
+
+<form asp-action="Edit" method="post">
+    <input asp-for="Id" type="hidden" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">
+            Title <span class="text-danger">*</span>
+        </label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">
+            Description
+        </label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Authors" class="form-label">
+            Authors <span class="text-danger">*</span>
+        </label>
+        <input asp-for="Authors"
+               class="form-control"
+               placeholder="Enter author names separated by commas" />
+        <span asp-validation-for="Authors" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Genres" class="form-label">
+            Genres <span class="text-danger">*</span>
+        </label>
+        <input asp-for="Genres"
+               class="form-control"
+               placeholder="Enter genre names separated by commas" />
+        <span asp-validation-for="Genres" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PublicationYear" class="form-label">
+            Publication Year
+        </label>
+        <input asp-for="PublicationYear" class="form-control" />
+        <span asp-validation-for="PublicationYear" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CoverImageUrl" class="form-label">
+            Cover Image URL
+        </label>
+        <input asp-for="CoverImageUrl" class="form-control" />
+        <span asp-validation-for="CoverImageUrl" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,27 @@
+@model BookNest.ViewModels.ForumPostViewModel
+
+@{
+    ViewData["Title"] = "Edit Reply";
+}
+
+<h2 class="mb-1">Edit reply</h2>
+<p class="text-muted mb-4">Update your contribution to this discussion.</p>
+
+<form asp-controller="Community" asp-action="EditPost" asp-route-id="@Model.Id" method="post" class="card border-0 shadow-sm rounded-4">
+    <div class="card-body">
+    @Html.AntiForgeryToken()
+        <input asp-for="ForumTopicId" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="Content" class="form-label">Reply</label>
+            <textarea asp-for="Content" class="form-control" rows="6" maxlength="4000"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <a asp-action="Topic" asp-route-id="@Model.ForumTopicId" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,150 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model BookNest.ViewModels.LyraViewModel
+
+@{
+    ViewData["Title"] = "Lyra";
+}
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        <div class="card shadow-sm rounded-4 border-0">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="h5 mb-0">Lyra</h1>
+                    <form asp-action="NewChat" method="post"><button type="submit" class="btn btn-outline-primary btn-sm">@Localizer["New chat"]</button></form>
+                </div>
+                <div id="lyra-conversations" class="list-group list-group-flush">
+                    @foreach (var conversation in Model.Conversations)
+                    {
+                        <a asp-action="Index" asp-route-id="@conversation.Id" class="list-group-item list-group-item-action rounded-3 @(conversation.Id == Model.ConversationId ? "active" : "")">
+                            <span class="d-block text-truncate">@conversation.Subject</span>
+                            <small class="@(conversation.Id == Model.ConversationId ? "text-white-50" : "text-muted")">@conversation.UpdatedAt.ToLocalTime().ToString("g")</small>
+                        </a>
+                    }
+                    @if (Model.Conversations.Count == 0) { <p class="text-muted small mb-0">@Localizer["Your conversations will appear here."]</p> }
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="col-lg-9">
+        <div class="card shadow-sm rounded-4 border-0">
+            <div class="card-header bg-white border-0 rounded-top-4 p-4">
+                <h2 class="h4 mb-1">@Localizer["A reading conversation"]</h2>
+                <p class="text-muted mb-0">@Localizer["Ask about BookNest books, authors, genres, reviews, or your Reading Journey."]</p>
+            </div>
+            <div class="card-body p-4">
+                <div id="lyra-messages" class="lyra-messages mb-4" aria-live="polite">
+                    @if (Model.Messages.Count == 0)
+                    {
+                        <div class="text-center text-muted py-5"><p class="mb-1">@Localizer["Start a conversation with Lyra."]</p><small>@Localizer["Try asking what to read next or ask about a book."]</small></div>
+                    }
+                    @foreach (var message in Model.Messages)
+                    {
+                        <div class="lyra-message @(message.IsUser ? "lyra-message-user" : "lyra-message-assistant")">
+                            <div class="small fw-semibold mb-1">@(message.IsUser ? "You" : "Lyra")</div>
+                            <div class="text-break">@message.Content</div>
+                        </div>
+                    }
+                </div>
+                <form asp-action="Index" method="post" id="lyra-chat-form">
+                    <input asp-for="ConversationId" type="hidden" /><input asp-for="BookId" type="hidden" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+                    <div class="input-group">
+                        <textarea asp-for="Message" class="form-control" rows="2" placeholder="@Localizer["Message Lyra..."]" autocomplete="off"></textarea>
+                        <button type="submit" class="btn btn-primary px-4">@Localizer["Send"]</button>
+                    </div>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                    <div id="lyra-thinking" class="small text-muted mt-2 d-none">@Localizer["Lyra is thinking..."]</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById('lyra-chat-form')?.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const form = this;
+            const messageInput = form.querySelector('textarea[name="Message"]');
+            const sendButton = form.querySelector('button[type="submit"]');
+            const messages = document.getElementById('lyra-messages');
+            const thinking = document.getElementById('lyra-thinking');
+            const message = messageInput.value.trim();
+
+            if (!message || !form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+
+            sendButton.disabled = true;
+            thinking?.classList.remove('d-none');
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: new FormData(form)
+                });
+
+                let result;
+                try {
+                    result = await response.json();
+                } catch {
+                    throw new Error('Lyra returned an invalid response.');
+                }
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'The message could not be sent.');
+                }
+
+                messages.querySelector('.text-center')?.remove();
+                messages.insertAdjacentHTML('beforeend', `
+                    <div class="lyra-message lyra-message-user">
+                        <div class="small fw-semibold mb-1">You</div>
+                        <div class="text-break"></div>
+                    </div>`);
+                messages.lastElementChild.querySelector('.text-break').textContent = result.userMessage;
+
+                const conversationInput = form.querySelector('input[name="ConversationId"]');
+                const conversations = document.getElementById('lyra-conversations');
+                if (!conversationInput.value) {
+                    conversations.querySelector('.text-muted.small')?.remove();
+                    const conversationUrl = new URL(form.action, window.location.origin);
+                    conversationUrl.searchParams.set('id', result.conversationId);
+                    conversations.insertAdjacentHTML('afterbegin', `
+                        <a href="${conversationUrl}" class="list-group-item list-group-item-action rounded-3 active">
+                            <span class="d-block text-truncate"></span>
+                            <small class="text-white-50">Just now</small>
+                        </a>`);
+                    conversations.firstElementChild.querySelector('.text-truncate').textContent = result.subject;
+                }
+                conversationInput.value = result.conversationId;
+                const conversationUrl = new URL(form.action, window.location.origin);
+                conversationUrl.searchParams.set('id', result.conversationId);
+                window.history.replaceState({}, '', conversationUrl);
+                messages.insertAdjacentHTML('beforeend', `
+                    <div class="lyra-message lyra-message-assistant">
+                        <div class="small fw-semibold mb-1">Lyra</div>
+                        <div class="text-break"></div>
+                    </div>`);
+                messages.lastElementChild.querySelector('.text-break').textContent = result.response;
+                messageInput.value = '';
+            } catch (error) {
+                messages.insertAdjacentHTML('beforeend', `
+                    <div class="alert alert-danger" role="alert">${error.message}</div>`);
+                messageInput.value = message;
+            } finally {
+                sendButton.disabled = false;
+                thinking?.classList.add('d-none');
+                messageInput.focus();
+            }
+        });
+    </script>
+}

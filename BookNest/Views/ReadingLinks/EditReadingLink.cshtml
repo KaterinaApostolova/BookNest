@@ -1,0 +1,71 @@
+﻿@model BookNest.ViewModels.ReadingLinkViewModel
+
+@{
+    ViewData["Title"] = "Edit Reading Link";
+}
+
+<h2>Edit Reading Link</h2>
+
+<form asp-action="EditReadingLink" method="post">
+
+    <input asp-for="Id" type="hidden" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label asp-for="WebsiteName" class="form-label">
+            Website
+        </label>
+
+        <input asp-for="WebsiteName" class="form-control" />
+
+        <span asp-validation-for="WebsiteName"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Language" class="form-label">
+            Language
+        </label>
+
+        <input asp-for="Language" class="form-control" />
+
+        <span asp-validation-for="Language"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Url" class="form-label">
+            URL
+        </label>
+
+        <input asp-for="Url" class="form-control" />
+
+        <span asp-validation-for="Url"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LinkType" class="form-label">
+            Link Type
+        </label>
+
+        <input asp-for="LinkType" class="form-control" />
+
+        <span asp-validation-for="LinkType"
+              class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Save Changes
+    </button>
+
+    <a asp-controller="Books" 
+       asp-action="Details"
+       asp-route-id="@Model.BookId"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Home" xml:space="preserve"><value>Начало</value></data>
+  <data name="Books" xml:space="preserve"><value>Книги</value></data>
+  <data name="Community" xml:space="preserve"><value>Общност</value></data>
+  <data name="Reading Journey" xml:space="preserve"><value>Читателско пътешествие</value></data>
+  <data name="BookBuddy" xml:space="preserve"><value>BookBuddy</value></data>
+  <data name="Profile" xml:space="preserve"><value>Профил</value></data>
+  <data name="Logout" xml:space="preserve"><value>Изход</value></data>
+  <data name="Login" xml:space="preserve"><value>Вход</value></data>
+  <data name="Register" xml:space="preserve"><value>Регистрация</value></data>
+  <data name="Language" xml:space="preserve"><value>Език</value></data>
+</root>

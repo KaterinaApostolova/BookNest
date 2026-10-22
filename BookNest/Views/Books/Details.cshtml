@@ -1,0 +1,366 @@
+@model BookNest.Models.Book
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="row g-4">
+    <div class="col-lg-4">
+        <img src="@(string.IsNullOrWhiteSpace(Model.CoverImageUrl) ? "/images/books/cover-placeholder.svg" : Model.CoverImageUrl)" alt="@Model.Title" class="img-fluid rounded-4 shadow-sm" onerror="this.src='/images/books/cover-placeholder.svg'" />
+    </div>
+    <div class="col-lg-8">
+        <h2 class="mb-3">@Model.Title</h2>
+        <p class="text-muted mb-3">By @string.Join(", ", Model.Authors.Select(a => a.Name))</p>
+        <p><strong>Genres:</strong> @string.Join(", ", Model.Genres.Select(g => g.Name))</p>
+        <p><strong>Publication Year:</strong> @(Model.PublicationYear?.ToString() ?? "Not available")</p>
+        <p><strong>Average Rating:</strong> @(Model.AverageRating?.ToString("0.0") ?? "Not rated yet")</p>
+        <p><strong>Community Rating:</strong> @(Model.Reviews.Any() ? Model.Reviews.Count().ToString() + " reviews" : "No community rating yet")</p>
+        <p class="lead">@(string.IsNullOrWhiteSpace(Model.Description) ? "No description available yet." : Model.Description)</p>
+
+        <div class="mt-4 d-flex gap-2 flex-wrap">
+           @if (User.Identity?.IsAuthenticated == true)
+{
+           <form asp-controller="ReadingJourney"asp-action="AddToReadingJourney" method="post">
+             <input type="hidden" name="bookId" value="@Model.Id" />
+
+                <button type="submit" class="btn btn-primary mt-2">
+                  Add to Reading Journey
+                </button>
+           </form>
+           }
+          else
+          {
+             <a class="btn btn-primary"
+               asp-controller="Account"
+               asp-action="Login">
+               Login to add to Reading Journey
+             </a>
+          }
+        </div>
+
+        <div class="mt-3">
+            <a asp-controller="Lyra" asp-action="BookDiscussion" asp-route-bookId="@Model.Id" class="btn btn-outline-primary">
+                Book Discussion
+            </a>
+            <a asp-controller="Lyra" asp-action="Index" asp-route-bookId="@Model.Id" class="btn btn-outline-primary">
+                Ask Lyra about this book
+            </a>
+        </div>
+
+      <div class="mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Reading Links</h4>
+
+        @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
+        {
+            <a asp-controller="ReadingLinks" 
+               asp-action="AddReadingLink" 
+               asp-route-bookId="@Model.Id" 
+               class="btn btn-primary btn-sm">
+                Add Reading Link
+            </a>
+        }
+    </div>
+
+    @if (Model.ReadingLinks.Any())
+    {
+        var groupedLinks = Model.ReadingLinks
+            .GroupBy(link => link.Language)
+            .OrderBy(group => group.Key);
+
+        @foreach (var group in groupedLinks)
+        {
+            <div class="mb-3">
+
+                <h5 class="h6">@group.Key</h5>
+
+                <ul class="list-group">
+
+                    @foreach (var link in group)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                            <div>
+                                <div class="fw-bold">
+                                    @link.WebsiteName
+                                </div>
+
+                                <div class="text-muted small">
+                                    @link.LinkType
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2">
+
+                                <a class="btn btn-outline-primary btn-sm"
+                                   href="@link.Url"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    Open
+                                </a>
+
+                                @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
+                                {
+                                    <a asp-controller="ReadingLinks" 
+                                       asp-action="EditReadingLink"
+                                       asp-route-id="@link.Id"
+                                       class="btn btn-outline-secondary btn-sm">
+                                        Edit
+                                    </a>
+
+                                    <form asp-controller="ReadingLinks"
+                                          asp-action="DeleteReadingLink"
+                                          asp-route-id="@link.Id"
+                                          method="post"
+                                          class="d-inline">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <button type="submit"
+                                                class="btn btn-outline-danger btn-sm"
+                                                onclick="return confirm('Delete this reading link?');">
+                                            Delete
+                                        </button>
+
+                                    </form>
+                                }
+
+                            </div>
+
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-muted">
+            No reading links are available yet.
+        </p>
+
+        @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
+        {
+            <p class="text-muted small">
+                Add the first reading link for this book.
+            </p>
+        }
+    }
+
+
+     <!-- Suggestions -->
+@if (User.Identity?.IsAuthenticated == true && !User.IsInRole("Admin"))
+{
+    <div class="mt-4 d-flex flex-wrap gap-2">
+
+        <a asp-controller="ContributionRequests"
+           asp-action="CreateContributionRequest"
+           asp-route-id="@Model.Id"
+           asp-route-type="@ContributionRequestTypes.ReadingLink"
+           class="btn btn-outline-primary">
+            Suggest a Reading Link
+        </a>
+
+        <a asp-controller="ContributionRequests"
+           asp-action="CreateContributionRequest"
+           asp-route-id="@Model.Id"
+           asp-route-type="@ContributionRequestTypes.BookInformation"
+           class="btn btn-outline-secondary">
+            Suggest Book Information
+        </a>
+
+    </div>
+}
+else if (User.Identity?.IsAuthenticated != true)
+{
+    <div class="mt-4">
+
+        <a asp-controller="Account"
+           asp-action="Login"
+           class="btn btn-outline-primary">
+            Login to Make a Suggestion
+        </a>
+
+    </div>
+}
+
+      </div>
+  </div> 
+
+</div>
+
+<section class="mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="h4 mb-1">Reviews</h2>
+
+            <p class="text-muted mb-0">
+                See what other readers think about this book.
+            </p>
+        </div>
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            var hasReviewed = Model.Reviews
+                .Any(r => r.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+
+            if (!hasReviewed)
+            {
+                <a asp-controller="Reviews"
+                   asp-action="Create"
+                   asp-route-bookId="@Model.Id"
+                   class="btn btn-primary">
+                    Write a Review
+                </a>
+            }
+        }
+        else
+        {
+            <a asp-controller="Account"
+               asp-action="Login"
+               class="btn btn-outline-primary">
+                Login to Review
+            </a>
+        }
+
+    </div>
+
+    @if (Model.Reviews.Any())
+    {
+        foreach (var review in Model.Reviews
+            .OrderByDescending(r => r.CreatedAt))
+        {
+            <div class="card border-0 shadow-sm rounded-4 mb-3">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+                             @if (review.User.IsProfilePublic)
+                              {
+                                 <a asp-controller="Profile"
+                                    asp-action="Public"
+                                    asp-route-username="@review.User.UserName"
+                                    class="text-decoration-none fw-semibold">
+                                    @review.User.UserName
+                                 </a>
+                             }
+                             else
+                             {
+                                <span class="fw-semibold">
+                                   Anonymous Reader
+                                </span>
+                             }
+                                         
+                            <div class="small text-muted">
+                                @review.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                            </div>
+                        </div>
+
+                        <div class="review-rating">
+                            @for (var i = 0; i < review.Rating; i++)
+                            {
+                                <span class="review-star">&#9733;</span>
+                            }
+                        </div>
+
+                    </div>
+
+                    <p class="mt-3 mb-3">
+                        @review.Content
+                    </p>
+
+                    @{
+                        var currentUserId =
+                            User.FindFirst(
+                                System.Security.Claims.ClaimTypes.NameIdentifier
+                            )?.Value;
+
+                        var isOwner =
+                            User.Identity?.IsAuthenticated == true &&
+                            review.UserId == currentUserId;
+
+                        var isAdmin =
+                            User.Identity?.IsAuthenticated == true &&
+                            User.IsInRole("Admin");
+                    }
+
+                    @if (isOwner || isAdmin)
+                    {
+                        <div class="d-flex gap-2">
+
+                            @if (isOwner)
+                            {
+                                <a asp-controller="Reviews"
+                                   asp-action="Edit"
+                                   asp-route-id="@review.Id"
+                                   class="btn btn-outline-secondary btn-sm">
+                                    Edit
+                                </a>
+                            }
+
+                            <a asp-controller="Reviews"
+                               asp-action="Delete"
+                               asp-route-id="@review.Id"
+                               class="btn btn-outline-danger btn-sm">
+                                Delete
+                            </a>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        }
+    }
+    else
+    {
+        <div class="text-center py-4">
+
+            <p class="text-muted mb-3">
+                No reviews yet.
+            </p>
+
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a asp-controller="Reviews"
+                   asp-action="Create"
+                   asp-route-bookId="@Model.Id"
+                   class="btn btn-outline-primary">
+                    Be the first to review this book
+                </a>
+            }
+
+        </div>
+    }
+
+</section>
+
+@if (ViewBag.SimilarBooks is IEnumerable<BookNest.Models.Book> similarBooks && similarBooks.Any())
+{
+    <div class="mt-5">
+        <h3 class="h4 mb-3">You may also like</h3>
+        <div class="row g-4">
+            @foreach (var similarBook in similarBooks)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <a class="card h-100 border-0 shadow-sm rounded-4 text-decoration-none text-dark" asp-action="Details" asp-route-id="@similarBook.Id">
+                        <div class="card-body">
+                            <h5 class="card-title">@similarBook.Title</h5>
+                            <p class="text-muted mb-2">By @string.Join(", ", similarBook.Authors.Select(a => a.Name))</p>
+                            <p class="small text-secondary">@string.Join(", ", similarBook.Genres.Select(g => g.Name))</p>
+                            <span class="btn btn-outline-primary btn-sm">Open Details</span>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+}

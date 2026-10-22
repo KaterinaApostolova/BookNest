@@ -1,0 +1,147 @@
+@model IEnumerable<BookNest.Models.ContributionRequest>
+
+@{
+    ViewData["Title"] = "My Contribution Requests";
+}
+
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-9">
+
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                <h1 class="h4 mb-1">
+                    My Contribution Requests
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Requests and suggestions you have submitted to BookNest.
+                </p>
+
+
+                @if (Model.Any())
+                {
+                    <div class="d-flex flex-column gap-3">
+
+                        @foreach (var request in Model)
+                        {
+                            <div class="border rounded-4 p-3">
+
+                                <div class="d-flex justify-content-between align-items-start gap-3">
+
+                                    <div>
+
+                                        <h2 class="h6 mb-1">
+                                            @if (request.RequestType == ContributionRequestTypes.ReadingLink)
+                                            {
+                                                <span>Reading Link</span>
+                                            }
+                                            else if (request.RequestType == ContributionRequestTypes.BookInformation)
+                                            {
+                                                <span>Book Information</span>
+                                            }
+                                            else if (request.RequestType == ContributionRequestTypes.NewBook)
+                                            {
+                                                <span>New Book</span>
+                                            }
+                                            else if (request.RequestType == ContributionRequestTypes.AdminRequest)
+                                            {
+                                                <span>Moderator Request</span>
+                                            }
+                                            else
+                                            {
+                                                <span>General Suggestion</span>
+                                            }
+                                        </h2>
+
+
+                                        @if (request.Book != null)
+                                        {
+                                            <div class="small text-muted">
+                                                @request.Book.Title
+                                            </div>
+                                        }
+
+                                        <div class="small text-muted mt-1">
+                                            @request.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                                        </div>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        @if (request.Status == ContributionRequestStatuses.Pending)
+                                        {
+                                            <span class="badge bg-warning text-dark">
+                                                Pending
+                                            </span>
+                                        }
+                                        else if (request.Status == ContributionRequestStatuses.Approved)
+                                        {
+                                            <span class="badge bg-success">
+                                                Approved
+                                            </span>
+                                        }
+                                        else if (request.Status == ContributionRequestStatuses.Rejected)
+                                        {
+                                            <span class="badge bg-danger">
+                                                Rejected
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">
+                                                Resolved
+                                            </span>
+                                        }
+
+                                    </div>
+
+                                </div>
+
+
+                                <p class="text-muted mt-3 mb-3">
+                                    @request.Message
+                                </p>
+
+
+                                <a asp-controller="ContributionRequests"
+                                   asp-action="Details"
+                                   asp-route-id="@request.Id"
+                                   class="btn btn-outline-primary btn-sm">
+                                    View Details
+                                </a>
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <div class="text-muted">
+                        You haven't submitted any requests yet.
+                    </div>
+                }
+
+
+                <div class="mt-4">
+
+                    <a asp-controller="Profile"
+                       asp-action="Profile"
+                       class="btn btn-outline-secondary">
+                        Back to Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

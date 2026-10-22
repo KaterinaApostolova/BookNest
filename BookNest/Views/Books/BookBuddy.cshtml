@@ -1,0 +1,52 @@
+@model BookNest.ViewModels.BookBuddyViewModel
+
+@{
+    ViewData["Title"] = "BookBuddy";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm rounded-4 border-0">
+            <div class="card-body p-4">
+                <div class="mb-4">
+                    <h1 class="h3 mb-2">Lyra / BookBuddy</h1>
+                    <p class="text-muted mb-0">A friendly reading assistant for discovering books and sharing book thoughts.</p>
+                </div>
+
+                <div class="bookbuddy-messages mb-4" aria-live="polite">
+                    @if (Model.Messages.Count == 0)
+                    {
+                        <div class="text-center text-muted py-5">
+                            <p class="mb-1">Start a conversation with Lyra.</p>
+                            <small>Try “recommend a fantasy book”, an author’s name, or ask how to use BookNest.</small>
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var message in Model.Messages)
+                        {
+                            <div class="bookbuddy-message @(message.IsUser ? "bookbuddy-message-user" : "bookbuddy-message-lyra")">
+                                <div class="small fw-semibold mb-1">@(message.IsUser ? "You" : "Lyra")</div>
+                                <div>@message.Text</div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <form asp-action="BookBuddy" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+                    <div class="input-group">
+                        <input asp-for="UserMessage" class="form-control" placeholder="Ask Lyra about books..." autocomplete="off" />
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                    <span asp-validation-for="UserMessage" class="text-danger"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+</div>

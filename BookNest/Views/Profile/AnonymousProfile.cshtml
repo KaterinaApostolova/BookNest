@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Anonymous Profile";
+}
+
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card border-0 shadow-sm rounded-4 p-5 text-center">
+
+                <div class="mb-4">
+
+                    <div class="rounded-circle bg-light
+                                d-flex align-items-center justify-content-center
+                                mx-auto"
+                         style="width: 90px; height: 90px;">
+
+                        <span style="font-size: 38px;">
+                            &#x1F512;
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <h1 class="h4 mb-3">
+                    This profile is private
+                </h1>
+
+                <p class="text-muted mb-4">
+                    This reader has chosen to keep their profile private.
+                    Their profile information, reading activity and reviews
+                    are not publicly available.
+                </p>
+
+                <a asp-controller="Books"
+                   asp-action="Index"
+                   class="btn btn-primary">
+                    Browse Books
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,225 @@
+@model BookNest.ViewModels.ContributionRequestViewModel
+
+@{
+    ViewData["Title"] = "Make a Suggestion";
+
+    var title = Model.RequestType switch
+    {
+        "ReadingLink" => "Suggest a Reading Link",
+        "BookInformation" => "Suggest Book Information",
+        "NewBook" => "Suggest a New Book",
+        "GeneralSuggestion" => "Send a Suggestion",
+        "AdminRequest" => "Request Moderator Access",
+        _ => "Make a Suggestion"
+    };
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                <h2 class="h4 mb-2">
+                    @title
+                </h2>
+
+                @if (!string.IsNullOrWhiteSpace(Model.BookTitle))
+                {
+                    <p class="text-muted mb-4">
+                        Book:
+                        <strong>@Model.BookTitle</strong>
+                    </p>
+                }
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3">
+                </div>
+
+                <form asp-action="CreateContributionRequest"
+                      method="post">
+
+                    <input asp-for="BookId" type="hidden" />
+                    <input asp-for="RequestType" type="hidden" />
+
+                    @if (Model.RequestType == ContributionRequestTypes.ReadingLink)
+                    {
+                        <div class="mb-3">
+                            <label asp-for="WebsiteName"
+                                   class="form-label">
+                                Website
+                            </label>
+                            <span class="text-danger">*</span>
+                            <input asp-for="WebsiteName"
+                                   class="form-control"
+                                   placeholder="For example: Chitanka" />
+
+                            <span asp-validation-for="WebsiteName"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Language"
+                                   class="form-label">
+                                Language
+                            </label>
+                            <span class="text-danger">*</span>
+                            <input asp-for="Language"
+                                   class="form-control"
+                                   placeholder="For example: Bulgarian" />
+
+                            <span asp-validation-for="Language"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SourceUrl"
+                                   class="form-label">
+                                Reading Link
+                            </label>
+                             <span class="text-danger">*</span>
+                            <input asp-for="SourceUrl"
+                                   class="form-control"
+                                   placeholder="https://..." />
+
+                            <span asp-validation-for="SourceUrl"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LinkType"
+                                   class="form-label">
+                                Link Type
+                            </label>
+                            <span class="text-danger">*</span>
+                            <select asp-for="LinkType"
+                                    class="form-select">
+
+                                <option value="">Select type</option>
+                                <option value="Read Online">Read Online</option>
+                                <option value="Borrow">Borrow</option>
+                                <option value="Buy">Buy</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+
+                            <span asp-validation-for="LinkType"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Message"
+                                   class="form-label">
+                                Additional Information
+                            </label>
+                            <span class="text-danger">*</span>
+                            <textarea asp-for="Message"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Tell us anything useful about this reading link..."></textarea>
+
+                            <span asp-validation-for="Message"
+                                  class="text-danger"></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mb-3">
+                            <label asp-for="Message"
+                                   class="form-label">
+                                @if (Model.RequestType == ContributionRequestTypes.AdminRequest)
+                                {
+                                    <span>Why would you like to become a moderator?</span>
+                                }
+                                else if (Model.RequestType == ContributionRequestTypes.NewBook)
+                                {
+                                    <span>Which book would you like to suggest?</span>
+                                }
+                                else
+                                {
+                                    <span>What would you like to suggest?</span>
+                                }
+
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <textarea asp-for="Message"
+                                      class="form-control"
+                                      rows="6"
+                                      placeholder="Tell us your suggestion..."></textarea>
+
+                            <span asp-validation-for="Message"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AdditionalInformation"
+                                   class="form-label">
+                                Additional Information
+                            </label>
+
+                            <textarea asp-for="AdditionalInformation"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Add any additional details that may help the moderators..."></textarea>
+
+                            <span asp-validation-for="AdditionalInformation"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SourceUrl"
+                                   class="form-label">
+                                Source / Link
+                            </label>
+
+                            <input asp-for="SourceUrl"
+                                   class="form-control"
+                                   placeholder="https://... (optional)" />
+
+                            <span asp-validation-for="SourceUrl"
+                                  class="text-danger"></span>
+
+                            <div class="form-text">
+                                Optional. Add a source if you have one.
+                            </div>
+                        </div>
+                    }
+
+                    <div class="d-flex gap-2 mt-4">
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Send
+                        </button>
+
+                        @if (Model.BookId.HasValue)
+                        {
+                            <a asp-controller="Books"
+                               asp-action="Details"
+                               asp-route-id="@Model.BookId"
+                               class="btn btn-secondary">
+                                Cancel
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Profile"
+                               asp-action="Profile"
+                               class="btn btn-secondary">
+                                Cancel
+                            </a>
+                        }
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

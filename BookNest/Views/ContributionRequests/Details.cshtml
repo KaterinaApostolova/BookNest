@@ -1,0 +1,236 @@
+@model BookNest.Models.ContributionRequest
+
+@{
+    ViewData["Title"] = "My Contribution Request";
+}
+
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                <div class="d-flex justify-content-between align-items-start mb-4">
+
+                    <div>
+
+                        <h1 class="h4 mb-1">
+                            My Contribution Request
+                        </h1>
+
+                        <p class="text-muted mb-0">
+                            Request #@Model.Id
+                        </p>
+
+                    </div>
+
+
+                    @if (Model.Status == ContributionRequestStatuses.Pending)
+                    {
+                        <span class="badge bg-warning text-dark">
+                            Pending
+                        </span>
+                    }
+                    else if (Model.Status == ContributionRequestStatuses.Approved)
+                    {
+                        <span class="badge bg-success">
+                            Approved
+                        </span>
+                    }
+                    else if (Model.Status == ContributionRequestStatuses.Rejected)
+                    {
+                        <span class="badge bg-danger">
+                            Rejected
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">
+                            Resolved
+                        </span>
+                    }
+
+                </div>
+
+
+                <dl class="row">
+
+                    <dt class="col-sm-4">
+                        Request Type
+                    </dt>
+
+                    <dd class="col-sm-8">
+
+                        @if (Model.RequestType == ContributionRequestTypes.ReadingLink)
+                        {
+                            <span>Reading Link</span>
+                        }
+                        else if (Model.RequestType == ContributionRequestTypes.BookInformation)
+                        {
+                            <span>Book Information</span>
+                        }
+                        else if (Model.RequestType == ContributionRequestTypes.NewBook)
+                        {
+                            <span>New Book</span>
+                        }
+                        else if (Model.RequestType == ContributionRequestTypes.AdminRequest)
+                        {
+                            <span>Moderator Request</span>
+                        }
+                        else
+                        {
+                            <span>General Suggestion</span>
+                        }
+
+                    </dd>
+
+
+                    <dt class="col-sm-4">
+                        Book
+                    </dt>
+
+                    <dd class="col-sm-8">
+                        @(Model.Book?.Title ?? "Not related to a specific book")
+                    </dd>
+
+
+                    <dt class="col-sm-4">
+                        Submitted
+                    </dt>
+
+                    <dd class="col-sm-8">
+                        @Model.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                    </dd>
+
+                </dl>
+
+
+                <hr />
+
+
+                <div class="mb-4">
+
+                    <h2 class="h6">
+                        Your Request
+                    </h2>
+
+                    <div class="bg-light rounded-4 p-3">
+                        @Model.Message
+                    </div>
+
+                </div>
+
+
+                @if (!string.IsNullOrWhiteSpace(Model.AdditionalInformation))
+                {
+                    <div class="mb-4">
+
+                        <h2 class="h6">
+                            Additional Information
+                        </h2>
+
+                        <div class="bg-light rounded-4 p-3">
+                            @Model.AdditionalInformation
+                        </div>
+
+                    </div>
+                }
+
+
+                @if (Model.RequestType == ContributionRequestTypes.ReadingLink)
+                {
+                    <div class="mb-4">
+
+                        <h2 class="h6">
+                            Reading Link Details
+                        </h2>
+
+                        <dl class="row">
+
+                            <dt class="col-sm-4">
+                                Website
+                            </dt>
+
+                            <dd class="col-sm-8">
+                                @Model.WebsiteName
+                            </dd>
+
+
+                            <dt class="col-sm-4">
+                                Language
+                            </dt>
+
+                            <dd class="col-sm-8">
+                                @Model.Language
+                            </dd>
+
+
+                            <dt class="col-sm-4">
+                                Link Type
+                            </dt>
+
+                            <dd class="col-sm-8">
+                                @Model.LinkType
+                            </dd>
+
+
+                            @if (!string.IsNullOrWhiteSpace(Model.SourceUrl))
+                            {
+                                <dt class="col-sm-4">
+                                    Link
+                                </dt>
+
+                                <dd class="col-sm-8">
+
+                                    <a href="@Model.SourceUrl"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        Open Link
+                                    </a>
+
+                                </dd>
+                            }
+
+                        </dl>
+
+                    </div>
+                }
+
+
+                <div class="d-flex gap-2 flex-wrap mt-4">
+
+                    <a asp-action="MyRequests"
+                       class="btn btn-outline-secondary">
+                        Back to My Requests
+                    </a>
+
+
+                    @if (Model.Status != ContributionRequestStatuses.Pending)
+                    {
+                        <form asp-action="DeleteContributionRequest"
+                              asp-route-id="@Model.Id"
+                              method="post"
+                              class="d-inline"
+                              onsubmit="return confirm('Are you sure you want to delete this request?');">
+
+                            @Html.AntiForgeryToken()
+
+                            <button type="submit"
+                                    class="btn btn-outline-danger">
+                                Delete Request
+                            </button>
+
+                        </form>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div> 

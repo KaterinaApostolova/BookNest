@@ -1,0 +1,91 @@
+﻿@model BookNest.ViewModels.ReadingLinkViewModel
+
+@{
+    ViewData["Title"] = "Add Reading Link";
+}
+
+<div class="container py-4">
+    <div class="card border-0 shadow-sm rounded-4 p-4">
+        <h2 class="h4 mb-4">Add Reading Link</h2>
+
+        <p class="text-muted">
+            Add a reading or purchase option for
+            <strong>@ViewBag.BookTitle</strong>.
+        </p>
+
+        <form asp-action="AddReadingLink" method="post">
+            <input asp-for="BookId" type="hidden" />
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="WebsiteName" class="form-label">
+                    Website
+                </label>
+
+                <input asp-for="WebsiteName"
+                       class="form-control"
+                       placeholder="e.g. Chitanka" />
+
+                <span asp-validation-for="WebsiteName"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Language" class="form-label">
+                    Language
+                </label>
+
+                <input asp-for="Language"
+                       class="form-control"
+                       placeholder="e.g. Bulgarian" />
+
+                <span asp-validation-for="Language"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Url" class="form-label">
+                    URL
+                </label>
+
+                <input asp-for="Url"
+                       class="form-control"
+                       placeholder="https://..." />
+
+                <span asp-validation-for="Url"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="LinkType" class="form-label">
+                    Link Type
+                </label>
+
+                <select asp-for="LinkType" class="form-select">
+                    <option value="">Select type</option>
+                    <option value="Read Online">Read Online</option>
+                    <option value="Borrow">Borrow</option>
+                    <option value="Buy">Buy</option>
+                    <option value="Audiobook">Audiobook</option>
+                </select>
+
+                <span asp-validation-for="LinkType"
+                      class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Add Link
+            </button>
+
+            <a asp-controller="Books"
+               asp-action="Details"
+               asp-route-id="@Model.BookId"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+

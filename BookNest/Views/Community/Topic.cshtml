@@ -1,0 +1,88 @@
+@model BookNest.Models.ForumTopic
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="mb-4">
+    <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+        <a asp-controller="Community" asp-action="Forum" asp-route-id="@Model.ForumId" class="btn btn-outline-secondary btn-sm">Back to forum</a>
+        <span class="small text-muted">@Model.Forum?.Name</span>
+    </div>
+    <div class="d-flex justify-content-between align-items-start gap-3">
+        <h2 class="mb-1">@Model.Title</h2>
+        @if (User.Identity?.IsAuthenticated == true &&
+             Model.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+        {
+            <div class="d-flex gap-2">
+                <a class="btn btn-outline-secondary btn-sm" asp-action="EditTopic" asp-route-id="@Model.Id">Edit</a>
+                <form asp-controller="Community" asp-action="DeleteTopic" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Delete this topic and its replies?');">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                </form>
+            </div>
+        }
+        @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin") && Model.UserId != User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+        {
+            <form asp-controller="Community" asp-action="DeleteTopic" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Delete this topic and its replies?');">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+            </form>
+        }
+    </div>
+    <small class="text-muted">Started by @(Model.User?.UserName ?? "BookNest member") on @Model.CreatedAt.ToLocalTime().ToString("g")</small>
+</div>
+
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+    <div class="card-body">
+        <p class="mb-0" style="white-space: pre-wrap">@(Model.Content ?? "")</p>
+    </div>
+</div>
+
+<div class="d-grid gap-3 mb-4">
+    @foreach (var post in Model.Posts.OrderBy(p => p.CreatedAt))
+    {
+        <article class="card border-0 shadow-sm rounded-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <strong>@(post.User?.UserName ?? "BookNest member")</strong>
+                    <div class="d-flex align-items-center gap-2">
+                        <small class="text-muted">@post.CreatedAt.ToLocalTime().ToString("g")</small>
+                            @if (User.Identity?.IsAuthenticated == true &&
+                                post.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+                        {
+                            <a class="btn btn-outline-secondary btn-sm" asp-action="EditPost" asp-route-id="@post.Id">Edit</a>
+                            }
+                            @if (User.Identity?.IsAuthenticated == true &&
+                                (User.IsInRole("Admin") || post.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value))
+                            {
+                            <form asp-controller="Community" asp-action="DeletePost" asp-route-id="@post.Id" method="post" onsubmit="return confirm('Delete this reply?');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+                <p class="mb-0" style="white-space: pre-wrap">@post.Content</p>
+            </div>
+        </article>
+    }
+</div>
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <form asp-controller="Community" asp-action="CreatePost" method="post" class="card border-0 shadow-sm rounded-4">
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="ForumTopicId" value="@Model.Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <label for="Content" class="form-label">Write a reply</label>
+            <textarea id="Content" name="Content" class="form-control" rows="5" maxlength="4000" required></textarea>
+            <button type="submit" class="btn btn-primary mt-3">Post reply</button>
+        </div>
+    </form>
+}
+else
+{
+    <div class="alert alert-light border rounded-3">Please <a asp-controller="Account" asp-action="Login">log in</a> to join the discussion.</div>
+}

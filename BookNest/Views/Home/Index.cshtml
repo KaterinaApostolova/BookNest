@@ -1,0 +1,79 @@
+﻿@model BookNest.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero-card py-5 px-4 rounded-4 shadow-sm mb-5">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <p class="text-primary fw-semibold mb-3">BookNest</p>
+            <h1 class="display-5 fw-bold mb-3">Because no story should end with the last page.</h1>
+            <p class="lead text-muted mb-4">BookNest is a warm community for readers who want to keep discovering, discussing, and sharing stories long after the final chapter.</p>
+            <div class="d-flex gap-3 flex-wrap">
+                <a class="btn btn-primary px-4" asp-controller="Books" asp-action="Index">Explore Books</a>
+                <a class="btn btn-outline-primary px-4" asp-controller="Community" asp-action="Index">Join the Community</a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="placeholder-card p-4 rounded-4 border">
+                    <img src="~/images/logo.png" alt="BookNest logo" align-items-center class="home-logo mb-3" />
+                <h3 class="fw-semibold">A place for readers to grow together</h3>
+                <p class="text-muted mb-0">The final page is only the beginning of a new conversation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row g-4 mb-5">
+    <div class="col-md-3">
+        <a class="card h-100 border-0 shadow-sm rounded-4 text-decoration-none text-dark" asp-controller="Books" asp-action="Index">
+            <div class="card-body">
+                <h5 class="card-title">Books</h5>
+                <p class="card-text text-muted">Discover stories, authors, and new reading adventures.</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a class="card h-100 border-0 shadow-sm rounded-4 text-decoration-none text-dark" asp-controller="Community" asp-action="Index">
+            <div class="card-body">
+                <h5 class="card-title">Community</h5>
+                <p class="card-text text-muted">Join thoughtful discussions and meet fellow readers.</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a class="card h-100 border-0 shadow-sm rounded-4 text-decoration-none text-dark" asp-controller="ReadingJourney" asp-action="ReadingJourney">
+            <div class="card-body">
+                <h5 class="card-title">Reading Journey</h5>
+                <p class="card-text text-muted">Track what you read and save your favorites in lists.</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a class="card h-100 border-0 shadow-sm rounded-4 text-decoration-none text-dark" asp-controller="Lyra" asp-action="Index">
+            <div class="card-body">
+                <h5 class="card-title">BookBuddy</h5>
+                <p class="card-text text-muted">Talk privately with Lyra, your friendly reading buddy.</p>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section>
+    <h2 class="h4 fw-semibold mb-3">Featured books</h2>
+    <div class="row g-4">
+        @foreach (var book in Model.FeaturedBooks)
+        {
+            <div class="col-md-4">
+                <a class="card h-100 border-0 shadow-sm rounded-4 text-decoration-none text-dark" asp-controller="Books" asp-action="Details" asp-route-id="@book.Id">
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <p class="text-muted mb-2">By @string.Join(", ", book.Authors.Select(a => a.Name))</p>
+                        <p class="card-text">@(string.IsNullOrWhiteSpace(book.Description) ? "No description available yet." : book.Description)</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</section>

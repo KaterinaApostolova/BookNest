@@ -1,0 +1,230 @@
+@model IEnumerable<BookNest.Models.ContributionRequest>
+
+@{
+    ViewData["Title"] = "Contribution Requests";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3">Contribution Requests</h1>
+            <p class="text-muted mb-0">
+                Review suggestions and requests submitted by users.
+            </p>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+
+        <form asp-action="ContributionRequests"
+              method="get"
+              class="row g-3">
+
+            <div class="col-md-5">
+                <label class="form-label">Status</label>
+
+                <select name="status" class="form-select">
+
+                    <option value="">All statuses</option>
+
+                    <option value="@ContributionRequestStatuses.Pending"
+                            selected="@(ViewBag.Status == ContributionRequestStatuses.Pending)">
+                        Pending
+                    </option>
+
+                    <option value="@ContributionRequestStatuses.Approved"
+                            selected="@(ViewBag.Status == ContributionRequestStatuses.Approved)">
+                        Approved
+                    </option>
+
+                    <option value="@ContributionRequestStatuses.Rejected"
+                            selected="@(ViewBag.Status == ContributionRequestStatuses.Rejected)">
+                        Rejected
+                    </option>
+
+                    <option value="@ContributionRequestStatuses.Resolved"
+                            selected="@(ViewBag.Status == ContributionRequestStatuses.Resolved)">
+                        Resolved
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="col-md-5">
+                <label class="form-label">Request Type</label>
+
+                <select name="type" class="form-select">
+
+                    <option value="">All types</option>
+
+                    <option value="@ContributionRequestTypes.ReadingLink"
+                            selected="@(ViewBag.Type == ContributionRequestTypes.ReadingLink)">
+                        Reading Link
+                    </option>
+
+                    <option value="@ContributionRequestTypes.BookInformation"
+                            selected="@(ViewBag.Type == ContributionRequestTypes.BookInformation)">
+                        Book Information
+                    </option>
+
+                    <option value="@ContributionRequestTypes.NewBook"
+                            selected="@(ViewBag.Type == ContributionRequestTypes.NewBook)">
+                        New Book
+                    </option>
+
+                    <option value="@ContributionRequestTypes.GeneralSuggestion"
+                            selected="@(ViewBag.Type == ContributionRequestTypes.GeneralSuggestion)">
+                        General Suggestion/Feedback
+                    </option>
+
+                    <option value="@ContributionRequestTypes.AdminRequest"
+                            selected="@(ViewBag.Type == ContributionRequestTypes.AdminRequest)">
+                        Admin Request
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+
+                <button type="submit"
+                        class="btn btn-outline-primary w-100">
+                    Filter
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    @if (!Model.Any())
+    {
+        <div class="card border-0 shadow-sm rounded-4 p-4">
+            <p class="text-muted mb-0">
+                No contribution requests found.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm rounded-4">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle mb-0">
+
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Type</th>
+                            <th>Book</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    @foreach (var request in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @(request.User?.UserName ?? "Unknown user")
+                            </td>
+
+                            <td>
+                                @switch (request.RequestType)
+                                {
+                                    case ContributionRequestTypes.ReadingLink:
+                                        <span>Reading Link</span>
+                                        break;
+
+                                    case ContributionRequestTypes.BookInformation:
+                                        <span>Book Information</span>
+                                        break;
+
+                                    case ContributionRequestTypes.NewBook:
+                                        <span>New Book</span>
+                                        break;
+
+                                    case ContributionRequestTypes.GeneralSuggestion:
+                                        <span>General Suggestion</span>
+                                        break;
+
+                                    case ContributionRequestTypes.AdminRequest:
+                                        <span>Moderator Request</span>
+                                        break;
+
+                                    default:
+                                        <span>@request.RequestType</span>
+                                        break;
+                                }
+                            </td>
+
+                            <td>
+                                @(request.Book?.Title ?? "—")
+                            </td>
+
+                            <td>
+
+                                @if (request.Status == ContributionRequestStatuses.Pending)
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        Pending
+                                    </span>
+                                }
+                                else if (request.Status == ContributionRequestStatuses.Approved)
+                                {
+                                    <span class="badge bg-success">
+                                        Approved
+                                    </span>
+                                }
+                                else if (request.Status == ContributionRequestStatuses.Rejected)
+                                {
+                                    <span class="badge bg-danger">
+                                        Rejected
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">
+                                        Resolved
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+                                <div class="small text-muted">
+                                    @request.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                                </div>
+                            </td>
+
+                            <td class="text-end">
+
+                                <a asp-action="ContributionRequestDetails"
+                                   asp-route-id="@request.Id"
+                                   class="btn btn-outline-primary btn-sm">
+                                    View
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    }
+
+</div>

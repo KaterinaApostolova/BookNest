@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="New chat" xml:space="preserve"><value>New chat</value></data>
+  <data name="Your conversations will appear here." xml:space="preserve"><value>Your conversations will appear here.</value></data>
+  <data name="A reading conversation" xml:space="preserve"><value>A reading conversation</value></data>
+  <data name="Ask about BookNest books, authors, genres, reviews, or your Reading Journey." xml:space="preserve"><value>Ask about BookNest books, authors, genres, reviews, or your Reading Journey.</value></data>
+  <data name="Start a conversation with Lyra." xml:space="preserve"><value>Start a conversation with Lyra.</value></data>
+  <data name="Try asking what to read next or ask about a book." xml:space="preserve"><value>Try asking what to read next or ask about a book.</value></data>
+  <data name="Message Lyra..." xml:space="preserve"><value>Message Lyra...</value></data>
+  <data name="Send" xml:space="preserve"><value>Send</value></data>
+  <data name="Lyra is thinking..." xml:space="preserve"><value>Lyra is thinking...</value></data>
+</root>

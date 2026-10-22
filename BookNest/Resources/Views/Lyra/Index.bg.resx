@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="New chat" xml:space="preserve"><value>Нов чат</value></data>
+  <data name="Your conversations will appear here." xml:space="preserve"><value>Вашите разговори ще се показват тук.</value></data>
+  <data name="A reading conversation" xml:space="preserve"><value>Разговор за четене</value></data>
+  <data name="Ask about BookNest books, authors, genres, reviews, or your Reading Journey." xml:space="preserve"><value>Питайте за книги, автори, жанрове, ревюта или вашето читателско пътешествие в BookNest.</value></data>
+  <data name="Start a conversation with Lyra." xml:space="preserve"><value>Започнете разговор с Lyra.</value></data>
+  <data name="Try asking what to read next or ask about a book." xml:space="preserve"><value>Попитайте какво да прочетете следващо или за конкретна книга.</value></data>
+  <data name="Message Lyra..." xml:space="preserve"><value>Съобщение до Lyra...</value></data>
+  <data name="Send" xml:space="preserve"><value>Изпрати</value></data>
+  <data name="Lyra is thinking..." xml:space="preserve"><value>Lyra обмисля...</value></data>
+</root>

@@ -1,0 +1,391 @@
+@model BookNest.ViewModels.AdminUserDetailsViewModel
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="container mt-5 mb-5">
+
+    <div class="d-flex justify-content-between
+                align-items-center mb-4">
+
+        <div>
+            <h1 class="h3 mb-1">
+                User Details
+            </h1>
+
+            <p class="text-muted mb-0">
+                View information about this BookNest user.
+            </p>
+        </div>
+
+        <a asp-action="Users"
+           class="btn btn-outline-secondary">
+            Back to Users
+        </a>
+
+    </div>
+    @if (TempData["InfoMessage"] != null)
+    {
+       <div class="alert alert-success">
+           @TempData["InfoMessage"]
+       </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+       <div class="alert alert-danger">
+           @TempData["ErrorMessage"]
+       </div>
+    }
+
+    <!-- PROFILE -->
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+
+        <div class="d-flex align-items-center gap-3">
+
+            @if (!string.IsNullOrWhiteSpace(Model.ProfilePictureUrl))
+            {
+                <img src="@Model.ProfilePictureUrl"
+                     alt="Profile picture"
+                     class="rounded-circle"
+                     style="width:90px;
+                            height:90px;
+                            object-fit:cover;" />
+            }
+            else
+            {
+                <div class="rounded-circle bg-primary text-white
+                            d-flex align-items-center justify-content-center"
+                     style="width:90px;
+                            height:90px;
+                            font-size:28px;">
+
+                    @Model.UserName.Substring(
+                        0,
+                        1
+                    ).ToUpper()
+
+                </div>
+            }
+
+
+            <div>
+
+                <h2 class="h4 mb-1">
+                    @Model.UserName
+                </h2>
+
+                <div class="text-muted">
+                    @Model.FullName
+                </div>
+
+                <div class="small text-muted">
+                    Member since
+                    @(Model.MemberSince
+                        .ToLocalTime()
+                        .ToString("dd.MM.yyyy"))
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACCOUNT STATUS -->
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+
+        <div class="d-flex justify-content-between
+                    align-items-center">
+
+            <div>
+
+                <h2 class="h5 mb-1">
+                    Account Status
+                </h2>
+
+                @if (Model.IsDeactivated)
+                {
+                    <span class="badge bg-danger">
+                        Deactivated
+                    </span>
+                }
+                else
+                {
+                    <span class="badge bg-success">
+                        Active
+                    </span>
+                }
+
+            </div>
+
+
+            @if (!Model.IsAdmin)
+            {
+                @if (Model.IsDeactivated)
+                {
+                    <form asp-action="ActivateUser"
+                          method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="id"
+                               value="@Model.Id" />
+
+                        <button type="submit"
+                                class="btn btn-success">
+
+                            Activate User
+
+                        </button>
+
+                    </form>
+                }
+                else
+                {
+                    <form asp-action="DeactivateUser"
+                          method="post"
+                          onsubmit="return confirm('Are you sure you want to deactivate this user?');">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="id"
+                               value="@Model.Id" />
+
+                        <button type="submit"
+                                class="btn btn-outline-danger">
+
+                            Deactivate User
+
+                        </button>
+
+                    </form>
+                }
+            }
+            else
+            {
+                <span class="badge bg-dark">
+                    Admin account protected
+                </span>
+            }
+
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE INFORMATION -->
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+
+        <h2 class="h5 mb-4">
+            Profile Information
+        </h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="small text-muted">
+                    Username
+                </div>
+
+                <div class="fw-semibold">
+                    @Model.UserName
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="small text-muted">
+                    Email
+                </div>
+
+                <div class="fw-semibold text-break">
+                    @Model.Email
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="small text-muted">
+                    Profile Visibility
+                </div>
+
+                @if (Model.IsProfilePublic)
+                {
+                    <span class="badge bg-success">
+                        Public
+                    </span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">
+                        Private
+                    </span>
+                }
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="small text-muted">
+                    Favourite Genre
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.FavouriteGenre))
+                {
+                    <span class="badge bg-primary">
+                        @Model.FavouriteGenre
+                    </span>
+                }
+                else
+                {
+                    <span class="text-muted">
+                        Not specified
+                    </span>
+                }
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="small text-muted">
+                    Favourite Book
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.FavouriteBook))
+                {
+                    <span class="fw-semibold">
+                        @Model.FavouriteBook
+                    </span>
+                }
+                else
+                {
+                    <span class="text-muted">
+                        Not specified
+                    </span>
+                }
+
+            </div>
+
+
+            <div class="col-12">
+
+                <div class="small text-muted">
+                    About
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.Bio))
+                {
+                    <p class="mb-0">
+                        @Model.Bio
+                    </p>
+                }
+                else
+                {
+                    <span class="text-muted">
+                        No bio added.
+                    </span>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- READING STATISTICS -->
+
+    <div class="card border-0 shadow-sm rounded-4 p-4">
+
+        <h2 class="h5 mb-4">
+            Reading Statistics
+        </h2>
+
+        <div class="row g-3">
+
+            <div class="col-md-3 col-6">
+
+                <div class="bg-light rounded-4 p-3 text-center">
+
+                    <div class="fs-3 fw-bold">
+                        @Model.BooksRead
+                    </div>
+
+                    <div class="small text-muted">
+                        Books Read
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6">
+
+                <div class="bg-light rounded-4 p-3 text-center">
+
+                    <div class="fs-3 fw-bold">
+                        @Model.CurrentlyReading
+                    </div>
+
+                    <div class="small text-muted">
+                        Currently Reading
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6">
+
+                <div class="bg-light rounded-4 p-3 text-center">
+
+                    <div class="fs-3 fw-bold">
+                        @Model.WantToRead
+                    </div>
+
+                    <div class="small text-muted">
+                        Want to Read
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6">
+
+                <div class="bg-light rounded-4 p-3 text-center">
+
+                    <div class="fs-3 fw-bold">
+                        @Model.ReviewsWritten
+                    </div>
+
+                    <div class="small text-muted">
+                        Reviews
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

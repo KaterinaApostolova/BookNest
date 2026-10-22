@@ -1,0 +1,686 @@
+@model BookNest.ViewModels.ProfileViewModel
+
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container mt-5 mb-5">
+
+    <!-- PAGE HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+
+        <div>
+            <h1 class="h3 mb-1">
+                My Profile
+            </h1>
+
+            <p class="text-muted mb-0">
+                Manage your profile, reading activity and contributions.
+            </p>
+        </div>
+
+        <div class="d-flex gap-2">
+
+            <a asp-controller="Profile"
+               asp-action="Edit"
+               class="btn btn-primary">
+                Edit Profile
+            </a>
+
+            <a asp-controller="Profile"
+               asp-action="MyPublicProfile"
+               class="btn btn-outline-secondary">
+                View Public Profile
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOP SECTION -->
+    <div class="row g-4">
+
+        <!-- PROFILE -->
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+
+                <div class="text-center">
+
+                    <!-- Avatar -->
+                    @if (!string.IsNullOrWhiteSpace(Model.ProfilePictureUrl))
+                    {
+                        <img src="@Model.ProfilePictureUrl"
+                             alt="Profile picture"
+                             class="rounded-circle mb-3"
+                             style="width: 120px;
+                                    height: 120px;
+                                    object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <div class="rounded-circle bg-primary text-white
+                                    d-flex align-items-center justify-content-center
+                                    mx-auto mb-3"
+                             style="width: 120px;
+                                    height: 120px;
+                                    font-size: 36px;">
+
+                            @Model.AvatarInitials
+
+                        </div>
+                    }
+
+
+                    <!-- Username -->
+                    <h2 class="h4 mb-1">
+                        @Model.UserName
+                    </h2>
+
+
+                    <!-- Full Name -->
+                    @if (!string.IsNullOrWhiteSpace(Model.FullName))
+                    {
+                        <p class="text-muted mb-2">
+                            @Model.FullName
+                        </p>
+                    }
+
+
+                    <!-- Member Since -->
+                    <p class="small text-muted mb-0">
+                        Member since
+                        @Model.MemberSince.ToLocalTime().ToString("dd.MM.yyyy")
+                    </p>
+
+                </div>
+
+
+                <hr class="my-4" />
+
+
+                <!-- EMAIL -->
+                <div class="mb-4">
+
+                    <div class="small fw-semibold mb-2">
+                        Email
+                    </div>
+
+                    <div class="fw-semibold text-break small">
+                        @Model.Email
+                    </div>
+
+                </div>
+
+
+                <!-- BIO -->
+                <div class="mb-4">
+
+                    <div class="small fw-semibold mb-2">
+                        About
+                    </div>
+
+                    <div class="small text-muted mb-1">
+                        Bio
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Bio))
+                    {
+                        <p class="mb-0 small">
+                            @Model.Bio
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="text-muted mb-0 small">
+                            You haven't added a bio yet.
+                        </p>
+                    }
+
+                </div>
+
+
+                <!-- FAVOURITE GENRE -->
+                <div class="mb-4">
+
+                    <div class="small text-muted mb-1">
+                        Favourite Genre
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.FavouriteGenre))
+                    {
+                        <span class="badge bg-primary">
+                            @Model.FavouriteGenre
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-muted small">
+                            No favourite genre selected.
+                        </span>
+                    }
+
+                </div>
+
+
+                <!-- FAVOURITE BOOK -->
+                <div>
+
+                    <div class="small text-muted mb-1">
+                        Favourite Book
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.FavouriteBookTitle))
+                    {
+                        <span class="badge bg-primary">
+                            @Model.FavouriteBookTitle
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-muted small">
+                            No favourite book selected.
+                        </span>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="col-lg-8">
+
+            <!-- READING STATISTICS -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+
+                <h2 class="h5 mb-4">
+                    Reading Statistics
+                </h2>
+
+
+                <div class="row g-3">
+
+                    <!-- Books Read -->
+                    <div class="col-md-3">
+
+                        <div class="bg-light rounded-4 p-3 text-center h-100">
+
+                            <div class="fs-3 fw-bold">
+                                @Model.BooksRead
+                            </div>
+
+                            <div class="small text-muted">
+                                Books Read
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Currently Reading -->
+                    <div class="col-md-3">
+
+                        <div class="bg-light rounded-4 p-3 text-center h-100">
+
+                            <div class="fs-3 fw-bold">
+                                @Model.CurrentlyReading
+                            </div>
+
+                            <div class="small text-muted">
+                                Currently Reading
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Want to Read -->
+                    <div class="col-md-3">
+
+                        <div class="bg-light rounded-4 p-3 text-center h-100">
+
+                            <div class="fs-3 fw-bold">
+                                @Model.WantToRead
+                            </div>
+
+                            <div class="small text-muted">
+                                Want to Read
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Reviews -->
+                    <div class="col-md-3">
+
+                        <div class="bg-light rounded-4 p-3 text-center h-100">
+
+                            <div class="fs-3 fw-bold">
+                                @Model.ReviewsWritten
+                            </div>
+
+                            <div class="small text-muted">
+                                Reviews
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMUNITY STATISTICS -->
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                <div class="d-flex justify-content-between
+                            align-items-center mb-4">
+
+                    <div>
+
+                        <h2 class="h5 mb-1">
+                            Community Statistics
+                        </h2>
+
+                        <p class="text-muted small mb-0">
+                            Your participation in the BookNest community.
+                        </p>
+
+                    </div>
+
+                    <a asp-controller="Community"
+                       asp-action="Index"
+                       class="btn btn-outline-secondary btn-sm">
+                        Visit Community
+                    </a>
+
+                </div>
+
+
+                <div class="row g-3">
+
+                    <!-- Topics Started -->
+                    <div class="col-md-6">
+
+                        <div class="bg-light rounded-4 p-3 text-center h-100">
+
+                            <div class="fs-3 fw-bold">
+                                @Model.TopicsStarted
+                            </div>
+
+                            <div class="small text-muted">
+                                Topics Started
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Replies Written -->
+                    <div class="col-md-6">
+
+                        <div class="bg-light rounded-4 p-3 text-center h-100">
+
+                            <div class="fs-3 fw-bold">
+                                @Model.RepliesWritten
+                            </div>
+
+                            <div class="small text-muted">
+                                Replies Written
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        
+
+    
+
+
+    <!-- FAVOURITE QUOTE -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
+        <div class="d-flex justify-content-between align-items-start gap-3">
+            <div>
+                <h2 class="h5 mb-1">Favourite Quote</h2>
+                <p class="text-muted small mb-0">A line that stays with you.</p>
+            </div>
+            <a asp-controller="Profile" asp-action="Edit" class="btn btn-outline-primary btn-sm">
+                @(string.IsNullOrWhiteSpace(Model.FavouriteQuote) ? "Add Quote" : "Edit Quote")
+            </a>
+        </div>
+        @if (string.IsNullOrWhiteSpace(Model.FavouriteQuote))
+        {
+            <div class="bg-light rounded-4 p-4 mt-4 text-center">
+                <p class="text-muted mb-3">Add your favourite quote</p>
+                <a asp-controller="Profile" asp-action="Edit" class="btn btn-primary btn-sm">Add Quote</a>
+            </div>
+        }
+        else
+        {
+            <blockquote class="border-start border-primary border-3 ps-3 mt-4 mb-0">
+                <p class="mb-3" style="white-space: pre-wrap">@Model.FavouriteQuote</p>
+                <div class="d-flex gap-2">
+                    <a asp-controller="Profile" asp-action="Edit" class="btn btn-outline-secondary btn-sm">Update</a>
+                    <form asp-controller="Profile" asp-action="RemoveFavouriteQuote" method="post" onsubmit="return confirm('Remove your favourite quote?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                    </form>
+                </div>
+            </blockquote>
+        }
+    </div>
+  </div>
+</div>
+
+
+    <!-- MY REVIEWS -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
+
+        <div class="d-flex justify-content-between
+                    align-items-center mb-4">
+
+            <div>
+
+                <h2 class="h5 mb-1">
+                    My Reviews
+                </h2>
+
+                <p class="text-muted small mb-0">
+                    Reviews you have written for books.
+                </p>
+
+            </div>
+
+            <span class="badge bg-light text-dark">
+                @Model.ReviewsWritten
+            </span>
+
+        </div>
+
+
+        @if (Model.Reviews.Any())
+        {
+            <div class="d-flex flex-column gap-3">
+
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="border rounded-4 p-3">
+
+                        <!-- Review Header -->
+                        <div class="d-flex justify-content-between
+                                    align-items-start gap-3">
+
+                            <div>
+
+                                <a asp-controller="Books"
+                                   asp-action="Details"
+                                   asp-route-id="@review.BookId"
+                                   class="text-decoration-none fw-semibold">
+
+                                    @review.BookTitle
+
+                                </a>
+
+                            </div>
+
+                            <div class="small text-muted text-nowrap">
+
+                                @review.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy")
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Rating -->
+                        <div class="mt-2">
+
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                if (i <= review.Rating)
+                                {
+                                    <span class="rating-star filled"
+                                          title="@i out of 5">
+                                        &#9733;
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="rating-star empty"
+                                          title="@i out of 5">
+                                        &#9733;
+                                    </span>
+                                }
+                            }
+
+                        </div>
+
+
+                        <!-- Review Text -->
+                        <p class="mt-2 mb-3">
+                            @review.Content
+                        </p>
+
+
+                        <!-- Actions -->
+                        <div class="d-flex gap-2 flex-wrap">
+
+                            <a asp-controller="Books"
+                               asp-action="Details"
+                               asp-route-id="@review.BookId"
+                               class="btn btn-sm btn-outline-secondary">
+
+                                View Book
+
+                            </a>
+
+                            <a asp-controller="Reviews"
+                               asp-action="Edit"
+                               asp-route-id="@review.Id"
+                               class="btn btn-sm btn-outline-primary">
+
+                                Edit
+
+                            </a>
+
+                            <form asp-controller="Reviews"
+                                  asp-action="Delete"
+                                  asp-route-id="@review.Id"
+                                  method="post"
+                                  class="d-inline"
+                                  onsubmit="return confirm('Are you sure you want to delete this review?');">
+
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit"
+                                        class="btn btn-sm btn-outline-danger">
+
+                                    Delete
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-4">
+
+                <p class="text-muted mb-3">
+                    You haven't written any reviews yet.
+                </p>
+
+                <a asp-controller="Books"
+                   asp-action="Index"
+                   class="btn btn-outline-primary">
+
+                    Browse Books
+
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+
+    <!-- MY CONTRIBUTIONS -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
+
+        <div class="d-flex justify-content-between
+                    align-items-center mb-3">
+
+            <div>
+
+                <h2 class="h5 mb-1">
+                    My Contributions
+                </h2>
+
+                <p class="text-muted small mb-0">
+                    Suggestions and contributions you have submitted.
+                </p>
+
+            </div>
+
+            <a asp-controller="ContributionRequests"
+               asp-action="MyRequests"
+               class="btn btn-outline-secondary btn-sm">
+
+                View All
+
+            </a>
+
+        </div>
+
+
+        @if (Model.ContributionRequests != null &&
+             Model.ContributionRequests.Any())
+        {
+            <div class="list-group list-group-flush">
+
+                @foreach (var request in Model.ContributionRequests.Take(5))
+                {
+                    <div class="list-group-item px-0 py-3">
+
+                        <div class="d-flex justify-content-between
+                                    align-items-start gap-3">
+
+                            <div>
+
+                                <div class="fw-semibold">
+                                    @request.DisplayType
+                                </div>
+
+
+                                @if (!string.IsNullOrWhiteSpace(request.BookTitle))
+                                {
+                                    <div class="small text-muted">
+                                        @request.BookTitle
+                                    </div>
+                                }
+
+
+                                <div class="small text-muted mt-1">
+                                    @request.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy")
+                                </div>
+
+                            </div>
+
+
+                            <div>
+
+                                @if (request.Status == ContributionRequestStatuses.Pending)
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        Pending
+                                    </span>
+                                }
+                                else if (request.Status == ContributionRequestStatuses.Approved)
+                                {
+                                    <span class="badge bg-success">
+                                        Approved
+                                    </span>
+                                }
+                                else if (request.Status == ContributionRequestStatuses.Rejected)
+                                {
+                                    <span class="badge bg-danger">
+                                        Rejected
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">
+                                        Resolved
+                                    </span>
+                                }
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mt-2">
+
+                            <a asp-controller="ContributionRequests"
+                               asp-action="Details"
+                               asp-route-id="@request.Id"
+                               class="btn btn-outline-primary btn-sm">
+
+                                View Request
+
+                            </a>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <p class="text-muted mb-3">
+                You haven't submitted any contribution requests yet.
+            </p>
+
+            <a asp-controller="ContributionRequests"
+               asp-action="MakeSuggestion"
+               class="btn btn-outline-primary">
+
+                Make Your First Suggestion
+
+            </a>
+        }
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+}

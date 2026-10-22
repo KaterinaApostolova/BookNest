@@ -1,0 +1,56 @@
+@model IEnumerable<BookNest.Models.Forum>
+
+@{
+    ViewData["Title"] = "Community";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Community</h2>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <a class="btn btn-primary" asp-controller="Community" asp-action="CreateForum">Add forum</a>
+    }
+</div>
+
+<p class="text-muted mb-4">Choose a forum to join the conversation.</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-light border rounded-3">There are no forums yet. Start the first one.</div>
+}
+else
+{
+<div class="row g-4">
+    @foreach (var forum in Model)
+    {
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body d-flex flex-column">
+                    <h3 class="h5">@forum.Name</h3>
+                    <p class="text-muted mb-2">@(forum.Description ?? "Join other readers in this forum.")</p>
+                    <p class="small text-secondary mb-3">@forum.Topics.Count topic(s), @forum.Topics.Sum(t => t.Posts.Count) repl@(forum.Topics.Sum(t => t.Posts.Count) == 1 ? "y" : "ies")</p>
+                    @if (forum.Topics.Any())
+                    {
+                        var latestTopic = forum.Topics.OrderByDescending(t => t.CreatedAt).First();
+                        <p class="small mb-3">
+                            Latest: <span class="fw-semibold">@latestTopic.Title</span>
+                            <br />
+                            <span class="text-muted">@latestTopic.CreatedAt.ToLocalTime().ToString("d")</span>
+                        </p>
+                    }
+                    <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
+                        <a class="btn btn-outline-primary" asp-controller="Community" asp-action="Forum" asp-route-id="@forum.Id">Open forum</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <form asp-controller="Community" asp-action="DeleteForum" asp-route-id="@forum.Id" method="post" onsubmit="return confirm('Delete this forum and all its topics and replies?');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+}
