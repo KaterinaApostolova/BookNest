@@ -32,6 +32,28 @@ public class LyraController : Controller
         return View(await BuildViewModelAsync(userId, id, bookId));
     }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConversation(int id, CancellationToken cancellationToken)
+    {
+        var userId = _userManager.GetUserId(User)!;
+
+        var conversation = await _context.Conversations
+            .FirstOrDefaultAsync(c => c.Id == id && c.UserId == userId, cancellationToken);
+
+        if (conversation is null)
+        {
+            return NotFound();
+        }
+
+        var messages = _context.Messages.Where(m => m.ConversationId == id);
+        _context.Messages.RemoveRange(messages);
+        _context.Conversations.Remove(conversation);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return RedirectToAction(nameof(Index));
+    }
+
     [HttpGet]
     public async Task<IActionResult> BookDiscussion(int bookId, CancellationToken cancellationToken)
     {
@@ -45,7 +67,7 @@ public class LyraController : Controller
         }
 
         var conversation = await _context.Conversations
-            .FirstOrDefaultAsync(item => item.UserId == userId && item.BookId == bookId && item.BookDiscussionId == null, cancellationToken);
+            .FirstOrDefaultAsync(item => item.UserId == userId && item.BookId == bookId, cancellationToken);
         if (conversation is null)
         {
             conversation = new Conversation
@@ -201,7 +223,7 @@ public class LyraController : Controller
     private async Task PopulateConversationsAsync(LyraViewModel model, string userId)
     {
         model.Conversations = await _context.Conversations
-            .Where(conversation => conversation.UserId == userId && conversation.BookDiscussionId == null)
+            .Where(conversation => conversation.UserId == userId)
             .OrderByDescending(conversation => conversation.Messages.Max(message => (DateTime?)message.SentAt) ?? conversation.CreatedAt)
             .Select(conversation => new LyraConversationViewModel
             {

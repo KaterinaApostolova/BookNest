@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.ViewModels.ReviewViewModel
 
 @{
-    ViewData["Title"] = "Edit Review";
+    ViewData["Title"] = Localizer["Edit Review"];
 }
 
 <div class="container mt-5">
@@ -10,10 +12,10 @@
 
             <div class="card border-0 shadow-sm rounded-4 p-4">
 
-                <h2 class="h4 mb-2">Edit Review</h2>
+                <h2 class="h4 mb-2">@Localizer["Edit Review"]</h2>
 
                 <p class="text-muted mb-4">
-                    Book:
+                    @Localizer["Book:"]
                     <strong>@Model.BookTitle</strong>
                 </p>
 
@@ -28,7 +30,7 @@
 
                     <div class="mb-4">
                         <label asp-for="Rating" class="form-label fw-semibold">
-                          Rating
+                          @Localizer["Rating"]
                         </label>
 
                         <div class="rating-stars" role="radiogroup" aria-label="Book rating">
@@ -56,7 +58,7 @@
                     <div class="mb-4">
                         <label asp-for="Content"
                                class="form-label fw-semibold">
-                            Your Review
+                            @Localizer["Your Review"]
                         </label>
 
                         <textarea asp-for="Content"
@@ -68,18 +70,24 @@
                         </span>
                     </div>
 
+                    <label class="anon-toggle mb-3">
+                        <input type="checkbox" asp-for="IsAnonymous" />
+                        <span class="anon-toggle-track"></span>
+                        <span class="anon-toggle-label">@Localizer["Post anonymously"]</span>
+                    </label>
+
                     <div class="d-flex gap-2">
 
                         <button type="submit"
                                 class="btn btn-primary">
-                            Save Changes
+                            @Localizer["Save Changes"]
                         </button>
 
                         <a asp-controller="Books"
                            asp-action="Details"
                            asp-route-id="@Model.BookId"
                            class="btn btn-secondary">
-                            Cancel
+                            @Localizer["Cancel"]
                         </a>
 
                     </div>

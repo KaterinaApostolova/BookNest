@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 <!DOCTYPE html>
-<html lang="en">
+<html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,14 +23,21 @@
          </button>
          <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Books" asp-action="Index">@Localizer["Books"]</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Community" asp-action="Index">@Localizer["Community"]</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="ReadingJourney" asp-action="ReadingJourney">@Localizer["Reading Journey"]</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Lyra" asp-action="Index">@Localizer["BookBuddy"]</a></li>
+                @{
+                    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                    Func<string, string> navClass = controllerName =>
+                        string.Equals(currentController, controllerName, StringComparison.OrdinalIgnoreCase)
+                            ? "nav-link active"
+                            : "nav-link";
+                }
+                <li class="nav-item"><a class="@navClass("Home")" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                <li class="nav-item"><a class="@navClass("Books")" asp-controller="Books" asp-action="Index">@Localizer["Books"]</a></li>
+                <li class="nav-item"><a class="@navClass("Community")" asp-controller="Community" asp-action="Index">@Localizer["Community"]</a></li>
+                <li class="nav-item"><a class="@navClass("ReadingJourney")" asp-controller="ReadingJourney" asp-action="ReadingJourney">@Localizer["Reading Journey"]</a></li>
+                <li class="nav-item"><a class="@navClass("Lyra")" asp-controller="Lyra" asp-action="Index">@Localizer["BookBuddy"]</a></li>
                 @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
                 {
-                    <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="Index">Admin</a></li>
+                    <li class="nav-item"><a class="@navClass("Admin")" asp-controller="Admin" asp-action="Index">@Localizer["Admin"]</a></li>
                 }
             </ul>
             <ul class="navbar-nav align-items-lg-center gap-2">
@@ -48,7 +55,7 @@
                     <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Login"]</a></li>
                     <li class="nav-item"><a class="btn btn-primary btn-sm" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a></li>
                 }
-                <li class="nav-item">
+                <li class="nav-item nav-language-item">
                     <form asp-controller="Culture" asp-action="Set" method="post" class="d-flex align-items-center">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
@@ -66,13 +73,13 @@
 
     <main class="py-5">
         <div class="container">
-            @if (TempData["WelcomeMessage"] is string welcome)
-            {
-                <div class="alert alert-success" role="alert">@welcome</div>
-            }
             @if (TempData["InfoMessage"] is string info)
             {
-                <div class="alert alert-info" role="alert">@info</div>
+                <div class="alert alert-info alert-dismissible fade show" role="alert">@info<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+            }
+            @if (TempData["ErrorMessage"] is string error)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">@error<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
             }
             @RenderBody()
         </div>
@@ -80,7 +87,7 @@
 
     <footer class="border-top py-4 mt-5 bg-light">
         <div class="container text-center text-muted">
-            <p class="mb-0">&copy; 2026 BookNest. Because no story should end with the last page.</p>
+            <p class="mb-0">&copy; 2026 BookNest. @Localizer["Because no story should end with the last page."]</p>
         </div>
     </footer>
 

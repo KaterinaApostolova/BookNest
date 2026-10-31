@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Community" xml:space="preserve"><value>Community</value></data>
+  <data name="Add forum" xml:space="preserve"><value>Add forum</value></data>
+  <data name="Choose a forum to join the conversation." xml:space="preserve"><value>Choose a forum to join the conversation.</value></data>
+  <data name="There are no forums yet. Start the first one." xml:space="preserve"><value>There are no forums yet. Start the first one.</value></data>
+  <data name="Join other readers in this forum." xml:space="preserve"><value>Join other readers in this forum.</value></data>
+  <data name="topic(s)," xml:space="preserve"><value>topic(s),</value></data>
+  <data name="reply" xml:space="preserve"><value>reply</value></data>
+  <data name="replies" xml:space="preserve"><value>replies</value></data>
+  <data name="Latest:" xml:space="preserve"><value>Latest:</value></data>
+  <data name="Open forum" xml:space="preserve"><value>Open forum</value></data>
+  <data name="Delete this forum and all its topics and replies?" xml:space="preserve"><value>Delete this forum and all its topics and replies?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Log in to add a forum" xml:space="preserve"><value>Log in to add a forum</value></data>
+</root>

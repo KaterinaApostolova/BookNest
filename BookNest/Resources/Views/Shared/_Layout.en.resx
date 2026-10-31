@@ -10,4 +10,6 @@
   <data name="Login" xml:space="preserve"><value>Login</value></data>
   <data name="Register" xml:space="preserve"><value>Register</value></data>
   <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Admin" xml:space="preserve"><value>Admin</value></data>
+  <data name="Because no story should end with the last page." xml:space="preserve"><value>Because no story should end with the last page.</value></data>
 </root>

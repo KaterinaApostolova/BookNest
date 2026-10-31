@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Admin Panel" xml:space="preserve"><value>Admin Panel</value></data>
+  <data name="Manage Books" xml:space="preserve"><value>Manage Books</value></data>
+  <data name="Create, edit, and remove books from the catalog." xml:space="preserve"><value>Create, edit, and remove books from the catalog.</value></data>
+  <data name="Create Book" xml:space="preserve"><value>Create Book</value></data>
+  <data name="View Books" xml:space="preserve"><value>View Books</value></data>
+  <data name="Moderation" xml:space="preserve"><value>Moderation</value></data>
+  <data name="Review user suggestions, reading link requests, book information, new book suggestions and moderator applications." xml:space="preserve"><value>Review user suggestions, reading link requests, book information, new book suggestions and moderator applications.</value></data>
+  <data name="Manage Requests" xml:space="preserve"><value>Manage Requests</value></data>
+  <data name="Users" xml:space="preserve"><value>Users</value></data>
+  <data name="There are" xml:space="preserve"><value>There are</value></data>
+  <data name="registered users in the system." xml:space="preserve"><value>registered users in the system.</value></data>
+  <data name="Manage Users" xml:space="preserve"><value>Manage Users</value></data>
+</root>

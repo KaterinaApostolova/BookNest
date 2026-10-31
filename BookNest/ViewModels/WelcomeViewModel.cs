@@ -6,4 +6,5 @@ public class WelcomeViewModel
     public string? Subtitle { get; set; }
     public string Quote { get; set; } = "Welcome to BookNest.";
     public int RedirectDelayMilliseconds { get; set; } = 3000;
+    public string RedirectUrl { get; set; } = "/";
 }

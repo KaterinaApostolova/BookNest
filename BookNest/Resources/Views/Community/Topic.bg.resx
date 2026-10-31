@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Back to forum" xml:space="preserve"><value>Обратно към форума</value></data>
+  <data name="Edit" xml:space="preserve"><value>Редактирай</value></data>
+  <data name="Delete this topic and its replies?" xml:space="preserve"><value>Да се изтрие ли тази тема с всичките ѝ отговори?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Изтрий</value></data>
+  <data name="Started by" xml:space="preserve"><value>Създадена от</value></data>
+  <data name="BookNest member" xml:space="preserve"><value>член на BookNest</value></data>
+  <data name="on" xml:space="preserve"><value>на</value></data>
+  <data name="Delete this reply?" xml:space="preserve"><value>Да се изтрие ли този отговор?</value></data>
+  <data name="Write a reply" xml:space="preserve"><value>Напиши отговор</value></data>
+  <data name="Post reply" xml:space="preserve"><value>Публикувай отговор</value></data>
+  <data name="Please" xml:space="preserve"><value>Моля</value></data>
+  <data name="log in" xml:space="preserve"><value>влез</value></data>
+  <data name="to join the discussion." xml:space="preserve"><value>за да се включиш в дискусията.</value></data>
+  <data name="Post anonymously" xml:space="preserve"><value>Публикувай анонимно</value></data>
+  <data name="Anonymous" xml:space="preserve"><value>Анонимен</value></data>
+  <data name="Community" xml:space="preserve"><value>Общност</value></data>
+  <data name="Delete topic" xml:space="preserve"><value>Изтрий темата</value></data>
+  <data name="Pinned" xml:space="preserve"><value>Закачена</value></data>
+  <data name="Locked" xml:space="preserve"><value>Заключена</value></data>
+  <data name="views" xml:space="preserve"><value>прегледа</value></data>
+  <data name="posts" xml:space="preserve"><value>поста</value></data>
+  <data name="Pin" xml:space="preserve"><value>Закачи</value></data>
+  <data name="Unpin" xml:space="preserve"><value>Откачи</value></data>
+  <data name="Lock" xml:space="preserve"><value>Заключи</value></data>
+  <data name="Unlock" xml:space="preserve"><value>Отключи</value></data>
+  <data name="Edited" xml:space="preserve"><value>Редактирано на</value></data>
+  <data name="This topic is locked. New replies are no longer accepted." xml:space="preserve"><value>Тази тема е заключена. Нови отговори вече не се приемат.</value></data>
+  <data name="Log in to join the discussion." xml:space="preserve"><value>Влез, за да се включиш в дискусията.</value></data>
+  <data name="Log in to reply" xml:space="preserve"><value>Влез, за да отговориш</value></data>
+  <data name="Translate" xml:space="preserve"><value>Преведи</value></data>
+  <data name="Translating..." xml:space="preserve"><value>Превежда се...</value></data>
+  <data name="Show original" xml:space="preserve"><value>Покажи оригинала</value></data>
+  <data name="Translation unavailable — try again" xml:space="preserve"><value>Преводът не е достъпен — опитай пак</value></data>
+</root>

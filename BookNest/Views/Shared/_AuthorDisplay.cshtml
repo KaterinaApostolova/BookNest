@@ -1,0 +1,41 @@
+@model BookNest.ViewModels.AuthorDisplayViewModel
+
+<span class="author-display d-inline-flex align-items-center gap-2">
+    @if (Model.IsAnonymous)
+    {
+        <span class="author-avatar-fallback author-avatar-sm">?</span>
+        <span class="fst-italic text-muted">@Model.AnonymousLabel</span>
+    }
+    else if (string.IsNullOrWhiteSpace(Model.UserName))
+    {
+        <span class="author-avatar-fallback author-avatar-sm">?</span>
+        <span>@Model.FallbackLabel</span>
+    }
+    else
+    {
+        @if (!string.IsNullOrWhiteSpace(Model.AvatarUrl))
+        {
+            <img src="@Model.AvatarUrl" alt="" class="author-avatar-sm" />
+        }
+        else
+        {
+            <span class="author-avatar-fallback author-avatar-sm">@Model.UserName.Substring(0, 1).ToUpper()</span>
+        }
+
+        <span class="d-inline-flex flex-column lh-1">
+            @if (Model.IsProfilePublic)
+            {
+                <a asp-controller="Profile" asp-action="Public" asp-route-username="@Model.UserName" class="text-decoration-none fw-semibold">@Model.UserName</a>
+            }
+            else
+            {
+                <span class="fw-semibold">@Model.UserName</span>
+            }
+
+            @if (Model.PostCount.HasValue)
+            {
+                <span class="author-post-count">@Model.PostCount @Model.PostsSuffix</span>
+            }
+        </span>
+    }
+</span>

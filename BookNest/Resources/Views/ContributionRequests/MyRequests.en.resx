@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Contribution Requests" xml:space="preserve"><value>My Contribution Requests</value></data>
+  <data name="Requests and suggestions you have submitted to BookNest." xml:space="preserve"><value>Requests and suggestions you have submitted to BookNest.</value></data>
+  <data name="Reading Link" xml:space="preserve"><value>Reading Link</value></data>
+  <data name="Book Information" xml:space="preserve"><value>Book Information</value></data>
+  <data name="New Book" xml:space="preserve"><value>New Book</value></data>
+  <data name="Moderator Request" xml:space="preserve"><value>Moderator Request</value></data>
+  <data name="General Suggestion" xml:space="preserve"><value>General Suggestion</value></data>
+  <data name="Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Resolved</value></data>
+  <data name="View Details" xml:space="preserve"><value>View Details</value></data>
+  <data name="You haven't submitted any requests yet." xml:space="preserve"><value>You haven't submitted any requests yet.</value></data>
+  <data name="Back to Profile" xml:space="preserve"><value>Back to Profile</value></data>
+</root>

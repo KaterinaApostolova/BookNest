@@ -18,4 +18,6 @@ public class ForumTopicViewModel
     [StringLength(4000)]
     [DataType(DataType.MultilineText)]
     public string Content { get; set; } = string.Empty;
+
+    public bool IsAnonymous { get; set; }
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Profile" xml:space="preserve"><value>My Profile</value></data>
+  <data name="Manage your profile, reading activity and contributions." xml:space="preserve"><value>Manage your profile, reading activity and contributions.</value></data>
+  <data name="Edit Profile" xml:space="preserve"><value>Edit Profile</value></data>
+  <data name="View Public Profile" xml:space="preserve"><value>View Public Profile</value></data>
+  <data name="Member since" xml:space="preserve"><value>Member since</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="About" xml:space="preserve"><value>About</value></data>
+  <data name="Bio" xml:space="preserve"><value>Bio</value></data>
+  <data name="You haven't added a bio yet." xml:space="preserve"><value>You haven't added a bio yet.</value></data>
+  <data name="Favourite Genre" xml:space="preserve"><value>Favourite Genre</value></data>
+  <data name="No favourite genre selected." xml:space="preserve"><value>No favourite genre selected.</value></data>
+  <data name="Favourite Book" xml:space="preserve"><value>Favourite Book</value></data>
+  <data name="No favourite book selected." xml:space="preserve"><value>No favourite book selected.</value></data>
+  <data name="Reading Statistics" xml:space="preserve"><value>Reading Statistics</value></data>
+  <data name="Books Read" xml:space="preserve"><value>Books Read</value></data>
+  <data name="Currently Reading" xml:space="preserve"><value>Currently Reading</value></data>
+  <data name="Want to Read" xml:space="preserve"><value>Want to Read</value></data>
+  <data name="Reviews" xml:space="preserve"><value>Reviews</value></data>
+  <data name="Community Statistics" xml:space="preserve"><value>Community Statistics</value></data>
+  <data name="Your participation in the BookNest community." xml:space="preserve"><value>Your participation in the BookNest community.</value></data>
+  <data name="Visit Community" xml:space="preserve"><value>Visit Community</value></data>
+  <data name="Forums Started" xml:space="preserve"><value>Forums Started</value></data>
+  <data name="Topics Started" xml:space="preserve"><value>Topics Started</value></data>
+  <data name="Replies Written" xml:space="preserve"><value>Replies Written</value></data>
+  <data name="Favourite Quote" xml:space="preserve"><value>Favourite Quote</value></data>
+  <data name="A line that stays with you." xml:space="preserve"><value>A line that stays with you.</value></data>
+  <data name="Add Quote" xml:space="preserve"><value>Add Quote</value></data>
+  <data name="Edit Quote" xml:space="preserve"><value>Edit Quote</value></data>
+  <data name="Add your favourite quote" xml:space="preserve"><value>Add your favourite quote</value></data>
+  <data name="Update" xml:space="preserve"><value>Update</value></data>
+  <data name="Remove your favourite quote?" xml:space="preserve"><value>Remove your favourite quote?</value></data>
+  <data name="Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="My Reviews" xml:space="preserve"><value>My Reviews</value></data>
+  <data name="Reviews you have written for books." xml:space="preserve"><value>Reviews you have written for books.</value></data>
+  <data name="View Book" xml:space="preserve"><value>View Book</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Are you sure you want to delete this review?" xml:space="preserve"><value>Are you sure you want to delete this review?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="You haven't written any reviews yet." xml:space="preserve"><value>You haven't written any reviews yet.</value></data>
+  <data name="Browse Books" xml:space="preserve"><value>Browse Books</value></data>
+  <data name="My Contributions" xml:space="preserve"><value>My Contributions</value></data>
+  <data name="Suggestions and contributions you have submitted." xml:space="preserve"><value>Suggestions and contributions you have submitted.</value></data>
+  <data name="View All" xml:space="preserve"><value>View All</value></data>
+  <data name="Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Resolved</value></data>
+  <data name="View Request" xml:space="preserve"><value>View Request</value></data>
+  <data name="You haven't submitted any contribution requests yet." xml:space="preserve"><value>You haven't submitted any contribution requests yet.</value></data>
+  <data name="Make Your First Suggestion" xml:space="preserve"><value>Make Your First Suggestion</value></data>
+</root>

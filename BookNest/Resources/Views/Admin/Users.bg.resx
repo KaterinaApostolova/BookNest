@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Manage Users" xml:space="preserve"><value>Управление на потребители</value></data>
+  <data name="View and manage BookNest users." xml:space="preserve"><value>Преглед и управление на потребителите на BookNest.</value></data>
+  <data name="Back to Dashboard" xml:space="preserve"><value>Обратно към таблото</value></data>
+  <data name="Search by username, name or email..." xml:space="preserve"><value>Търси по потребителско име, име или имейл...</value></data>
+  <data name="Search" xml:space="preserve"><value>Търси</value></data>
+  <data name="Username" xml:space="preserve"><value>Потребителско име</value></data>
+  <data name="Full Name" xml:space="preserve"><value>Пълно име</value></data>
+  <data name="Email" xml:space="preserve"><value>Имейл</value></data>
+  <data name="Status" xml:space="preserve"><value>Статус</value></data>
+  <data name="Role" xml:space="preserve"><value>Роля</value></data>
+  <data name="Action" xml:space="preserve"><value>Действие</value></data>
+  <data name="Deactivated" xml:space="preserve"><value>Деактивиран</value></data>
+  <data name="Active" xml:space="preserve"><value>Активен</value></data>
+  <data name="Admin" xml:space="preserve"><value>Администратор</value></data>
+  <data name="User" xml:space="preserve"><value>Потребител</value></data>
+  <data name="Details" xml:space="preserve"><value>Детайли</value></data>
+  <data name="No users found" xml:space="preserve"><value>Няма намерени потребители</value></data>
+  <data name="Try a different search." xml:space="preserve"><value>Опитай с друго търсене.</value></data>
+</root>

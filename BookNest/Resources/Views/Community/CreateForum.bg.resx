@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Add Forum" xml:space="preserve"><value>Добавяне на форум</value></data>
+  <data name="Add forum" xml:space="preserve"><value>Добавяне на форум</value></data>
+  <data name="Back to community" xml:space="preserve"><value>Обратно към общността</value></data>
+  <data name="Forum name" xml:space="preserve"><value>Име на форума</value></data>
+  <data name="Description" xml:space="preserve"><value>Описание</value></data>
+  <data name="optional" xml:space="preserve"><value>незадължително</value></data>
+  <data name="Create forum" xml:space="preserve"><value>Създай форум</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отказ</value></data>
+</root>

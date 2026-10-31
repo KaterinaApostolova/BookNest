@@ -1,5 +1,7 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
-    ViewData["Title"] = "Anonymous Profile";
+    ViewData["Title"] = Localizer["Anonymous Profile"];
 }
 
 <div class="container mt-5 mb-5">
@@ -26,19 +28,17 @@
                 </div>
 
                 <h1 class="h4 mb-3">
-                    This profile is private
+                    @Localizer["This profile is private"]
                 </h1>
 
                 <p class="text-muted mb-4">
-                    This reader has chosen to keep their profile private.
-                    Their profile information, reading activity and reviews
-                    are not publicly available.
+                    @Localizer["This reader has chosen to keep their profile private. Their profile information, reading activity and reviews are not publicly available."]
                 </p>
 
                 <a asp-controller="Books"
                    asp-action="Index"
                    class="btn btn-primary">
-                    Browse Books
+                    @Localizer["Browse Books"]
                 </a>
 
             </div>

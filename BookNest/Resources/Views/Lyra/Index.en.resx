@@ -9,4 +9,6 @@
   <data name="Message Lyra..." xml:space="preserve"><value>Message Lyra...</value></data>
   <data name="Send" xml:space="preserve"><value>Send</value></data>
   <data name="Lyra is thinking..." xml:space="preserve"><value>Lyra is thinking...</value></data>
+  <data name="Delete this conversation?" xml:space="preserve"><value>Delete this conversation?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
 </root>

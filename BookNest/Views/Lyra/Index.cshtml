@@ -17,10 +17,16 @@
                 <div id="lyra-conversations" class="list-group list-group-flush">
                     @foreach (var conversation in Model.Conversations)
                     {
-                        <a asp-action="Index" asp-route-id="@conversation.Id" class="list-group-item list-group-item-action rounded-3 @(conversation.Id == Model.ConversationId ? "active" : "")">
-                            <span class="d-block text-truncate">@conversation.Subject</span>
-                            <small class="@(conversation.Id == Model.ConversationId ? "text-white-50" : "text-muted")">@conversation.UpdatedAt.ToLocalTime().ToString("g")</small>
-                        </a>
+                        <div class="list-group-item rounded-3 d-flex align-items-center gap-1 p-0 @(conversation.Id == Model.ConversationId ? "active" : "")">
+                            <a asp-action="Index" asp-route-id="@conversation.Id" class="flex-grow-1 text-decoration-none p-2 conversation-link @(conversation.Id == Model.ConversationId ? "text-white" : "text-dark")">
+                                <span class="d-block text-truncate">@conversation.Subject</span>
+                                <small class="@(conversation.Id == Model.ConversationId ? "text-white-50" : "text-muted")">@conversation.UpdatedAt.ToLocalTime().ToString("g")</small>
+                            </a>
+                            <form asp-action="DeleteConversation" asp-route-id="@conversation.Id" method="post" class="pe-2 flex-shrink-0" onsubmit="return confirm('@Localizer["Delete this conversation?"]');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-link conversation-delete-btn p-0" title="@Localizer["Delete"]">&times;</button>
+                            </form>
+                        </div>
                     }
                     @if (Model.Conversations.Count == 0) { <p class="text-muted small mb-0">@Localizer["Your conversations will appear here."]</p> }
                 </div>
@@ -119,10 +125,17 @@
                     const conversationUrl = new URL(form.action, window.location.origin);
                     conversationUrl.searchParams.set('id', result.conversationId);
                     conversations.insertAdjacentHTML('afterbegin', `
-                        <a href="${conversationUrl}" class="list-group-item list-group-item-action rounded-3 active">
-                            <span class="d-block text-truncate"></span>
-                            <small class="text-white-50">Just now</small>
-                        </a>`);
+                        <div class="list-group-item rounded-3 d-flex align-items-center gap-1 p-0 active">
+                            <a href="${conversationUrl}" class="flex-grow-1 text-decoration-none p-2 text-white conversation-link">
+                                <span class="d-block text-truncate"></span>
+                                <small class="text-white-50">Just now</small>
+                            </a>
+                            <form action="/Lyra/DeleteConversation" method="post" class="pe-2 flex-shrink-0">
+                                <input type="hidden" name="id" value="${result.conversationId}" />
+                                <input type="hidden" name="__RequestVerificationToken" value="${document.querySelector('input[name=\\'__RequestVerificationToken\\']')?.value ?? ''}" />
+                                <button type="submit" class="btn btn-sm btn-link conversation-delete-btn p-0" title="Delete">&times;</button>
+                            </form>
+                        </div>`);
                     conversations.firstElementChild.querySelector('.text-truncate').textContent = result.subject;
                 }
                 conversationInput.value = result.conversationId;

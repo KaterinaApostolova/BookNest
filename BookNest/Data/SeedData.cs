@@ -247,6 +247,24 @@ public static class SeedData
             context.ForumTopics.Add(topic);
         }
 
+        // Every book should have its own discussion forum in Community, created
+        // automatically instead of waiting for someone to click "Book Discussion".
+        var booksWithoutForum = await context.Books
+            .Where(b => !context.Forums.Any(f => f.BookId == b.Id))
+            .ToListAsync();
+
+        foreach (var book in booksWithoutForum)
+        {
+            var forumName = $"{book.Title} Discussion";
+            context.Forums.Add(new Forum
+            {
+                Name = forumName,
+                NormalizedName = forumName.Trim().ToUpperInvariant(),
+                Description = $"Discuss {book.Title} with other readers.",
+                BookId = book.Id
+            });
+        }
+
         await context.SaveChangesAsync();
     }
 }

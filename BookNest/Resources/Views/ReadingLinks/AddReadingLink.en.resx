@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Add Reading Link" xml:space="preserve"><value>Add Reading Link</value></data>
+  <data name="Add a reading or purchase option for" xml:space="preserve"><value>Add a reading or purchase option for</value></data>
+  <data name="Website" xml:space="preserve"><value>Website</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="URL" xml:space="preserve"><value>URL</value></data>
+  <data name="Link Type" xml:space="preserve"><value>Link Type</value></data>
+  <data name="Select type" xml:space="preserve"><value>Select type</value></data>
+  <data name="Read Online" xml:space="preserve"><value>Read Online</value></data>
+  <data name="Borrow" xml:space="preserve"><value>Borrow</value></data>
+  <data name="Buy" xml:space="preserve"><value>Buy</value></data>
+  <data name="Audiobook" xml:space="preserve"><value>Audiobook</value></data>
+  <data name="Add Link" xml:space="preserve"><value>Add Link</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+</root>

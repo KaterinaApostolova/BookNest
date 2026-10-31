@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Profile" xml:space="preserve"><value>Моят профил</value></data>
+  <data name="Manage your profile, reading activity and contributions." xml:space="preserve"><value>Управлявай профила си, читателската си активност и приносите си.</value></data>
+  <data name="Edit Profile" xml:space="preserve"><value>Редактирай профила</value></data>
+  <data name="View Public Profile" xml:space="preserve"><value>Виж публичния профил</value></data>
+  <data name="Member since" xml:space="preserve"><value>Член от</value></data>
+  <data name="Email" xml:space="preserve"><value>Имейл</value></data>
+  <data name="About" xml:space="preserve"><value>За мен</value></data>
+  <data name="Bio" xml:space="preserve"><value>Биография</value></data>
+  <data name="You haven't added a bio yet." xml:space="preserve"><value>Все още не си добавил биография.</value></data>
+  <data name="Favourite Genre" xml:space="preserve"><value>Любим жанр</value></data>
+  <data name="No favourite genre selected." xml:space="preserve"><value>Не е избран любим жанр.</value></data>
+  <data name="Favourite Book" xml:space="preserve"><value>Любима книга</value></data>
+  <data name="No favourite book selected." xml:space="preserve"><value>Не е избрана любима книга.</value></data>
+  <data name="Reading Statistics" xml:space="preserve"><value>Читателска статистика</value></data>
+  <data name="Books Read" xml:space="preserve"><value>Прочетени книги</value></data>
+  <data name="Currently Reading" xml:space="preserve"><value>В момента чета</value></data>
+  <data name="Want to Read" xml:space="preserve"><value>Искам да прочета</value></data>
+  <data name="Reviews" xml:space="preserve"><value>Ревюта</value></data>
+  <data name="Community Statistics" xml:space="preserve"><value>Статистика в общността</value></data>
+  <data name="Your participation in the BookNest community." xml:space="preserve"><value>Твоето участие в общността на BookNest.</value></data>
+  <data name="Visit Community" xml:space="preserve"><value>Посети общността</value></data>
+  <data name="Forums Started" xml:space="preserve"><value>Създадени форуми</value></data>
+  <data name="Topics Started" xml:space="preserve"><value>Създадени теми</value></data>
+  <data name="Replies Written" xml:space="preserve"><value>Написани отговори</value></data>
+  <data name="Favourite Quote" xml:space="preserve"><value>Любим цитат</value></data>
+  <data name="A line that stays with you." xml:space="preserve"><value>Ред, който остава в теб.</value></data>
+  <data name="Add Quote" xml:space="preserve"><value>Добави цитат</value></data>
+  <data name="Edit Quote" xml:space="preserve"><value>Редактирай цитата</value></data>
+  <data name="Add your favourite quote" xml:space="preserve"><value>Добави любимия си цитат</value></data>
+  <data name="Update" xml:space="preserve"><value>Обнови</value></data>
+  <data name="Remove your favourite quote?" xml:space="preserve"><value>Да се премахне ли любимият ти цитат?</value></data>
+  <data name="Remove" xml:space="preserve"><value>Премахни</value></data>
+  <data name="My Reviews" xml:space="preserve"><value>Моите ревюта</value></data>
+  <data name="Reviews you have written for books." xml:space="preserve"><value>Ревюта, които си написал за книги.</value></data>
+  <data name="View Book" xml:space="preserve"><value>Виж книгата</value></data>
+  <data name="Edit" xml:space="preserve"><value>Редактирай</value></data>
+  <data name="Are you sure you want to delete this review?" xml:space="preserve"><value>Сигурен ли си, че искаш да изтриеш това ревю?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Изтрий</value></data>
+  <data name="You haven't written any reviews yet." xml:space="preserve"><value>Все още не си написал ревюта.</value></data>
+  <data name="Browse Books" xml:space="preserve"><value>Разгледай книгите</value></data>
+  <data name="My Contributions" xml:space="preserve"><value>Моите приноси</value></data>
+  <data name="Suggestions and contributions you have submitted." xml:space="preserve"><value>Предложения и приноси, които си подал.</value></data>
+  <data name="View All" xml:space="preserve"><value>Виж всички</value></data>
+  <data name="Pending" xml:space="preserve"><value>Изчаква</value></data>
+  <data name="Approved" xml:space="preserve"><value>Одобрена</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Отхвърлена</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Решена</value></data>
+  <data name="View Request" xml:space="preserve"><value>Виж заявката</value></data>
+  <data name="You haven't submitted any contribution requests yet." xml:space="preserve"><value>Все още не си подал заявки за принос.</value></data>
+  <data name="Make Your First Suggestion" xml:space="preserve"><value>Направи първото си предложение</value></data>
+</root>

@@ -1,13 +1,15 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.Models.Book
 
 @{
-    ViewData["Title"] = "Delete Book";
+    ViewData["Title"] = Localizer["Delete Book"];
 }
 
-<h2>Delete Book</h2>
-<p>Are you sure you want to delete <strong>@Model.Title</strong>?</p>
+<h2>@Localizer["Delete Book"]</h2>
+<p>@Localizer["Are you sure you want to delete"] <strong>@Model.Title</strong>?</p>
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="Id" />
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-danger">@Localizer["Delete"]</button>
+    <a asp-action="Index" class="btn btn-secondary">@Localizer["Cancel"]</a>
 </form>

@@ -1,10 +1,12 @@
-﻿@model BookNest.ViewModels.ReadingLinkViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model BookNest.ViewModels.ReadingLinkViewModel
 
 @{
-    ViewData["Title"] = "Edit Reading Link";
+    ViewData["Title"] = Localizer["Edit Reading Link"];
 }
 
-<h2>Edit Reading Link</h2>
+<h2>@Localizer["Edit Reading Link"]</h2>
 
 <form asp-action="EditReadingLink" method="post">
 
@@ -14,7 +16,7 @@
 
     <div class="mb-3">
         <label asp-for="WebsiteName" class="form-label">
-            Website
+            @Localizer["Website"]
         </label>
 
         <input asp-for="WebsiteName" class="form-control" />
@@ -25,7 +27,7 @@
 
     <div class="mb-3">
         <label asp-for="Language" class="form-label">
-            Language
+            @Localizer["Language"]
         </label>
 
         <input asp-for="Language" class="form-control" />
@@ -36,7 +38,7 @@
 
     <div class="mb-3">
         <label asp-for="Url" class="form-label">
-            URL
+            @Localizer["URL"]
         </label>
 
         <input asp-for="Url" class="form-control" />
@@ -47,7 +49,7 @@
 
     <div class="mb-3">
         <label asp-for="LinkType" class="form-label">
-            Link Type
+            @Localizer["Link Type"]
         </label>
 
         <input asp-for="LinkType" class="form-control" />
@@ -57,15 +59,14 @@
     </div>
 
     <button type="submit" class="btn btn-primary">
-        Save Changes
+        @Localizer["Save Changes"]
     </button>
 
     <a asp-controller="Books" 
        asp-action="Details"
        asp-route-id="@Model.BookId"
        class="btn btn-secondary">
-        Cancel
+        @Localizer["Cancel"]
     </a>
 
 </form>
-

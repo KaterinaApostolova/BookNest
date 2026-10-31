@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.ViewModels.PublicProfileViewModel
 
 @{
@@ -6,267 +8,141 @@
 
 <div class="container mt-5 mb-5">
 
-    <div class="row justify-content-center">
+    <!-- PROFILE HERO -->
+    <div class="profile-hero mb-4">
+        <div class="row align-items-center g-4">
 
-        <div class="col-lg-9">
+            <div class="col-auto">
+                @if (!string.IsNullOrWhiteSpace(Model.ProfilePictureUrl))
+                {
+                    <img src="@Model.ProfilePictureUrl"
+                         alt="Profile picture"
+                         class="profile-hero-avatar" />
+                }
+                else
+                {
+                    <div class="profile-hero-avatar-fallback">
+                        @Model.AvatarInitials
+                    </div>
+                }
+            </div>
+
+            <div class="col">
+                <h1 class="profile-hero-name h3 mb-1"> @Model.UserName </h1>
+                @if (!string.IsNullOrWhiteSpace(Model.FullName))
+                {
+                    <p class="profile-hero-meta mb-1">
+                        @Model.FullName
+                    </p>
+                }
+
+                <p class="profile-hero-meta small mb-0">
+                    @Localizer["Member since"]
+                    @Model.MemberSince.ToLocalTime().ToString("dd.MM.yyyy")
+                </p>
+
+            </div>
+
+            @if (Model.IsOwnProfile)
+            {
+                <div class="col-12 col-lg-auto">
+                    <a asp-controller="Profile" asp-action="Profile" class="btn btn-light">
+                        &larr; @Localizer["Back to My Profile"]
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- ABOUT -->
+        <div class="col-lg-4">
 
             <div class="card border-0 shadow-sm rounded-4 p-4">
 
-                <!-- Profile Header -->
+                <div class="section-label mb-3">
 
-                <div class="d-flex align-items-center gap-3">
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
 
-                    @if (!string.IsNullOrWhiteSpace(Model.ProfilePictureUrl))
-                    {
-                        <img src="@Model.ProfilePictureUrl"
-                             alt="Profile picture"
-                             class="rounded-circle"
-                             style="width: 90px; height: 90px; object-fit: cover;" />
-                    }
-                    else
-                    {
-                        <div class="rounded-circle bg-primary text-white
-                                    d-flex align-items-center justify-content-center"
-                             style="width: 90px; height: 90px; font-size: 28px;">
-                            @Model.AvatarInitials
-                        </div>
-                    }
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
 
+                    </svg>
 
-                    <div>
-
-                        <h1 class="h3 mb-1">
-                            @Model.DisplayName
-                        </h1>
-
-                        @if (!string.IsNullOrWhiteSpace(Model.FullName))
-                        {
-                            <div class="text-muted">
-                                @Model.FullName
-                            </div>
-                        }
-
-                        <small class="text-muted">
-                            Member since 
-                            @Model.MemberSince.ToLocalTime().ToString("dd.MM.yyyy")
-                        </small>
-
-                    </div>
+                    @Localizer["About"]
 
                 </div>
 
-
-                <hr class="my-4" />
-
-
-                <!-- Bio -->
 
                 @if (!string.IsNullOrWhiteSpace(Model.Bio))
                 {
-                    <div class="mb-4">
-
-                        <h2 class="h6">
-                            About
-                        </h2>
-                         
-                         <div class="small text-muted mb-1">
-                                 Bio
-                         </div>
-
-                        <p class="text-muted mb-0">
-                            @Model.Bio
-                        </p>
-
-                    </div>
+                    <p class="text-muted mb-2 small translatable-text" data-original-text="@Model.Bio">
+                        @Model.Bio
+                    </p>
+                    <button type="button" class="btn btn-link btn-sm p-0 mb-4 translate-text-btn">@Localizer["Translate"]</button>
                 }
-                 <!-- Favourite Genre -->
+                else
+                {
+                    <p class="text-muted mb-4 small fst-italic">
+                        @Localizer["No bio added."]
+                    </p>
+                }
 
-               <div class="mt-3">
 
-                  <div class="small text-muted mb-1">
-                      Favourite Genre
-                  </div>
+                <div class="d-flex flex-column gap-3">
 
-                  @if (!string.IsNullOrWhiteSpace(Model.FavouriteGenre))
-                  {
-                      <span class="badge bg-primary">
-                          @Model.FavouriteGenre
-                      </span>
-                  }
-                  else
-                  {
-                      <span class="text-muted small">
-                         No favourite genre selected.
-                     </span>
-                  }
+                    <!-- Favourite Genre -->
+                    <div>
 
-               </div>
-
-                 <!-- Favourite Book -->
-
-               <div class="mt-3">
-
-                  <div class="small text-muted mb-1">
-                     Favourite Book
-                  </div>
-
-                  @if (!string.IsNullOrWhiteSpace(Model.FavouriteBook))
-                  {
-                      <span class="fw-semibold small">
-                         @Model.FavouriteBook
-                      </span>
-                  }
-                  else
-                  {
-                     <span class="text-muted small">
-                        No favourite book selected.
-                     </span>
-                  }
-
-               </div>
-
-               <hr class="my-4" />
-
-                <!-- Statistics -->
-
-                <div class="mb-4">
-
-                    <h2 class="h6 mb-3">
-                        Reading Statistics
-                    </h2>
-
-                    <div class="row g-3">
-
-                        <div class="col-md-4 col-6">
-
-                            <div class="bg-light rounded-4 p-3 text-center">
-
-                                <div class="fs-4 fw-bold">
-                                    @Model.BooksRead
-                                </div>
-
-                                <div class="small text-muted">
-                                    Books Read
-                                </div>
-
-                            </div>
-
+                        <div class="small text-muted mb-1">
+                            @Localizer["Favourite Genre"]
                         </div>
 
-
-                        <div class="col-md-4 col-6">
-
-                            <div class="bg-light rounded-4 p-3 text-center">
-
-                                <div class="fs-4 fw-bold">
-                                    @Model.BooksInJourney
-                                </div>
-
-                                <div class="small text-muted">
-                                    Books in Reading Journey
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-md-4 col-12">
-
-                            <div class="bg-light rounded-4 p-3 text-center">
-
-                                <div class="fs-4 fw-bold">
-                                    @Model.ReviewsWritten
-                                </div>
-
-                                <div class="small text-muted">
-                                    Reviews
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <hr class="my-4" />
-
-
-                <!-- Reviews -->
-
-                <div>
-
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-
-                        <h2 class="h5 mb-0">
-                            Reviews
-                        </h2>
+                        @if (!string.IsNullOrWhiteSpace(Model.FavouriteGenre))
+                        {
+                            <span class="badge bg-primary">
+                                @Model.FavouriteGenre
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="text-muted small">
+                                @Localizer["No favourite genre selected."]
+                            </span>
+                        }
 
                     </div>
 
 
-                    @if (Model.Reviews.Any())
-                    {
-                        <div class="d-flex flex-column gap-3">
+                    <!-- Favourite Book -->
+                    <div>
 
-                            @foreach (var review in Model.Reviews)
-                            {
-                                <div class="border rounded-4 p-3">
-
-                                    <div class="d-flex justify-content-between">
-
-                                        <div class="fw-semibold">
-                                            @review.BookTitle
-                                        </div>
-
-                                        <div class="text-muted small">
-                                            @(review.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy"))
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="mt-2">
-
-                                        @for (int i = 0; i < review.Rating; i++)
-                                        {
-                                           if (i <= review.Rating)
-                                           {
-                                             <span class="rating-star filled"
-                                                 title="@i out of 5">
-                                                 &#9733;
-                                             </span>
-                                           }
-                                           else
-                                           {
-                                              <span class="rating-star empty"
-                                                  title="@i out of 5">
-                                                  &#9733;
-                                              </span>
-                                            }
-                                        }
-
-                                    </div>
-
-
-                                    <p class="mt-2 mb-0 text-muted">
-                                        @review.Content
-                                    </p>
-
-                                </div>
-                            }
-
+                        <div class="small text-muted mb-1">
+                            @Localizer["Favourite Book"]
                         </div>
-                    }
-                    else
-                    {
-                        <p class="text-muted">
-                            This reader hasn't written any reviews yet.
-                        </p>
-                    }
+
+                        @if (!string.IsNullOrWhiteSpace(Model.FavouriteBook))
+                        {
+                            <span class="badge bg-primary">
+                                @Model.FavouriteBook
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="text-muted small">
+                                @Localizer["No favourite book selected."]
+                            </span>
+                        }
+
+                    </div>
 
                 </div>
 
@@ -274,6 +150,261 @@
 
         </div>
 
+
+        <!-- RIGHT SIDE -->
+        <div class="col-lg-8">
+
+            <!-- READING STATISTICS -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+
+                <div class="section-label mb-3">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <path d="m16 6 4 14" />
+                        <path d="M12 6v14" />
+                        <path d="M8 8v12" />
+                        <path d="M4 4v16" />
+
+                    </svg>
+
+                    @Localizer["Reading Statistics"]
+
+                </div>
+
+
+                <div class="stat-strip">
+
+                    <div class="stat-strip-item">
+                        <div class="stat-strip-value">@Model.BooksRead</div>
+                        <div class="stat-strip-label">@Localizer["Books Read"]</div>
+                    </div>
+
+                    <div class="stat-strip-item">
+                        <div class="stat-strip-value">@Model.CurrentlyReading</div>
+                        <div class="stat-strip-label">@Localizer["Currently Reading"]</div>
+                    </div>
+
+                    <div class="stat-strip-item">
+                        <div class="stat-strip-value">@Model.WantToRead</div>
+                        <div class="stat-strip-label">@Localizer["Want to Read"]</div>
+                    </div>
+
+                    <div class="stat-strip-item">
+                        <div class="stat-strip-value">@Model.ReviewsWritten</div>
+                        <div class="stat-strip-label">@Localizer["Reviews"]</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMUNITY STATISTICS -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+
+                <div class="section-label mb-3">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+
+                    </svg>
+
+                    @Localizer["Community Statistics"]
+
+                </div>
+
+                <div class="stat-strip">
+
+                    <div class="stat-strip-item">
+                        <div class="stat-strip-value">@Model.ForumsStarted</div>
+                        <div class="stat-strip-label">@Localizer["Forums Started"]</div>
+                    </div>
+
+                    <div class="stat-strip-item">
+                        <div class="stat-strip-value">@Model.TopicsStarted</div>
+                        <div class="stat-strip-label">@Localizer["Topics Started"]</div>
+                    </div>
+
+                    <div class="stat-strip-item">
+                        <div class="stat-strip-value">@Model.RepliesWritten</div>
+                        <div class="stat-strip-label">@Localizer["Replies Written"]</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FAVOURITE QUOTE -->
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                <div class="section-label mb-3">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+
+                    </svg>
+
+                    @Localizer["Favourite Quote"]
+
+                </div>
+
+
+                @if (string.IsNullOrWhiteSpace(Model.FavouriteQuote))
+                {
+                    <p class="text-muted small fst-italic mb-0">
+                        @Localizer["No favourite quote added."]
+                    </p>
+                }
+                else
+                {
+                    <blockquote class="border-start border-primary border-3 ps-3 mb-0">
+                        <p class="mb-2 translatable-text" style="white-space: pre-wrap;" data-original-text="@Model.FavouriteQuote">@Model.FavouriteQuote</p>
+                        <button type="button" class="btn btn-link btn-sm p-0 translate-text-btn">@Localizer["Translate"]</button>
+                    </blockquote>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- REVIEWS -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
+
+        <div class="d-flex justify-content-between
+                    align-items-center mb-4">
+
+            <div>
+
+                <h2 class="h5 mb-1">
+                    @Localizer["Reviews"]
+                </h2>
+
+                <p class="text-muted small mb-0">
+                    @Localizer["Reviews written for books."]
+                </p>
+
+            </div>
+
+            <span class="badge bg-light text-dark">
+                @Model.ReviewsWritten
+            </span>
+
+        </div>
+
+
+        @if (Model.Reviews.Any())
+        {
+            <div class="d-flex flex-column gap-3">
+
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="border rounded-4 p-3">
+
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <a asp-controller="Books"
+                                   asp-action="Details"
+                                   asp-route-id="@review.BookId"
+                                   class="text-decoration-none fw-semibold">
+                                    @review.BookTitle
+                                </a>
+                            </div>
+                            <div class="small text-muted text-nowrap">
+                                @review.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy")
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <span class="rating-star @(i <= review.Rating ? "filled" : "empty")" title="@i out of 5">&#9733;</span>
+                            }
+                        </div>
+
+                        <p class="mt-2 mb-0">@review.Content</p>
+
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-4">
+                <p class="text-muted mb-0">@Localizer["This reader hasn't written any reviews yet."]</p>
+            </div>
+        }
+
     </div>
 
 </div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.translate-text-btn').forEach(function (button) {
+            button.addEventListener('click', async function () {
+                var paragraph = button.previousElementSibling;
+                var targetLanguage = document.documentElement.lang === 'bg' ? 'bg' : 'en';
+                var originalText = paragraph.dataset.originalText;
+
+                if (button.dataset.translated === 'true') {
+                    paragraph.textContent = originalText;
+                    button.textContent = '@Localizer["Translate"]';
+                    button.dataset.translated = 'false';
+                    return;
+                }
+
+                button.disabled = true;
+                var previousLabel = button.textContent;
+                button.textContent = '@Localizer["Translating..."]';
+
+                try {
+                    var response = await fetch('/Profile/TranslateText', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text: originalText, targetLanguage: targetLanguage })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Translation failed');
+                    }
+
+                    var data = await response.json();
+                    paragraph.textContent = data.translated;
+                    button.textContent = '@Localizer["Show original"]';
+                    button.dataset.translated = 'true';
+                } catch (error) {
+                    button.textContent = '@Localizer["Translation unavailable — try again"]';
+                } finally {
+                    button.disabled = false;
+                }
+            });
+        });
+    </script>
+}

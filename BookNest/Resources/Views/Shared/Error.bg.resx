@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Error" xml:space="preserve"><value>Грешка</value></data>
+  <data name="Error." xml:space="preserve"><value>Грешка.</value></data>
+  <data name="An error occurred while processing your request." xml:space="preserve"><value>Възникна грешка при обработката на заявката ти.</value></data>
+  <data name="Request ID:" xml:space="preserve"><value>Номер на заявката:</value></data>
+  <data name="Development Mode" xml:space="preserve"><value>Режим за разработка</value></data>
+  <data name="Swapping to" xml:space="preserve"><value>Превключването към</value></data>
+  <data name="Development" xml:space="preserve"><value>Development</value></data>
+  <data name="environment will display more detailed information about the error that occurred." xml:space="preserve"><value>среда ще покаже по-подробна информация за възникналата грешка.</value></data>
+  <data name="The Development environment shouldn't be enabled for deployed applications." xml:space="preserve"><value>Средата Development не трябва да е активна за качени в интернет приложения.</value></data>
+  <data name="It can result in displaying sensitive information from exceptions to end users." xml:space="preserve"><value>Това може да разкрие чувствителна информация от грешките пред крайните потребители.</value></data>
+  <data name="For local debugging, enable the" xml:space="preserve"><value>За локално дебъгване, активирай средата</value></data>
+  <data name="environment by setting the" xml:space="preserve"><value>като зададеш</value></data>
+  <data name="environment variable to" xml:space="preserve"><value>на</value></data>
+  <data name="and restarting the app." xml:space="preserve"><value>и рестартираш приложението.</value></data>
+</root>

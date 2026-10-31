@@ -28,4 +28,5 @@ public class ProfileViewModel
     // Community statistics
     public int TopicsStarted { get; set; }
     public int RepliesWritten { get; set; }
+    public int ForumsStarted { get; set; }
 }

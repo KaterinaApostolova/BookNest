@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Book discussion for" xml:space="preserve"><value>Дискусия за книгата</value></data>
+  <data name="Back to community" xml:space="preserve"><value>Обратно към общността</value></data>
+  <data name="Add topic" xml:space="preserve"><value>Добави тема</value></data>
+  <data name="No topics yet" xml:space="preserve"><value>Все още няма теми</value></data>
+  <data name="Start the conversation in this forum." xml:space="preserve"><value>Започни разговора в този форум.</value></data>
+  <data name="reply(s)" xml:space="preserve"><value>отговора</value></data>
+  <data name="Started by" xml:space="preserve"><value>Създадена от</value></data>
+  <data name="BookNest member" xml:space="preserve"><value>член на BookNest</value></data>
+  <data name="on" xml:space="preserve"><value>на</value></data>
+  <data name="Edit" xml:space="preserve"><value>Редактирай</value></data>
+  <data name="Delete this topic and its replies?" xml:space="preserve"><value>Да се изтрие ли тази тема с всичките ѝ отговори?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Изтрий</value></data>
+  <data name="Delete topic" xml:space="preserve"><value>Изтрий темата</value></data>
+  <data name="Anonymous" xml:space="preserve"><value>Анонимен</value></data>
+  <data name="Community" xml:space="preserve"><value>Общност</value></data>
+  <data name="Sort by" xml:space="preserve"><value>Подреди по</value></data>
+  <data name="Newest" xml:space="preserve"><value>Най-нови</value></data>
+  <data name="Most Active" xml:space="preserve"><value>Най-активни</value></data>
+  <data name="Most Replies" xml:space="preserve"><value>Най-много отговори</value></data>
+  <data name="Pinned" xml:space="preserve"><value>Закачена</value></data>
+  <data name="Locked" xml:space="preserve"><value>Заключена</value></data>
+  <data name="views" xml:space="preserve"><value>прегледа</value></data>
+  <data name="posts" xml:space="preserve"><value>поста</value></data>
+  <data name="Pin" xml:space="preserve"><value>Закачи</value></data>
+  <data name="Unpin" xml:space="preserve"><value>Откачи</value></data>
+  <data name="Lock" xml:space="preserve"><value>Заключи</value></data>
+  <data name="Unlock" xml:space="preserve"><value>Отключи</value></data>
+  <data name="Log in to add a topic" xml:space="preserve"><value>Влез, за да добавиш тема</value></data>
+</root>

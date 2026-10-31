@@ -21,5 +21,9 @@ public class Forum
 
     public Book? Book { get; set; }
 
+    public string? UserId { get; set; }
+
+    public ApplicationUser? User { get; set; }
+
     public ICollection<ForumTopic> Topics { get; set; } = new List<ForumTopic>();
 }

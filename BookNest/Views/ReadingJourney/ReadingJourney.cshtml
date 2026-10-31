@@ -1,25 +1,41 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.ViewModels.ReadingJourneyViewModel
 
 @{
-    ViewData["Title"] = "Reading Journey";
+    ViewData["Title"] = Localizer["Reading Journey"];
+    var completedBookId = TempData["CompletedBookId"] as int?;
+    var completedBookTitle = TempData["CompletedBookTitle"] as string;
+}
+
+@if (completedBookId.HasValue && !string.IsNullOrWhiteSpace(completedBookTitle))
+{
+    <div class="profile-hero mb-4">
+        <h2 class="h4 mb-2">🎉 @Localizer["You finished"] "@completedBookTitle"!</h2>
+        <p class="profile-hero-meta mb-3">@Localizer["Want to talk about it?"]</p>
+        <div class="d-flex gap-2 flex-wrap">
+            <a class="btn btn-light" asp-controller="Community" asp-action="BookDiscussion" asp-route-bookId="@completedBookId">@Localizer["Discuss in Community"]</a>
+            <a class="btn btn-outline-light" asp-controller="Lyra" asp-action="Index" asp-route-bookId="@completedBookId">@Localizer["Ask Lyra about it"]</a>
+        </div>
+    </div>
 }
 
 <div class="card shadow-sm rounded-4 p-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="h4 mb-1">Reading Journey</h2>
-            <p class="text-muted mb-0">Organize your books and move the same title between Want to Read, Currently Reading, and Finished.</p>
+            <h2 class="h4 mb-1">@Localizer["Reading Journey"]</h2>
+            <p class="text-muted mb-0">@Localizer["Organize your books and move the same title between Want to Read, Currently Reading, and Finished."]</p>
         </div>
-        <a class="btn btn-outline-secondary" asp-controller="Books" asp-action="Index">Browse Books</a>
+        <a class="btn btn-outline-secondary" asp-controller="Books" asp-action="Index">@Localizer["Browse Books"]</a>
     </div>
 
     <div class="row gy-4">
         <div class="col-lg-4">
             <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
-                <h3 class="h5">Want to Read</h3>
+                <h3 class="h5">@Localizer["Want to Read"]</h3>
                 @if (!Model.WantToRead.Any())
                 {
-                    <p class="text-muted">Add your favorite books to this list from the book details page.</p>
+                    <p class="text-muted">@Localizer["Add your favorite books to this list from the book details page."]</p>
                 }
                 else
                 {
@@ -35,11 +51,11 @@
                                     <form asp-action="UpdateReadingJourney" method="post" class="d-inline">
                                         <input type="hidden" name="bookId" value="@item.BookId" />
                                         <input type="hidden" name="statusName" value="Reading" />
-                                        <button type="submit" class="btn btn-sm btn-outline-primary">Start Reading</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">@Localizer["Start Reading"]</button>
                                     </form>
                                     <form asp-action="RemoveFromReadingJourney" method="post" class="d-inline ms-2">
                                         <input type="hidden" name="id" value="@item.Id" />
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Remove"]</button>
                                     </form>
                                 </div>
                             </li>
@@ -51,10 +67,10 @@
 
         <div class="col-lg-4">
             <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
-                <h3 class="h5">Currently Reading</h3>
+                <h3 class="h5">@Localizer["Currently Reading"]</h3>
                 @if (!Model.CurrentlyReading.Any())
                 {
-                    <p class="text-muted">Move a book here when you begin reading it.</p>
+                    <p class="text-muted">@Localizer["Move a book here when you begin reading it."]</p>
                 }
                 else
                 {
@@ -70,11 +86,11 @@
                                     <form asp-action="UpdateReadingJourney" method="post" class="d-inline">
                                         <input type="hidden" name="bookId" value="@item.BookId" />
                                         <input type="hidden" name="statusName" value="Completed" />
-                                        <button type="submit" class="btn btn-sm btn-outline-success">Mark Finished</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-success">@Localizer["Mark Finished"]</button>
                                     </form>
                                     <form asp-action="RemoveFromReadingJourney" method="post" class="d-inline ms-2">
                                         <input type="hidden" name="id" value="@item.Id" />
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Remove"]</button>
                                     </form>
                                 </div>
                             </li>
@@ -86,10 +102,10 @@
 
         <div class="col-lg-4">
             <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
-                <h3 class="h5">Finished</h3>
+                <h3 class="h5">@Localizer["Finished"]</h3>
                 @if (!Model.Finished.Any())
                 {
-                    <p class="text-muted">Books you finish will appear here.</p>
+                    <p class="text-muted">@Localizer["Books you finish will appear here."]</p>
                 }
                 else
                 {
@@ -105,11 +121,11 @@
                                     <form asp-action="UpdateReadingJourney" method="post" class="d-inline">
                                         <input type="hidden" name="bookId" value="@item.BookId" />
                                         <input type="hidden" name="statusName" value="Reading" />
-                                        <button type="submit" class="btn btn-sm btn-outline-primary">Read Again</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">@Localizer["Read Again"]</button>
                                     </form>
                                     <form asp-action="RemoveFromReadingJourney" method="post" class="d-inline ms-2">
                                         <input type="hidden" name="id" value="@item.Id" />
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">@Localizer["Remove"]</button>
                                     </form>
                                 </div>
                             </li>

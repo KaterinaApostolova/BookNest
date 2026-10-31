@@ -164,9 +164,6 @@ namespace BookNest.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int?>("LanguageId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("PublicationYear")
                         .HasColumnType("int");
 
@@ -176,8 +173,6 @@ namespace BookNest.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LanguageId");
 
                     b.ToTable("Books");
                 });
@@ -195,36 +190,6 @@ namespace BookNest.Migrations
                     b.HasIndex("AuthorId");
 
                     b.ToTable("BookAuthors");
-                });
-
-            modelBuilder.Entity("BookNest.Models.BookDiscussion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(4000)
-                        .HasColumnType("nvarchar(4000)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("BookDiscussions");
                 });
 
             modelBuilder.Entity("BookNest.Models.BookGenre", b =>
@@ -311,9 +276,6 @@ namespace BookNest.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BookDiscussionId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("BookId")
                         .HasColumnType("int");
 
@@ -329,8 +291,6 @@ namespace BookNest.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookDiscussionId");
 
                     b.HasIndex("BookId");
 
@@ -468,24 +428,6 @@ namespace BookNest.Migrations
                         .IsUnique();
 
                     b.ToTable("Genres");
-                });
-
-            modelBuilder.Entity("BookNest.Models.Language", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("BookNest.Models.Message", b =>
@@ -782,13 +724,6 @@ namespace BookNest.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BookNest.Models.Book", b =>
-                {
-                    b.HasOne("BookNest.Models.Language", null)
-                        .WithMany("Books")
-                        .HasForeignKey("LanguageId");
-                });
-
             modelBuilder.Entity("BookNest.Models.BookAuthor", b =>
                 {
                     b.HasOne("BookNest.Models.Author", "Author")
@@ -804,17 +739,6 @@ namespace BookNest.Migrations
                         .IsRequired();
 
                     b.Navigation("Author");
-
-                    b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("BookNest.Models.BookDiscussion", b =>
-                {
-                    b.HasOne("BookNest.Models.Book", "Book")
-                        .WithMany("Discussions")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Book");
                 });
@@ -856,11 +780,6 @@ namespace BookNest.Migrations
 
             modelBuilder.Entity("BookNest.Models.Conversation", b =>
                 {
-                    b.HasOne("BookNest.Models.BookDiscussion", "BookDiscussion")
-                        .WithMany("Conversations")
-                        .HasForeignKey("BookDiscussionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("BookNest.Models.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
@@ -871,8 +790,6 @@ namespace BookNest.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Book");
-
-                    b.Navigation("BookDiscussion");
 
                     b.Navigation("User");
                 });
@@ -1073,8 +990,6 @@ namespace BookNest.Migrations
 
                     b.Navigation("BookGenres");
 
-                    b.Navigation("Discussions");
-
                     b.Navigation("Forums");
 
                     b.Navigation("ReadingLinks");
@@ -1082,11 +997,6 @@ namespace BookNest.Migrations
                     b.Navigation("ReadingLists");
 
                     b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("BookNest.Models.BookDiscussion", b =>
-                {
-                    b.Navigation("Conversations");
                 });
 
             modelBuilder.Entity("BookNest.Models.Conversation", b =>
@@ -1107,11 +1017,6 @@ namespace BookNest.Migrations
             modelBuilder.Entity("BookNest.Models.Genre", b =>
                 {
                     b.Navigation("BookGenres");
-                });
-
-            modelBuilder.Entity("BookNest.Models.Language", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("BookNest.Models.ReadingStatus", b =>

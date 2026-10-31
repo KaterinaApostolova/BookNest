@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <DefaultItemExcludes>$(DefaultItemExcludes);BookNest.Tests/**</DefaultItemExcludes>
+    <UserSecretsId>4243d2d3-b44b-4275-921a-c0075441ded0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

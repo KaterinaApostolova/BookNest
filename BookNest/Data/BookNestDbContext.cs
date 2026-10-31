@@ -16,14 +16,13 @@ public class BookNestDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<BookAuthor> BookAuthors => Set<BookAuthor>();
     public DbSet<BookGenre> BookGenres => Set<BookGenre>();
     public DbSet<ReadingLink> ReadingLinks => Set<ReadingLink>();
-    public DbSet<BookDiscussion> BookDiscussions => Set<BookDiscussion>();
     public DbSet<Conversation> Conversations => Set<Conversation>();
     public DbSet<ContributionRequest> ContributionRequests => Set<ContributionRequest>();
     public DbSet<Forum> Forums => Set<Forum>();
     public DbSet<ForumPost> ForumPosts => Set<ForumPost>();
     public DbSet<ForumTopic> ForumTopics => Set<ForumTopic>();
+    public DbSet<ForumReaction> ForumReactions => Set<ForumReaction>();
     public DbSet<Genre> Genres => Set<Genre>();
-    public DbSet<Language> Languages => Set<Language>();
     public DbSet<Message> Messages => Set<Message>();
     public DbSet<ReadingList> ReadingLists => Set<ReadingList>();
     public DbSet<ReadingStatus> ReadingStatuses => Set<ReadingStatus>();
@@ -100,6 +99,12 @@ public class BookNestDbContext : IdentityDbContext<ApplicationUser>
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Forum>()
+            .HasOne(f => f.User)
+            .WithMany()
+            .HasForeignKey(f => f.UserId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<Forum>()
             .HasIndex(f => f.NormalizedName)
             .IsUnique();
 
@@ -118,6 +123,34 @@ public class BookNestDbContext : IdentityDbContext<ApplicationUser>
             .HasForeignKey(t => t.UserId)
             .OnDelete(DeleteBehavior.SetNull);
 
+        modelBuilder.Entity<ForumReaction>()
+            .HasOne(r => r.User)
+            .WithMany()
+            .HasForeignKey(r => r.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<ForumReaction>()
+            .HasOne(r => r.ForumTopic)
+            .WithMany(t => t.Reactions)
+            .HasForeignKey(r => r.ForumTopicId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<ForumReaction>()
+            .HasOne(r => r.ForumPost)
+            .WithMany(p => p.Reactions)
+            .HasForeignKey(r => r.ForumPostId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<ForumReaction>()
+            .HasIndex(r => new { r.UserId, r.ForumTopicId })
+            .IsUnique()
+            .HasFilter("[ForumTopicId] IS NOT NULL");
+
+        modelBuilder.Entity<ForumReaction>()
+            .HasIndex(r => new { r.UserId, r.ForumPostId })
+            .IsUnique()
+            .HasFilter("[ForumPostId] IS NOT NULL");
+
         modelBuilder.Entity<ForumPost>()
             .HasOne(p => p.ForumTopic)
             .WithMany(t => t.Posts)
@@ -129,12 +162,6 @@ public class BookNestDbContext : IdentityDbContext<ApplicationUser>
             .WithMany(u => u.ForumPosts)
             .HasForeignKey(p => p.UserId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<Conversation>()
-            .HasOne(c => c.BookDiscussion)
-            .WithMany(d => d.Conversations)
-            .HasForeignKey(c => c.BookDiscussionId)
-            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Conversation>()
             .HasOne(c => c.Book)

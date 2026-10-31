@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Error" xml:space="preserve"><value>Error</value></data>
+  <data name="Error." xml:space="preserve"><value>Error.</value></data>
+  <data name="An error occurred while processing your request." xml:space="preserve"><value>An error occurred while processing your request.</value></data>
+  <data name="Request ID:" xml:space="preserve"><value>Request ID:</value></data>
+  <data name="Development Mode" xml:space="preserve"><value>Development Mode</value></data>
+  <data name="Swapping to" xml:space="preserve"><value>Swapping to</value></data>
+  <data name="Development" xml:space="preserve"><value>Development</value></data>
+  <data name="environment will display more detailed information about the error that occurred." xml:space="preserve"><value>environment will display more detailed information about the error that occurred.</value></data>
+  <data name="The Development environment shouldn't be enabled for deployed applications." xml:space="preserve"><value>The Development environment shouldn't be enabled for deployed applications.</value></data>
+  <data name="It can result in displaying sensitive information from exceptions to end users." xml:space="preserve"><value>It can result in displaying sensitive information from exceptions to end users.</value></data>
+  <data name="For local debugging, enable the" xml:space="preserve"><value>For local debugging, enable the</value></data>
+  <data name="environment by setting the" xml:space="preserve"><value>environment by setting the</value></data>
+  <data name="environment variable to" xml:space="preserve"><value>environment variable to</value></data>
+  <data name="and restarting the app." xml:space="preserve"><value>and restarting the app.</value></data>
+</root>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Contribution Requests" xml:space="preserve"><value>Заявки за принос</value></data>
+  <data name="Review suggestions and requests submitted by users." xml:space="preserve"><value>Преглед на предложения и заявки, подадени от потребители.</value></data>
+  <data name="Status" xml:space="preserve"><value>Статус</value></data>
+  <data name="All statuses" xml:space="preserve"><value>Всички статуси</value></data>
+  <data name="Pending" xml:space="preserve"><value>Изчаква</value></data>
+  <data name="Approved" xml:space="preserve"><value>Одобрена</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Отхвърлена</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Решена</value></data>
+  <data name="Request Type" xml:space="preserve"><value>Вид заявка</value></data>
+  <data name="All types" xml:space="preserve"><value>Всички видове</value></data>
+  <data name="Reading Link" xml:space="preserve"><value>Връзка за четене</value></data>
+  <data name="Book Information" xml:space="preserve"><value>Информация за книга</value></data>
+  <data name="New Book" xml:space="preserve"><value>Нова книга</value></data>
+  <data name="General Suggestion/Feedback" xml:space="preserve"><value>Общо предложение/обратна връзка</value></data>
+  <data name="Admin Request" xml:space="preserve"><value>Административна заявка</value></data>
+  <data name="Filter" xml:space="preserve"><value>Филтрирай</value></data>
+  <data name="No contribution requests found." xml:space="preserve"><value>Няма намерени заявки.</value></data>
+  <data name="User" xml:space="preserve"><value>Потребител</value></data>
+  <data name="Type" xml:space="preserve"><value>Вид</value></data>
+  <data name="Book" xml:space="preserve"><value>Книга</value></data>
+  <data name="Date" xml:space="preserve"><value>Дата</value></data>
+  <data name="Unknown user" xml:space="preserve"><value>Непознат потребител</value></data>
+  <data name="General Suggestion" xml:space="preserve"><value>Общо предложение</value></data>
+  <data name="Moderator Request" xml:space="preserve"><value>Заявка за модератор</value></data>
+  <data name="View" xml:space="preserve"><value>Виж</value></data>
+</root>

@@ -1,16 +1,18 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model IEnumerable<BookNest.Models.ContributionRequest>
 
 @{
-    ViewData["Title"] = "Contribution Requests";
+    ViewData["Title"] = Localizer["Contribution Requests"];
 }
 
 <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1 class="h3">Contribution Requests</h1>
+            <h1 class="h3">@Localizer["Contribution Requests"]</h1>
             <p class="text-muted mb-0">
-                Review suggestions and requests submitted by users.
+                @Localizer["Review suggestions and requests submitted by users."]
             </p>
         </div>
     </div>
@@ -22,65 +24,65 @@
               class="row g-3">
 
             <div class="col-md-5">
-                <label class="form-label">Status</label>
+                <label class="form-label">@Localizer["Status"]</label>
 
                 <select name="status" class="form-select">
 
-                    <option value="">All statuses</option>
+                    <option value="">@Localizer["All statuses"]</option>
 
                     <option value="@ContributionRequestStatuses.Pending"
                             selected="@(ViewBag.Status == ContributionRequestStatuses.Pending)">
-                        Pending
+                        @Localizer["Pending"]
                     </option>
 
                     <option value="@ContributionRequestStatuses.Approved"
                             selected="@(ViewBag.Status == ContributionRequestStatuses.Approved)">
-                        Approved
+                        @Localizer["Approved"]
                     </option>
 
                     <option value="@ContributionRequestStatuses.Rejected"
                             selected="@(ViewBag.Status == ContributionRequestStatuses.Rejected)">
-                        Rejected
+                        @Localizer["Rejected"]
                     </option>
 
                     <option value="@ContributionRequestStatuses.Resolved"
                             selected="@(ViewBag.Status == ContributionRequestStatuses.Resolved)">
-                        Resolved
+                        @Localizer["Resolved"]
                     </option>
 
                 </select>
             </div>
 
             <div class="col-md-5">
-                <label class="form-label">Request Type</label>
+                <label class="form-label">@Localizer["Request Type"]</label>
 
                 <select name="type" class="form-select">
 
-                    <option value="">All types</option>
+                    <option value="">@Localizer["All types"]</option>
 
                     <option value="@ContributionRequestTypes.ReadingLink"
                             selected="@(ViewBag.Type == ContributionRequestTypes.ReadingLink)">
-                        Reading Link
+                        @Localizer["Reading Link"]
                     </option>
 
                     <option value="@ContributionRequestTypes.BookInformation"
                             selected="@(ViewBag.Type == ContributionRequestTypes.BookInformation)">
-                        Book Information
+                        @Localizer["Book Information"]
                     </option>
 
                     <option value="@ContributionRequestTypes.NewBook"
                             selected="@(ViewBag.Type == ContributionRequestTypes.NewBook)">
-                        New Book
+                        @Localizer["New Book"]
                     </option>
 
                     <option value="@ContributionRequestTypes.GeneralSuggestion"
                             selected="@(ViewBag.Type == ContributionRequestTypes.GeneralSuggestion)">
-                        General Suggestion/Feedback
+                        @Localizer["General Suggestion/Feedback"]
                     </option>
 
                     <option value="@ContributionRequestTypes.AdminRequest"
                             selected="@(ViewBag.Type == ContributionRequestTypes.AdminRequest)">
-                        Admin Request
+                        @Localizer["Admin Request"]
                     </option>
 
                 </select>
@@ -90,7 +92,7 @@
 
                 <button type="submit"
                         class="btn btn-outline-primary w-100">
-                    Filter
+                    @Localizer["Filter"]
                 </button>
 
             </div>
@@ -104,7 +106,7 @@
     {
         <div class="card border-0 shadow-sm rounded-4 p-4">
             <p class="text-muted mb-0">
-                No contribution requests found.
+                @Localizer["No contribution requests found."]
             </p>
         </div>
     }
@@ -118,11 +120,11 @@
 
                     <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Type</th>
-                            <th>Book</th>
-                            <th>Status</th>
-                            <th>Date</th>
+                            <th>@Localizer["User"]</th>
+                            <th>@Localizer["Type"]</th>
+                            <th>@Localizer["Book"]</th>
+                            <th>@Localizer["Status"]</th>
+                            <th>@Localizer["Date"]</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -134,30 +136,30 @@
                         <tr>
 
                             <td>
-                                @(request.User?.UserName ?? "Unknown user")
+                                @(request.User?.UserName ?? Localizer["Unknown user"].Value)
                             </td>
 
                             <td>
                                 @switch (request.RequestType)
                                 {
                                     case ContributionRequestTypes.ReadingLink:
-                                        <span>Reading Link</span>
+                                        <span>@Localizer["Reading Link"]</span>
                                         break;
 
                                     case ContributionRequestTypes.BookInformation:
-                                        <span>Book Information</span>
+                                        <span>@Localizer["Book Information"]</span>
                                         break;
 
                                     case ContributionRequestTypes.NewBook:
-                                        <span>New Book</span>
+                                        <span>@Localizer["New Book"]</span>
                                         break;
 
                                     case ContributionRequestTypes.GeneralSuggestion:
-                                        <span>General Suggestion</span>
+                                        <span>@Localizer["General Suggestion"]</span>
                                         break;
 
                                     case ContributionRequestTypes.AdminRequest:
-                                        <span>Moderator Request</span>
+                                        <span>@Localizer["Moderator Request"]</span>
                                         break;
 
                                     default:
@@ -167,7 +169,7 @@
                             </td>
 
                             <td>
-                                @(request.Book?.Title ?? "—")
+                                @(request.Book?.Title ?? "\u2014")
                             </td>
 
                             <td>
@@ -175,25 +177,25 @@
                                 @if (request.Status == ContributionRequestStatuses.Pending)
                                 {
                                     <span class="badge bg-warning text-dark">
-                                        Pending
+                                        @Localizer["Pending"]
                                     </span>
                                 }
                                 else if (request.Status == ContributionRequestStatuses.Approved)
                                 {
                                     <span class="badge bg-success">
-                                        Approved
+                                        @Localizer["Approved"]
                                     </span>
                                 }
                                 else if (request.Status == ContributionRequestStatuses.Rejected)
                                 {
                                     <span class="badge bg-danger">
-                                        Rejected
+                                        @Localizer["Rejected"]
                                     </span>
                                 }
                                 else
                                 {
                                     <span class="badge bg-secondary">
-                                        Resolved
+                                        @Localizer["Resolved"]
                                     </span>
                                 }
 
@@ -210,7 +212,7 @@
                                 <a asp-action="ContributionRequestDetails"
                                    asp-route-id="@request.Id"
                                    class="btn btn-outline-primary btn-sm">
-                                    View
+                                    @Localizer["View"]
                                 </a>
 
                             </td>

@@ -229,3 +229,388 @@ body {
     .review-star:hover {
         transform: scale(1.2) rotate(-8deg);
     }
+
+/* Small visual separation between account links and the language switcher */
+@media (min-width: 992px) {
+    .nav-language-item {
+        margin-left: 0.75rem;
+        padding-left: 0.75rem;
+        border-left: 1px solid rgba(44, 42, 38, 0.12);
+    }
+}
+
+/* ============================================
+   Profile hero — banner treatment instead of
+   another generic rounded card
+   ============================================ */
+.profile-hero {
+    position: relative;
+    border-radius: 1.75rem;
+    background: linear-gradient(135deg, #7b4b3a 0%, #a06a4f 55%, #c99163 100%);
+    color: #fff8f0;
+    padding: 2.75rem 2rem 2rem;
+    overflow: hidden;
+}
+
+.profile-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 88% 12%, rgba(255, 255, 255, 0.14) 0%, transparent 45%);
+    pointer-events: none;
+}
+
+.profile-hero-avatar {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 248, 240, 0.85);
+    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(43, 25, 12, 0.28);
+}
+
+.profile-hero-avatar-fallback {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 248, 240, 0.85);
+    background: rgba(255, 248, 240, 0.16);
+    color: #fff8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(43, 25, 12, 0.28);
+}
+
+.profile-hero-name {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.profile-hero-meta {
+    color: rgba(255, 248, 240, 0.82);
+}
+
+/* Stat strip: a quiet horizontal row of numbers instead of
+   a grid of identical boxed tiles */
+.stat-strip {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.stat-strip-item {
+    flex: 1 1 auto;
+    min-width: 7rem;
+    padding: 0.25rem 1.25rem;
+    border-left: 1px solid rgba(44, 42, 38, 0.1);
+}
+
+.stat-strip-item:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+.stat-strip-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--bs-primary);
+    line-height: 1.1;
+}
+
+.stat-strip-label {
+    font-size: 0.82rem;
+    color: #6b6459;
+}
+
+/* Section label used above content groups on the profile page —
+   quiet, not a loud eyebrow */
+.section-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #6b4432;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-label svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   Community: forum "shelf" cards
+   ============================================ */
+.forum-card {
+    border-radius: 1.25rem;
+    border: 1px solid rgba(44, 42, 38, 0.08);
+    background: #fffaf4;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.forum-card:hover {
+    border-color: rgba(123, 75, 58, 0.35);
+    box-shadow: 0 10px 28px rgba(94, 58, 29, 0.08);
+}
+
+.forum-card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 0.75rem;
+    background: rgba(123, 75, 58, 0.1);
+    color: var(--bs-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.9rem;
+}
+
+.forum-card-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.forum-meta {
+    font-size: 0.85rem;
+    color: #6b6459;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.topic-row {
+    border: 1px solid rgba(44, 42, 38, 0.08);
+    border-radius: 1rem;
+    padding: 1.1rem 1.25rem;
+    background: #fffaf4;
+    transition: border-color 0.15s ease;
+    text-align: left;
+    font-size: 1rem;
+}
+
+    .topic-row:hover {
+        border-color: rgba(123, 75, 58, 0.3);
+    }
+
+    .topic-row p {
+        margin: 0;
+        text-align: left;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+.topic-reply-count {
+    font-size: 0.82rem;
+    color: #6b6459;
+    white-space: nowrap;
+}
+
+/* Anonymous post toggle — a simple left/right slider switch */
+.anon-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.anon-toggle input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.anon-toggle-track {
+    position: relative;
+    width: 42px;
+    height: 24px;
+    background: #d8cfc4;
+    border-radius: 999px;
+    transition: background-color 0.15s ease;
+    flex-shrink: 0;
+}
+
+.anon-toggle-track::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    transition: transform 0.15s ease;
+}
+
+.anon-toggle input[type="checkbox"]:checked + .anon-toggle-track {
+    background: var(--bs-primary);
+}
+
+.anon-toggle input[type="checkbox"]:checked + .anon-toggle-track::after {
+    transform: translateX(18px);
+}
+
+.anon-toggle-label {
+    font-size: 0.9rem;
+    color: #4a463f;
+}
+
+/* ============================================
+   Forum: avatars, reactions, badges, pagination
+   ============================================ */
+.author-avatar-sm {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.author-avatar-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(123, 75, 58, 0.12);
+    color: var(--bs-primary);
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.author-post-count {
+    font-size: 0.72rem;
+    color: #8a8377;
+}
+
+.forum-breadcrumb {
+    font-size: 0.88rem;
+    color: #6b6459;
+    margin-bottom: 0.75rem;
+}
+
+.forum-breadcrumb a {
+    color: #6b6459;
+    text-decoration: none;
+}
+
+.forum-breadcrumb a:hover {
+    color: var(--bs-primary);
+    text-decoration: underline;
+}
+
+.topic-badge-pin {
+    color: #a3651f;
+    background: rgba(163, 101, 31, 0.12);
+}
+
+.topic-badge-lock {
+    color: #6b6459;
+    background: rgba(44, 42, 38, 0.08);
+}
+
+.reaction-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.reaction-bar form {
+    display: inline-flex;
+    margin: 0;
+}
+
+.reaction-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    border: 1px solid rgba(44, 42, 38, 0.12);
+    background: #fff;
+    border-radius: 999px;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.82rem;
+    color: #4a463f;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.reaction-btn:hover {
+    border-color: rgba(123, 75, 58, 0.4);
+}
+
+.reaction-btn.active-like {
+    background: rgba(46, 125, 50, 0.12);
+    border-color: rgba(46, 125, 50, 0.4);
+    color: #2e7d32;
+}
+
+.reaction-btn.active-dislike {
+    background: rgba(198, 40, 40, 0.1);
+    border-color: rgba(198, 40, 40, 0.35);
+    color: #c62828;
+}
+
+.edited-indicator {
+    font-size: 0.78rem;
+    color: #8a8377;
+    font-style: italic;
+}
+
+.sort-select {
+    max-width: 220px;
+}
+
+.pagination-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+}
+
+.pagination-bar .btn {
+    min-width: 40px;
+}
+
+/* Lyra conversation list: readable delete button in both active/inactive states */
+.conversation-delete-btn {
+    color: #c62828;
+    font-size: 1.1rem;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.list-group-item.active .conversation-delete-btn {
+    color: #ffb4b4;
+}
+
+.list-group-item.active .conversation-delete-btn:hover {
+    color: #fff;
+}
+
+#lyra-conversations .list-group-item {
+    overflow: hidden;
+}
+
+#lyra-conversations .text-truncate {
+    max-width: 100%;
+}
+
+/* Fix: flex items refuse to shrink below their content's natural width by
+   default, which pushed the delete (x) button out of view for long chat
+   titles even though .text-truncate was already applied to the title span. */
+.conversation-link {
+    min-width: 0;
+}
+
+.conversation-link .text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

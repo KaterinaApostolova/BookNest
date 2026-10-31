@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="By" xml:space="preserve"><value>By</value></data>
+  <data name="Genres:" xml:space="preserve"><value>Genres:</value></data>
+  <data name="Publication Year:" xml:space="preserve"><value>Publication Year:</value></data>
+  <data name="Not available" xml:space="preserve"><value>Not available</value></data>
+  <data name="Average Rating:" xml:space="preserve"><value>Average Rating:</value></data>
+  <data name="Not rated yet" xml:space="preserve"><value>Not rated yet</value></data>
+  <data name="Community Rating:" xml:space="preserve"><value>Community Rating:</value></data>
+  <data name="reviews" xml:space="preserve"><value>reviews</value></data>
+  <data name="No community rating yet" xml:space="preserve"><value>No community rating yet</value></data>
+  <data name="No description available yet." xml:space="preserve"><value>No description available yet.</value></data>
+  <data name="Add to Reading Journey" xml:space="preserve"><value>Add to Reading Journey</value></data>
+  <data name="Login to add to Reading Journey" xml:space="preserve"><value>Login to add to Reading Journey</value></data>
+  <data name="Book Discussion" xml:space="preserve"><value>Book Discussion</value></data>
+  <data name="Ask Lyra about this book" xml:space="preserve"><value>Ask Lyra about this book</value></data>
+  <data name="Reading Links" xml:space="preserve"><value>Reading Links</value></data>
+  <data name="Add Reading Link" xml:space="preserve"><value>Add Reading Link</value></data>
+  <data name="Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Delete this reading link?" xml:space="preserve"><value>Delete this reading link?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="No reading links are available yet." xml:space="preserve"><value>No reading links are available yet.</value></data>
+  <data name="Add the first reading link for this book." xml:space="preserve"><value>Add the first reading link for this book.</value></data>
+  <data name="Suggest a Reading Link" xml:space="preserve"><value>Suggest a Reading Link</value></data>
+  <data name="Suggest Book Information" xml:space="preserve"><value>Suggest Book Information</value></data>
+  <data name="Login to Make a Suggestion" xml:space="preserve"><value>Login to Make a Suggestion</value></data>
+  <data name="Reviews" xml:space="preserve"><value>Reviews</value></data>
+  <data name="See what other readers think about this book." xml:space="preserve"><value>See what other readers think about this book.</value></data>
+  <data name="Write a Review" xml:space="preserve"><value>Write a Review</value></data>
+  <data name="Login to Review" xml:space="preserve"><value>Login to Review</value></data>
+  <data name="Anonymous Reader" xml:space="preserve"><value>Anonymous Reader</value></data>
+  <data name="No reviews yet." xml:space="preserve"><value>No reviews yet.</value></data>
+  <data name="Be the first to review this book" xml:space="preserve"><value>Be the first to review this book</value></data>
+  <data name="You may also like" xml:space="preserve"><value>You may also like</value></data>
+  <data name="Open Details" xml:space="preserve"><value>Open Details</value></data>
+  <data name="Translate" xml:space="preserve"><value>Translate</value></data>
+  <data name="Translating..." xml:space="preserve"><value>Translating...</value></data>
+  <data name="Show original" xml:space="preserve"><value>Show original</value></data>
+  <data name="Translation unavailable" xml:space="preserve"><value>Translation unavailable</value></data>
+  <data name="Translation unavailable — try again" xml:space="preserve"><value>Translation unavailable — try again</value></data>
+</root>

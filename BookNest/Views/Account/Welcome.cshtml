@@ -34,7 +34,7 @@
 
     <script>
         const card = document.getElementById('welcomeCard');
-        const redirectUrl = '@Url.Action("Index", "Home")';
+        const redirectUrl = @Json.Serialize(Model.RedirectUrl);
         const delay = @Model.RedirectDelayMilliseconds;
 
         window.setTimeout(function () {

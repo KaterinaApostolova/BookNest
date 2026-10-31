@@ -27,5 +27,17 @@ public class ForumTopic
 
     public ApplicationUser? User { get; set; }
 
+    public bool IsAnonymous { get; set; }
+
+    public bool IsPinned { get; set; }
+
+    public bool IsLocked { get; set; }
+
+    public int ViewCount { get; set; }
+
+    public DateTime? EditedAt { get; set; }
+
     public ICollection<ForumPost> Posts { get; set; } = new List<ForumPost>();
+
+    public ICollection<ForumReaction> Reactions { get; set; } = new List<ForumReaction>();
 }

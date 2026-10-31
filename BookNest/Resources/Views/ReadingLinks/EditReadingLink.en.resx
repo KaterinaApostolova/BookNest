@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Edit Reading Link" xml:space="preserve"><value>Edit Reading Link</value></data>
+  <data name="Website" xml:space="preserve"><value>Website</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="URL" xml:space="preserve"><value>URL</value></data>
+  <data name="Link Type" xml:space="preserve"><value>Link Type</value></data>
+  <data name="Save Changes" xml:space="preserve"><value>Save Changes</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+</root>

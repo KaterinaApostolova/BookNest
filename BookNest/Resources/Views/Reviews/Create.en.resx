@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Write a Review" xml:space="preserve"><value>Write a Review</value></data>
+  <data name="Book:" xml:space="preserve"><value>Book:</value></data>
+  <data name="Rating" xml:space="preserve"><value>Rating</value></data>
+  <data name="Your Review" xml:space="preserve"><value>Your Review</value></data>
+  <data name="What did you think about this book?" xml:space="preserve"><value>What did you think about this book?</value></data>
+  <data name="Publish Review" xml:space="preserve"><value>Publish Review</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Post anonymously" xml:space="preserve"><value>Post anonymously</value></data>
+</root>

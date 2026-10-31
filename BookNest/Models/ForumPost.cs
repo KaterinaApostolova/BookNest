@@ -20,4 +20,10 @@ public class ForumPost
     public string UserId { get; set; } = string.Empty;
 
     public ApplicationUser? User { get; set; }
+
+    public bool IsAnonymous { get; set; }
+
+    public DateTime? EditedAt { get; set; }
+
+    public ICollection<ForumReaction> Reactions { get; set; } = new List<ForumReaction>();
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Reading Journey" xml:space="preserve"><value>Читателско пътешествие</value></data>
+  <data name="Organize your books and move the same title between Want to Read, Currently Reading, and Finished." xml:space="preserve"><value>Организирай книгите си и премествай едно заглавие между Искам да прочета, В момента чета и Прочетени.</value></data>
+  <data name="Browse Books" xml:space="preserve"><value>Разгледай книгите</value></data>
+  <data name="Want to Read" xml:space="preserve"><value>Искам да прочета</value></data>
+  <data name="Add your favorite books to this list from the book details page." xml:space="preserve"><value>Добави любимите си книги в този списък от страницата с детайли на книгата.</value></data>
+  <data name="Start Reading" xml:space="preserve"><value>Започни четенето</value></data>
+  <data name="Remove" xml:space="preserve"><value>Премахни</value></data>
+  <data name="Currently Reading" xml:space="preserve"><value>В момента чета</value></data>
+  <data name="Move a book here when you begin reading it." xml:space="preserve"><value>Премести книга тук, когато започнеш да я четеш.</value></data>
+  <data name="Mark Finished" xml:space="preserve"><value>Отбележи като прочетена</value></data>
+  <data name="Finished" xml:space="preserve"><value>Прочетени</value></data>
+  <data name="Books you finish will appear here." xml:space="preserve"><value>Прочетените книги ще се показват тук.</value></data>
+  <data name="Read Again" xml:space="preserve"><value>Прочети отново</value></data>
+  <data name="You finished" xml:space="preserve"><value>Завърши</value></data>
+  <data name="Want to talk about it?" xml:space="preserve"><value>Искаш ли да поговорим за нея?</value></data>
+  <data name="Discuss in Community" xml:space="preserve"><value>Обсъди в общността</value></data>
+  <data name="Ask Lyra about it" xml:space="preserve"><value>Попитай Лира за нея</value></data>
+</root>

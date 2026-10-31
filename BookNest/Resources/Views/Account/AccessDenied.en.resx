@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Access Denied" xml:space="preserve"><value>Access Denied</value></data>
+  <data name="Access denied" xml:space="preserve"><value>Access denied</value></data>
+  <data name="You do not have permission to view this page." xml:space="preserve"><value>You do not have permission to view this page.</value></data>
+  <data name="Return Home" xml:space="preserve"><value>Return Home</value></data>
+</root>

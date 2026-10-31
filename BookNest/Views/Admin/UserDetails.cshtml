@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.ViewModels.AdminUserDetailsViewModel
 
 @{
-    ViewData["Title"] = "User Details";
+    ViewData["Title"] = Localizer["User Details"];
 }
 
 <div class="container mt-5 mb-5">
@@ -11,32 +13,20 @@
 
         <div>
             <h1 class="h3 mb-1">
-                User Details
+                @Localizer["User Details"]
             </h1>
 
             <p class="text-muted mb-0">
-                View information about this BookNest user.
+                @Localizer["View information about this BookNest user."]
             </p>
         </div>
 
         <a asp-action="Users"
            class="btn btn-outline-secondary">
-            Back to Users
+            @Localizer["Back to Users"]
         </a>
 
     </div>
-    @if (TempData["InfoMessage"] != null)
-    {
-       <div class="alert alert-success">
-           @TempData["InfoMessage"]
-       </div>
-    }
-    @if (TempData["ErrorMessage"] != null)
-    {
-       <div class="alert alert-danger">
-           @TempData["ErrorMessage"]
-       </div>
-    }
 
     <!-- PROFILE -->
 
@@ -81,7 +71,7 @@
                 </div>
 
                 <div class="small text-muted">
-                    Member since
+                    @Localizer["Member since"]
                     @(Model.MemberSince
                         .ToLocalTime()
                         .ToString("dd.MM.yyyy"))
@@ -104,19 +94,19 @@
             <div>
 
                 <h2 class="h5 mb-1">
-                    Account Status
+                    @Localizer["Account Status"]
                 </h2>
 
                 @if (Model.IsDeactivated)
                 {
                     <span class="badge bg-danger">
-                        Deactivated
+                        @Localizer["Deactivated"]
                     </span>
                 }
                 else
                 {
                     <span class="badge bg-success">
-                        Active
+                        @Localizer["Active"]
                     </span>
                 }
 
@@ -139,7 +129,7 @@
                         <button type="submit"
                                 class="btn btn-success">
 
-                            Activate User
+                            @Localizer["Activate User"]
 
                         </button>
 
@@ -149,7 +139,7 @@
                 {
                     <form asp-action="DeactivateUser"
                           method="post"
-                          onsubmit="return confirm('Are you sure you want to deactivate this user?');">
+                          onsubmit="return confirm('@Localizer["Are you sure you want to deactivate this user?"]');">
 
                         @Html.AntiForgeryToken()
 
@@ -160,7 +150,7 @@
                         <button type="submit"
                                 class="btn btn-outline-danger">
 
-                            Deactivate User
+                            @Localizer["Deactivate User"]
 
                         </button>
 
@@ -170,7 +160,7 @@
             else
             {
                 <span class="badge bg-dark">
-                    Admin account protected
+                    @Localizer["Admin account protected"]
                 </span>
             }
 
@@ -184,7 +174,7 @@
     <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
 
         <h2 class="h5 mb-4">
-            Profile Information
+            @Localizer["Profile Information"]
         </h2>
 
         <div class="row g-4">
@@ -192,7 +182,7 @@
             <div class="col-md-6">
 
                 <div class="small text-muted">
-                    Username
+                    @Localizer["Username"]
                 </div>
 
                 <div class="fw-semibold">
@@ -205,7 +195,7 @@
             <div class="col-md-6">
 
                 <div class="small text-muted">
-                    Email
+                    @Localizer["Email"]
                 </div>
 
                 <div class="fw-semibold text-break">
@@ -218,19 +208,19 @@
             <div class="col-md-6">
 
                 <div class="small text-muted">
-                    Profile Visibility
+                    @Localizer["Profile Visibility"]
                 </div>
 
                 @if (Model.IsProfilePublic)
                 {
                     <span class="badge bg-success">
-                        Public
+                        @Localizer["Public"]
                     </span>
                 }
                 else
                 {
                     <span class="badge bg-secondary">
-                        Private
+                        @Localizer["Private"]
                     </span>
                 }
 
@@ -240,7 +230,7 @@
             <div class="col-md-6">
 
                 <div class="small text-muted">
-                    Favourite Genre
+                    @Localizer["Favourite Genre"]
                 </div>
 
                 @if (!string.IsNullOrWhiteSpace(Model.FavouriteGenre))
@@ -252,7 +242,7 @@
                 else
                 {
                     <span class="text-muted">
-                        Not specified
+                        @Localizer["Not specified"]
                     </span>
                 }
 
@@ -262,7 +252,7 @@
             <div class="col-md-6">
 
                 <div class="small text-muted">
-                    Favourite Book
+                    @Localizer["Favourite Book"]
                 </div>
 
                 @if (!string.IsNullOrWhiteSpace(Model.FavouriteBook))
@@ -274,7 +264,7 @@
                 else
                 {
                     <span class="text-muted">
-                        Not specified
+                        @Localizer["Not specified"]
                     </span>
                 }
 
@@ -284,7 +274,7 @@
             <div class="col-12">
 
                 <div class="small text-muted">
-                    About
+                    @Localizer["About"]
                 </div>
 
                 @if (!string.IsNullOrWhiteSpace(Model.Bio))
@@ -296,7 +286,7 @@
                 else
                 {
                     <span class="text-muted">
-                        No bio added.
+                        @Localizer["No bio added."]
                     </span>
                 }
 
@@ -312,7 +302,7 @@
     <div class="card border-0 shadow-sm rounded-4 p-4">
 
         <h2 class="h5 mb-4">
-            Reading Statistics
+            @Localizer["Reading Statistics"]
         </h2>
 
         <div class="row g-3">
@@ -326,7 +316,7 @@
                     </div>
 
                     <div class="small text-muted">
-                        Books Read
+                        @Localizer["Books Read"]
                     </div>
 
                 </div>
@@ -343,7 +333,7 @@
                     </div>
 
                     <div class="small text-muted">
-                        Currently Reading
+                        @Localizer["Currently Reading"]
                     </div>
 
                 </div>
@@ -360,7 +350,7 @@
                     </div>
 
                     <div class="small text-muted">
-                        Want to Read
+                        @Localizer["Want to Read"]
                     </div>
 
                 </div>
@@ -377,7 +367,7 @@
                     </div>
 
                     <div class="small text-muted">
-                        Reviews
+                        @Localizer["Reviews"]
                     </div>
 
                 </div>

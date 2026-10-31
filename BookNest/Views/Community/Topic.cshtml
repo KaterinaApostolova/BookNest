@@ -1,88 +1,266 @@
-@model BookNest.Models.ForumTopic
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model BookNest.ViewModels.TopicPageViewModel
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = Model.Topic.Title;
+    var postCounts = ViewBag.PostCounts as Dictionary<string, int> ?? new Dictionary<string, int>();
+    var topicReactions = ViewBag.TopicReactions as Dictionary<int, BookNest.ViewModels.ReactionSummary> ?? new Dictionary<int, BookNest.ViewModels.ReactionSummary>();
+    var postReactions = ViewBag.PostReactions as Dictionary<int, BookNest.ViewModels.ReactionSummary> ?? new Dictionary<int, BookNest.ViewModels.ReactionSummary>();
+    var topicReaction = topicReactions.TryGetValue(Model.Topic.Id, out var tr) ? tr : new BookNest.ViewModels.ReactionSummary();
+    var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 }
 
+<nav class="forum-breadcrumb">
+    <a asp-controller="Community" asp-action="Index">@Localizer["Community"]</a>
+    <span> / </span>
+    <a asp-controller="Community" asp-action="Forum" asp-route-id="@Model.Topic.ForumId">@Model.Topic.Forum?.Name</a>
+    <span> / </span>
+    <span>@Model.Topic.Title</span>
+</nav>
+
 <div class="mb-4">
-    <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
-        <a asp-controller="Community" asp-action="Forum" asp-route-id="@Model.ForumId" class="btn btn-outline-secondary btn-sm">Back to forum</a>
-        <span class="small text-muted">@Model.Forum?.Name</span>
+    <div class="d-flex align-items-center gap-2 mb-1">
+        @if (Model.Topic.IsPinned)
+        {
+            <span class="badge topic-badge-pin">📌 @Localizer["Pinned"]</span>
+        }
+        @if (Model.Topic.IsLocked)
+        {
+            <span class="badge topic-badge-lock">🔒 @Localizer["Locked"]</span>
+        }
     </div>
+
     <div class="d-flex justify-content-between align-items-start gap-3">
-        <h2 class="mb-1">@Model.Title</h2>
-        @if (User.Identity?.IsAuthenticated == true &&
-             Model.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
-        {
-            <div class="d-flex gap-2">
-                <a class="btn btn-outline-secondary btn-sm" asp-action="EditTopic" asp-route-id="@Model.Id">Edit</a>
-                <form asp-controller="Community" asp-action="DeleteTopic" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Delete this topic and its replies?');">
+        <h1 class="h3 mb-1 topic-title-text" data-original-text="@Model.Topic.Title">@Model.Topic.Title</h1>
+
+        <div class="d-flex gap-2 flex-wrap">
+            @if (Model.Topic.UserId == currentUserId)
+            {
+                <a class="btn btn-outline-secondary btn-sm" asp-action="EditTopic" asp-route-id="@Model.Topic.Id">@Localizer["Edit"]</a>
+                <form asp-controller="Community" asp-action="DeleteTopic" asp-route-id="@Model.Topic.Id" method="post" onsubmit="return confirm('@Localizer["Delete this topic and its replies?"]');">
                     @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm">@Localizer["Delete"]</button>
                 </form>
-            </div>
-        }
-        @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin") && Model.UserId != User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
-        {
-            <form asp-controller="Community" asp-action="DeleteTopic" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Delete this topic and its replies?');">
-                @Html.AntiForgeryToken()
-                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-            </form>
-        }
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                @if (Model.Topic.UserId != currentUserId)
+                {
+                    <form asp-controller="Community" asp-action="DeleteTopic" asp-route-id="@Model.Topic.Id" method="post" onsubmit="return confirm('@Localizer["Delete this topic and its replies?"]');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-danger btn-sm">@Localizer["Delete topic"]</button>
+                    </form>
+                }
+                <form asp-controller="Community" asp-action="TogglePinTopic" asp-route-id="@Model.Topic.Id" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">@(Model.Topic.IsPinned ? Localizer["Unpin"] : Localizer["Pin"])</button>
+                </form>
+                <form asp-controller="Community" asp-action="ToggleLockTopic" asp-route-id="@Model.Topic.Id" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">@(Model.Topic.IsLocked ? Localizer["Unlock"] : Localizer["Lock"])</button>
+                </form>
+            }
+        </div>
     </div>
-    <small class="text-muted">Started by @(Model.User?.UserName ?? "BookNest member") on @Model.CreatedAt.ToLocalTime().ToString("g")</small>
+
+    <small class="text-muted d-block mt-2">
+        @Localizer["Started by"]
+        @(Model.Topic.IsAnonymous ? Localizer["Anonymous"].Value : (Model.Topic.User != null ? Model.Topic.User.UserName : Localizer["BookNest member"].Value))
+        @Localizer["on"] @Model.Topic.CreatedAt.ToLocalTime().ToString("g")
+        &middot; 👁 @Model.Topic.ViewCount @Localizer["views"]
+    </small>
+    @if (Model.Topic.EditedAt.HasValue)
+    {
+        <small class="edited-indicator d-block mt-1">@Localizer["Edited"] @Model.Topic.EditedAt.Value.ToLocalTime().ToString("g")</small>
+    }
 </div>
 
-<div class="card border-0 shadow-sm rounded-4 mb-4">
-    <div class="card-body">
-        <p class="mb-0" style="white-space: pre-wrap">@(Model.Content ?? "")</p>
+@if (!string.IsNullOrWhiteSpace(Model.Topic.Content))
+{
+    <div class="topic-row mb-2">
+        <p class="mb-0 topic-content-text" data-original-text="@Model.Topic.Content" style="white-space: pre-wrap">@Model.Topic.Content</p>
     </div>
+}
+<button type="button" class="btn btn-link btn-sm p-0 mb-4 translate-topic-btn" data-topic-id="@Model.Topic.Id">@Localizer["Translate"]</button>
+
+<div class="reaction-bar mb-4">
+    <form asp-controller="Community" asp-action="ReactToTopic" asp-route-id="@Model.Topic.Id" asp-route-isLike="true" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="reaction-btn @(topicReaction.MyReaction == true ? "active-like" : "")">👍 @topicReaction.Likes</button>
+    </form>
+    <form asp-controller="Community" asp-action="ReactToTopic" asp-route-id="@Model.Topic.Id" asp-route-isLike="false" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="reaction-btn @(topicReaction.MyReaction == false ? "active-dislike" : "")">👎 @topicReaction.Dislikes</button>
+    </form>
 </div>
 
 <div class="d-grid gap-3 mb-4">
-    @foreach (var post in Model.Posts.OrderBy(p => p.CreatedAt))
+    @foreach (var post in Model.Posts)
     {
-        <article class="card border-0 shadow-sm rounded-4">
-            <div class="card-body">
+        var reaction = postReactions.TryGetValue(post.Id, out var pr) ? pr : new BookNest.ViewModels.ReactionSummary();
+        var authorPostCount = postCounts.TryGetValue(post.UserId, out var apc) ? apc : 0;
+
+        <article class="topic-row">
                 <div class="d-flex justify-content-between mb-2">
-                    <strong>@(post.User?.UserName ?? "BookNest member")</strong>
+                    <partial name="_AuthorDisplay" model="@(new BookNest.ViewModels.AuthorDisplayViewModel { UserName = post.User != null ? post.User.UserName : null, IsProfilePublic = post.User != null && post.User.IsProfilePublic, IsAnonymous = post.IsAnonymous, FallbackLabel = Localizer["BookNest member"].Value, AnonymousLabel = Localizer["Anonymous"].Value, AvatarUrl = post.User?.ProfilePictureUrl, PostCount = authorPostCount, PostsSuffix = Localizer["posts"].Value })" />
                     <div class="d-flex align-items-center gap-2">
                         <small class="text-muted">@post.CreatedAt.ToLocalTime().ToString("g")</small>
                             @if (User.Identity?.IsAuthenticated == true &&
-                                post.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+                                post.UserId == currentUserId)
                         {
-                            <a class="btn btn-outline-secondary btn-sm" asp-action="EditPost" asp-route-id="@post.Id">Edit</a>
+                            <a class="btn btn-outline-secondary btn-sm" asp-action="EditPost" asp-route-id="@post.Id">@Localizer["Edit"]</a>
                             }
                             @if (User.Identity?.IsAuthenticated == true &&
-                                (User.IsInRole("Admin") || post.UserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value))
+                                (User.IsInRole("Admin") || post.UserId == currentUserId))
                             {
-                            <form asp-controller="Community" asp-action="DeletePost" asp-route-id="@post.Id" method="post" onsubmit="return confirm('Delete this reply?');">
+                            <form asp-controller="Community" asp-action="DeletePost" asp-route-id="@post.Id" method="post" onsubmit="return confirm('@Localizer["Delete this reply?"]');">
                                 @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-outline-danger btn-sm">@Localizer["Delete"]</button>
                             </form>
                         }
                     </div>
                 </div>
-                <p class="mb-0" style="white-space: pre-wrap">@post.Content</p>
-            </div>
+                <p class="mb-2 post-content-text" data-original-text="@post.Content" style="white-space: pre-wrap">@post.Content</p>
+                <button type="button" class="btn btn-link btn-sm p-0 mb-2 translate-post-btn" data-post-id="@post.Id">@Localizer["Translate"]</button>
+                @if (post.EditedAt.HasValue)
+                {
+                    <p class="edited-indicator mb-2">@Localizer["Edited"] @post.EditedAt.Value.ToLocalTime().ToString("g")</p>
+                }
+                <div class="reaction-bar">
+                    <form asp-controller="Community" asp-action="ReactToPost" asp-route-id="@post.Id" asp-route-isLike="true" method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="reaction-btn @(reaction.MyReaction == true ? "active-like" : "")">👍 @reaction.Likes</button>
+                    </form>
+                    <form asp-controller="Community" asp-action="ReactToPost" asp-route-id="@post.Id" asp-route-isLike="false" method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="reaction-btn @(reaction.MyReaction == false ? "active-dislike" : "")">👎 @reaction.Dislikes</button>
+                    </form>
+                </div>
         </article>
     }
 </div>
 
-@if (User.Identity?.IsAuthenticated == true)
+@if (Model.TotalPages > 1)
+{
+    <div class="pagination-bar mb-4">
+        @for (var p = 1; p <= Model.TotalPages; p++)
+        {
+            <a class="btn btn-sm @(p == Model.Page ? "btn-primary" : "btn-outline-secondary")"
+               asp-controller="Community" asp-action="Topic" asp-route-id="@Model.Topic.Id" asp-route-page="@p">@p</a>
+        }
+    </div>
+}
+
+@if (Model.Topic.IsLocked)
+{
+    <div class="alert alert-light border rounded-3">🔒 @Localizer["This topic is locked. New replies are no longer accepted."]</div>
+}
+else if (User.Identity?.IsAuthenticated == true)
 {
     <form asp-controller="Community" asp-action="CreatePost" method="post" class="card border-0 shadow-sm rounded-4">
         <div class="card-body">
             @Html.AntiForgeryToken()
-            <input type="hidden" name="ForumTopicId" value="@Model.Id" />
+            <input type="hidden" name="ForumTopicId" value="@Model.Topic.Id" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <label for="Content" class="form-label">Write a reply</label>
-            <textarea id="Content" name="Content" class="form-control" rows="5" maxlength="4000" required></textarea>
-            <button type="submit" class="btn btn-primary mt-3">Post reply</button>
+            <label for="Content" class="form-label">@Localizer["Write a reply"]</label>
+            <textarea id="Content"
+                      name="Content"
+                      class="form-control"
+                      rows="5"
+                      maxlength="4000"
+                      required></textarea>
+
+            <label class="anon-toggle mt-3">
+                <input type="checkbox" name="IsAnonymous" value="true" />
+                <span class="anon-toggle-track"></span>
+                <span class="anon-toggle-label">@Localizer["Post anonymously"]</span>
+            </label>
+
+            <div>
+            <button type="submit"
+                    class="btn btn-primary mt-3">
+                @Localizer["Post reply"]
+            </button>
+            </div>
         </div>
     </form>
 }
 else
 {
-    <div class="alert alert-light border rounded-3">Please <a asp-controller="Account" asp-action="Login">log in</a> to join the discussion.</div>
+    <div class="text-center py-4">
+        <p class="text-muted mb-3">@Localizer["Log in to join the discussion."]</p>
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Login">@Localizer["Log in to reply"]</a>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        var targetLang = document.documentElement.lang === 'bg' ? 'bg' : 'en';
+
+        var topicBtn = document.querySelector('.translate-topic-btn');
+        if (topicBtn) {
+            topicBtn.addEventListener('click', async function () {
+                var titleEl = document.querySelector('.topic-title-text');
+                var contentEl = document.querySelector('.topic-content-text');
+                var originalTitle = titleEl.dataset.originalText;
+                var originalContent = contentEl ? contentEl.dataset.originalText : null;
+
+                if (topicBtn.dataset.translated === 'true') {
+                    titleEl.textContent = originalTitle;
+                    if (contentEl) { contentEl.textContent = originalContent; }
+                    topicBtn.textContent = '@Localizer["Translate"]';
+                    topicBtn.dataset.translated = 'false';
+                    return;
+                }
+
+                topicBtn.disabled = true;
+                topicBtn.textContent = '@Localizer["Translating..."]';
+
+                try {
+                    var response = await fetch('/Community/TranslateTopic/' + topicBtn.dataset.topicId + '?targetLanguage=' + targetLang);
+                    if (!response.ok) { throw new Error('failed'); }
+                    var data = await response.json();
+                    titleEl.textContent = data.translatedTitle;
+                    if (contentEl && data.translatedContent) { contentEl.textContent = data.translatedContent; }
+                    topicBtn.textContent = '@Localizer["Show original"]';
+                    topicBtn.dataset.translated = 'true';
+                } catch (error) {
+                    topicBtn.textContent = '@Localizer["Translation unavailable — try again"]';
+                } finally {
+                    topicBtn.disabled = false;
+                }
+            });
+        }
+
+        document.querySelectorAll('.translate-post-btn').forEach(function (btn) {
+            btn.addEventListener('click', async function () {
+                var postId = btn.dataset.postId;
+                var contentEl = btn.previousElementSibling;
+                var originalText = contentEl.dataset.originalText;
+
+                if (btn.dataset.translated === 'true') {
+                    contentEl.textContent = originalText;
+                    btn.textContent = '@Localizer["Translate"]';
+                    btn.dataset.translated = 'false';
+                    return;
+                }
+
+                btn.disabled = true;
+                btn.textContent = '@Localizer["Translating..."]';
+
+                try {
+                    var response = await fetch('/Community/TranslatePost/' + postId + '?targetLanguage=' + targetLang);
+                    if (!response.ok) { throw new Error('failed'); }
+                    var data = await response.json();
+                    contentEl.textContent = data.translated;
+                    btn.textContent = '@Localizer["Show original"]';
+                    btn.dataset.translated = 'true';
+                } catch (error) {
+                    btn.textContent = '@Localizer["Translation unavailable — try again"]';
+                } finally {
+                    btn.disabled = false;
+                }
+            });
+        });
+    </script>
 }

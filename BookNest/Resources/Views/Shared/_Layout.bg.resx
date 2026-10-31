@@ -10,4 +10,6 @@
   <data name="Login" xml:space="preserve"><value>Вход</value></data>
   <data name="Register" xml:space="preserve"><value>Регистрация</value></data>
   <data name="Language" xml:space="preserve"><value>Език</value></data>
+  <data name="Admin" xml:space="preserve"><value>Администрация</value></data>
+  <data name="Because no story should end with the last page." xml:space="preserve"><value>Защото никоя история не бива да свършва с последната страница.</value></data>
 </root>

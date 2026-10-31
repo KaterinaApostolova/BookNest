@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Books" xml:space="preserve"><value>Книги</value></data>
+  <data name="Create Book" xml:space="preserve"><value>Създай книга</value></data>
+  <data name="Search by title or author" xml:space="preserve"><value>Търсене по заглавие или автор</value></data>
+  <data name="Search books" xml:space="preserve"><value>Търси книги</value></data>
+  <data name="Filter by genre" xml:space="preserve"><value>Филтър по жанр</value></data>
+  <data name="All genres" xml:space="preserve"><value>Всички жанрове</value></data>
+  <data name="Sort" xml:space="preserve"><value>Подредба</value></data>
+  <data name="A-Z" xml:space="preserve"><value>А-Я</value></data>
+  <data name="Z-A" xml:space="preserve"><value>Я-А</value></data>
+  <data name="Highest Rated" xml:space="preserve"><value>Най-високо оценени</value></data>
+  <data name="Newest First" xml:space="preserve"><value>Първо най-новите</value></data>
+  <data name="Apply" xml:space="preserve"><value>Приложи</value></data>
+  <data name="By" xml:space="preserve"><value>От</value></data>
+  <data name="Genre:" xml:space="preserve"><value>Жанр:</value></data>
+  <data name="Publication Year:" xml:space="preserve"><value>Година на издаване:</value></data>
+  <data name="N/A" xml:space="preserve"><value>Няма данни</value></data>
+  <data name="No description available yet." xml:space="preserve"><value>Все още няма описание.</value></data>
+  <data name="Open Details" xml:space="preserve"><value>Виж детайли</value></data>
+  <data name="Edit" xml:space="preserve"><value>Редактирай</value></data>
+</root>

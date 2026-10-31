@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Make a Suggestion" xml:space="preserve"><value>Make a Suggestion</value></data>
+  <data name="Help us improve BookNest by sharing an idea, suggesting a book, providing additional information, or requesting moderator access." xml:space="preserve"><value>Help us improve BookNest by sharing an idea, suggesting a book, providing additional information, or requesting moderator access.</value></data>
+  <data name="What would you like to suggest?" xml:space="preserve"><value>What would you like to suggest?</value></data>
+  <data name="Suggest a New Book" xml:space="preserve"><value>Suggest a New Book</value></data>
+  <data name="General Suggestion/Feedback" xml:space="preserve"><value>General Suggestion/Feedback</value></data>
+  <data name="Request Moderator Access" xml:space="preserve"><value>Request Moderator Access</value></data>
+  <data name="Your suggestion" xml:space="preserve"><value>Your suggestion</value></data>
+  <data name="Describe your suggestion..." xml:space="preserve"><value>Describe your suggestion...</value></data>
+  <data name="Additional Information" xml:space="preserve"><value>Additional Information</value></data>
+  <data name="Optional additional information..." xml:space="preserve"><value>Optional additional information...</value></data>
+  <data name="Source / Link" xml:space="preserve"><value>Source / Link</value></data>
+  <data name="optional" xml:space="preserve"><value>optional</value></data>
+  <data name="Send Suggestion" xml:space="preserve"><value>Send Suggestion</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+</root>

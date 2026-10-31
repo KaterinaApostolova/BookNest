@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Register" xml:space="preserve"><value>Регистрация</value></data>
+  <data name="Join BookNest" xml:space="preserve"><value>Присъедини се към BookNest</value></data>
+  <data name="Full Name" xml:space="preserve"><value>Пълно име</value></data>
+  <data name="Username" xml:space="preserve"><value>Потребителско име</value></data>
+  <data name="Email" xml:space="preserve"><value>Имейл</value></data>
+  <data name="Password" xml:space="preserve"><value>Парола</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Потвърди паролата</value></data>
+  <data name="Create account" xml:space="preserve"><value>Създай акаунт</value></data>
+</root>

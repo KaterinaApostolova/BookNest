@@ -13,13 +13,44 @@ namespace BookNest.Controllers
     {
         private readonly BookNestDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly BookNest.Services.ITranslationService _translationService;
 
         public ProfileController(
             BookNestDbContext context,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            BookNest.Services.ITranslationService translationService)
         {
             _context = context;
             _userManager = userManager;
+            _translationService = translationService;
+        }
+
+        // POST: Profile/TranslateText
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> TranslateText([FromBody] TranslateTextRequest request, CancellationToken cancellationToken)
+        {
+            if (request is null || string.IsNullOrWhiteSpace(request.Text) ||
+                (request.TargetLanguage != "en" && request.TargetLanguage != "bg"))
+            {
+                return BadRequest();
+            }
+
+            var languageName = request.TargetLanguage == "en" ? "English" : "Bulgarian";
+            var translated = await _translationService.TranslateAsync(request.Text, languageName, cancellationToken);
+
+            if (translated is null)
+            {
+                return StatusCode(503, new { error = "Translation is currently unavailable." });
+            }
+
+            return Json(new { translated });
+        }
+
+        public class TranslateTextRequest
+        {
+            public string Text { get; set; } = string.Empty;
+            public string TargetLanguage { get; set; } = string.Empty;
         }
 
         [HttpGet]
@@ -305,13 +336,38 @@ namespace BookNest.Controllers
                         r.UserId == user.Id &&
                         r.ReadingStatus.Name == "Completed");
 
+            var currentlyReading =
+                await _context.ReadingLists
+                    .CountAsync(r =>
+                        r.UserId == user.Id &&
+                        r.ReadingStatus.Name == "Reading");
 
+            var wantToRead =
+                await _context.ReadingLists
+                    .CountAsync(r =>
+                        r.UserId == user.Id &&
+                        r.ReadingStatus.Name == "Want To Read");
+
+            var topicsStarted =
+                await _context.ForumTopics
+                    .CountAsync(t => t.UserId == user.Id);
+
+            var repliesWritten =
+                await _context.ForumPosts
+                    .CountAsync(p => p.UserId == user.Id);
+
+            var forumsStarted =
+                await _context.Forums
+                    .CountAsync(f => f.UserId == user.Id);
 
 
             var model = new PublicProfileViewModel
             {
                 DisplayName =
                     user.UserName ?? "Reader",
+
+                UserName =
+                    user.UserName ?? string.Empty,
 
                 FullName =
                     string.IsNullOrWhiteSpace(user.FullName)
@@ -331,11 +387,25 @@ namespace BookNest.Controllers
 
                 FavouriteBook = user.FavouriteBook,
 
+                FavouriteQuote = user.FavouriteQuote,
+
                 BooksRead = booksRead,
+
+                CurrentlyReading = currentlyReading,
+
+                WantToRead = wantToRead,
 
                 ReviewsWritten = reviews.Count,
 
                 BooksInJourney = booksInJourney,
+
+                TopicsStarted = topicsStarted,
+
+                RepliesWritten = repliesWritten,
+
+                ForumsStarted = forumsStarted,
+
+                IsOwnProfile = _userManager.GetUserId(User) == user.Id,
 
                 Reviews = reviews
 
@@ -420,6 +490,10 @@ namespace BookNest.Controllers
             var repliesWritten =
                 await _context.ForumPosts
                     .CountAsync(p => p.UserId == user.Id);
+
+            var forumsStarted =
+                await _context.Forums
+                    .CountAsync(f => f.UserId == user.Id);
 
             var contributionRequests =
                 await _context.ContributionRequests
@@ -513,6 +587,9 @@ namespace BookNest.Controllers
 
                 RepliesWritten =
                     repliesWritten,
+
+                ForumsStarted =
+                    forumsStarted,
 
                 Reviews =
                     reviews,
