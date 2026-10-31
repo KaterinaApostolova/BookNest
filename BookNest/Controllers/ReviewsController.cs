@@ -1,11 +1,11 @@
 using BookNest.Data;
 using BookNest.Models;
+using BookNest.Services;
 using BookNest.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace BookNest.Controllers;
 
@@ -14,13 +14,46 @@ public class ReviewsController : Controller
 {
     private readonly BookNestDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly ITranslationService _translationService;
 
     public ReviewsController(
         BookNestDbContext context,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager,
+        ITranslationService translationService)
     {
         _context = context;
         _userManager = userManager;
+        _translationService = translationService;
+    }
+
+    // GET: Reviews/Translate/5?targetLanguage=en
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> Translate(int id, string targetLanguage, CancellationToken cancellationToken)
+    {
+        if (targetLanguage != "en" && targetLanguage != "bg")
+        {
+            return BadRequest();
+        }
+
+        var review = await _context.Reviews
+            .AsNoTracking()
+            .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
+
+        if (review is null || string.IsNullOrWhiteSpace(review.Content))
+        {
+            return NotFound();
+        }
+
+        var languageName = targetLanguage == "en" ? "English" : "Bulgarian";
+        var translated = await _translationService.TranslateAsync(review.Content, languageName, cancellationToken);
+
+        if (translated is null)
+        {
+            return StatusCode(503, new { error = "Translation is currently unavailable." });
+        }
+
+        return Json(new { translated });
     }
 
     // GET: Reviews/Create?bookId=5
@@ -115,7 +148,8 @@ public class ReviewsController : Controller
             UserId = user.Id,
             Rating = model.Rating,
             Content = model.Content.Trim(),
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow,
+            IsAnonymous = model.IsAnonymous
         };
 
         _context.Reviews.Add(review);
@@ -167,7 +201,8 @@ public class ReviewsController : Controller
             Content = review.Content,
             UserId = review.UserId,
             Username = review.User?.UserName,
-            CreatedAt = review.CreatedAt
+            CreatedAt = review.CreatedAt,
+            IsAnonymous = review.IsAnonymous
         };
 
         return View(model);
@@ -208,6 +243,7 @@ public class ReviewsController : Controller
 
         review.Rating = model.Rating;
         review.Content = model.Content.Trim();
+        review.IsAnonymous = model.IsAnonymous;
 
         await _context.SaveChangesAsync();
 

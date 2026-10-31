@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Edit Profile" xml:space="preserve"><value>Редакция на профил</value></data>
+  <data name="Update your profile information and privacy settings." xml:space="preserve"><value>Обнови информацията в профила си и настройките за поверителност.</value></data>
+  <data name="Optional. Add an image URL for your profile picture." xml:space="preserve"><value>Незадължително. Добави URL на изображение за профилната си снимка.</value></data>
+  <data name="Tell other readers something about yourself..." xml:space="preserve"><value>Разкажи на другите читатели нещо за себе си...</value></data>
+  <data name="Favourite Genre" xml:space="preserve"><value>Любим жанр</value></data>
+  <data name="Optional. Tell other readers which genre you enjoy the most." xml:space="preserve"><value>Незадължително. Кажи на другите читатели кой жанр харесваш най-много.</value></data>
+  <data name="Favourite Book" xml:space="preserve"><value>Любима книга</value></data>
+  <data name="Optional. Add the title of your favourite book." xml:space="preserve"><value>Незадължително. Добави заглавието на любимата си книга.</value></data>
+  <data name="A line from a book you love..." xml:space="preserve"><value>Ред от книга, която обичаш...</value></data>
+  <data name="Optional. Up to 1000 characters." xml:space="preserve"><value>Незадължително. До 1000 символа.</value></data>
+  <data name="Profile Visibility" xml:space="preserve"><value>Видимост на профила</value></data>
+  <data name="Choose whether other users can view your public profile." xml:space="preserve"><value>Избери дали други потребители могат да виждат публичния ти профил.</value></data>
+  <data name="Make my profile public" xml:space="preserve"><value>Направи профила ми публичен</value></data>
+  <data name="Change Password" xml:space="preserve"><value>Смяна на парола</value></data>
+  <data name="Leave these fields empty if you don't want to change your password." xml:space="preserve"><value>Остави тези полета празни, ако не искаш да сменяш паролата си.</value></data>
+  <data name="Save Changes" xml:space="preserve"><value>Запази промените</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отказ</value></data>
+</root>

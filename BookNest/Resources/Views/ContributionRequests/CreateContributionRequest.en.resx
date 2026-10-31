@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Make a Suggestion" xml:space="preserve"><value>Make a Suggestion</value></data>
+  <data name="Suggest a Reading Link" xml:space="preserve"><value>Suggest a Reading Link</value></data>
+  <data name="Suggest Book Information" xml:space="preserve"><value>Suggest Book Information</value></data>
+  <data name="Suggest a New Book" xml:space="preserve"><value>Suggest a New Book</value></data>
+  <data name="Send a Suggestion" xml:space="preserve"><value>Send a Suggestion</value></data>
+  <data name="Request Moderator Access" xml:space="preserve"><value>Request Moderator Access</value></data>
+  <data name="Book:" xml:space="preserve"><value>Book:</value></data>
+  <data name="Website" xml:space="preserve"><value>Website</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Reading Link" xml:space="preserve"><value>Reading Link</value></data>
+  <data name="Link Type" xml:space="preserve"><value>Link Type</value></data>
+  <data name="Select type" xml:space="preserve"><value>Select type</value></data>
+  <data name="Read Online" xml:space="preserve"><value>Read Online</value></data>
+  <data name="Borrow" xml:space="preserve"><value>Borrow</value></data>
+  <data name="Buy" xml:space="preserve"><value>Buy</value></data>
+  <data name="Other" xml:space="preserve"><value>Other</value></data>
+  <data name="Additional Information" xml:space="preserve"><value>Additional Information</value></data>
+  <data name="Tell us anything useful about this reading link..." xml:space="preserve"><value>Tell us anything useful about this reading link...</value></data>
+  <data name="Why would you like to become a moderator?" xml:space="preserve"><value>Why would you like to become a moderator?</value></data>
+  <data name="Which book would you like to suggest?" xml:space="preserve"><value>Which book would you like to suggest?</value></data>
+  <data name="What would you like to suggest?" xml:space="preserve"><value>What would you like to suggest?</value></data>
+  <data name="Tell us your suggestion..." xml:space="preserve"><value>Tell us your suggestion...</value></data>
+  <data name="Add any additional details that may help the moderators..." xml:space="preserve"><value>Add any additional details that may help the moderators...</value></data>
+  <data name="Source / Link" xml:space="preserve"><value>Source / Link</value></data>
+  <data name="optional" xml:space="preserve"><value>optional</value></data>
+  <data name="Optional. Add a source if you have one." xml:space="preserve"><value>Optional. Add a source if you have one.</value></data>
+  <data name="Send" xml:space="preserve"><value>Send</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+</root>

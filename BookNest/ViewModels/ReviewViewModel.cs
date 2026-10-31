@@ -23,4 +23,6 @@ public class ReviewViewModel
     public string? Username { get; set; }
 
     public DateTime CreatedAt { get; set; }
+
+    public bool IsAnonymous { get; set; }
 }

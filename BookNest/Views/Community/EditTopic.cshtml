@@ -1,11 +1,13 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.ViewModels.ForumTopicViewModel
 
 @{
-    ViewData["Title"] = "Edit Topic";
+    ViewData["Title"] = Localizer["Edit Topic"];
 }
 
-<h2 class="mb-1">Edit topic</h2>
-<p class="text-muted mb-4">In @Model.ForumName</p>
+<h2 class="mb-1">@Localizer["Edit topic"]</h2>
+<p class="text-muted mb-4">@Localizer["In"] @Model.ForumName</p>
 
 <form asp-controller="Community" asp-action="EditTopic" asp-route-id="@Model.Id" method="post" class="card border-0 shadow-sm rounded-4">
     <div class="card-body">
@@ -14,17 +16,24 @@
         <input asp-for="ForumName" type="hidden" />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="mb-3">
-            <label asp-for="Title" class="form-label">Topic title</label>
+            <label asp-for="Title" class="form-label">@Localizer["Topic title"]</label>
             <input asp-for="Title" class="form-control" maxlength="150" />
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Content" class="form-label">Topic content</label>
+            <label asp-for="Content" class="form-label">@Localizer["Topic content"]</label>
             <textarea asp-for="Content" class="form-control" rows="6" maxlength="4000"></textarea>
             <span asp-validation-for="Content" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-        <a asp-action="Topic" asp-route-id="@Model.Id" class="btn btn-link">Cancel</a>
+        <label class="anon-toggle mb-3">
+            <input type="checkbox" asp-for="IsAnonymous" />
+            <span class="anon-toggle-track"></span>
+            <span class="anon-toggle-label">@Localizer["Post anonymously"]</span>
+        </label>
+        <div>
+        <button type="submit" class="btn btn-primary">@Localizer["Save changes"]</button>
+        <a asp-action="Topic" asp-route-id="@Model.Id" class="btn btn-link">@Localizer["Cancel"]</a>
+        </div>
     </div>
 </form>
 

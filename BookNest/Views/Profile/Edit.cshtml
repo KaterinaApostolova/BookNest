@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.ViewModels.EditProfileViewModel
 
 @{
-    ViewData["Title"] = "Edit Profile";
+    ViewData["Title"] = Localizer["Edit Profile"];
 }
 
 <div class="container mt-5 mb-5">
@@ -13,11 +15,11 @@
             <div class="card border-0 shadow-sm rounded-4 p-4">
 
                 <h1 class="h4 mb-1">
-                    Edit Profile
+                    @Localizer["Edit Profile"]
                 </h1>
 
                 <p class="text-muted mb-4">
-                    Update your profile information and privacy settings.
+                    @Localizer["Update your profile information and privacy settings."]
                 </p>
 
                 <div asp-validation-summary="ModelOnly"
@@ -100,7 +102,7 @@
                         </span>
 
                         <div class="form-text">
-                            Optional. Add an image URL for your profile picture.
+                            @Localizer["Optional. Add an image URL for your profile picture."]
                         </div>
 
                     </div>
@@ -117,7 +119,7 @@
                         <textarea asp-for="Bio"
                                   class="form-control"
                                   rows="5"
-                                  placeholder="Tell other readers something about yourself..."></textarea>
+                                  placeholder="@Localizer["Tell other readers something about yourself..."]"></textarea>
 
                         <span asp-validation-for="Bio"
                               class="text-danger">
@@ -130,7 +132,7 @@
 
                        <label asp-for="FavouriteGenre"
                               class="form-label">
-                          Favourite Genre
+                          @Localizer["Favourite Genre"]
                        </label>
 
                        <input asp-for="FavouriteGenre"
@@ -142,7 +144,7 @@
                       </span>
 
                       <div class="form-text">
-                        Optional. Tell other readers which genre you enjoy the most.
+                        @Localizer["Optional. Tell other readers which genre you enjoy the most."]
                       </div>
 
                     </div>
@@ -153,7 +155,7 @@
 
                        <label asp-for="FavouriteBook"
                               class="form-label">
-                           Favourite Book
+                           @Localizer["Favourite Book"]
                        </label>
 
                       <input asp-for="FavouriteBook"
@@ -165,16 +167,16 @@
                       </span>
 
                       <div class="form-text">
-                         Optional. Add the title of your favourite book.
+                         @Localizer["Optional. Add the title of your favourite book."]
                       </div>
 
                     </div>
 
                     <div class="mb-4">
                         <label asp-for="FavouriteQuote" class="form-label"></label>
-                        <textarea asp-for="FavouriteQuote" class="form-control" rows="3" maxlength="1000" placeholder="A line from a book you love..."></textarea>
+                        <textarea asp-for="FavouriteQuote" class="form-control" rows="3" maxlength="1000" placeholder="@Localizer["A line from a book you love..."]"></textarea>
                         <span asp-validation-for="FavouriteQuote" class="text-danger"></span>
-                        <div class="form-text">Optional. Up to 1000 characters.</div>
+                        <div class="form-text">@Localizer["Optional. Up to 1000 characters."]</div>
                     </div>
 
                     <!-- Profile Visibility -->
@@ -182,11 +184,11 @@
                     <div class="border rounded-4 p-3 mb-4">
 
                         <h2 class="h6 mb-2">
-                            Profile Visibility
+                            @Localizer["Profile Visibility"]
                         </h2>
 
                         <p class="text-muted small mb-3">
-                            Choose whether other users can view your public profile.
+                            @Localizer["Choose whether other users can view your public profile."]
                         </p>
 
                         <div class="form-check form-switch">
@@ -197,7 +199,7 @@
 
                             <label asp-for="IsProfilePublic"
                                    class="form-check-label">
-                                Make my profile public
+                                @Localizer["Make my profile public"]
                             </label>
 
                         </div>
@@ -210,11 +212,11 @@
                     <hr class="my-4" />
 
                     <h2 class="h6 mb-3">
-                        Change Password
+                        @Localizer["Change Password"]
                     </h2>
 
                     <p class="text-muted small">
-                        Leave these fields empty if you don't want to change your password.
+                        @Localizer["Leave these fields empty if you don't want to change your password."]
                     </p>
 
 
@@ -275,12 +277,12 @@
 
                         <button type="submit"
                                 class="btn btn-primary">
-                            Save Changes
+                            @Localizer["Save Changes"]
                         </button>
 
                         <a asp-action="Profile"
                            class="btn btn-outline-secondary">
-                            Cancel
+                            @Localizer["Cancel"]
                         </a>
 
                     </div>

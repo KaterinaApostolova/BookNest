@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Edit Review" xml:space="preserve"><value>Редакция на ревю</value></data>
+  <data name="Book:" xml:space="preserve"><value>Книга:</value></data>
+  <data name="Rating" xml:space="preserve"><value>Оценка</value></data>
+  <data name="Your Review" xml:space="preserve"><value>Твоето ревю</value></data>
+  <data name="Save Changes" xml:space="preserve"><value>Запази промените</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отказ</value></data>
+  <data name="Post anonymously" xml:space="preserve"><value>Публикувай анонимно</value></data>
+</root>

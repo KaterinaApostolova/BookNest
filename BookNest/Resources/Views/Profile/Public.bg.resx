@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Member since" xml:space="preserve"><value>Член от</value></data>
+  <data name="About" xml:space="preserve"><value>За мен</value></data>
+  <data name="Bio" xml:space="preserve"><value>Биография</value></data>
+  <data name="Favourite Genre" xml:space="preserve"><value>Любим жанр</value></data>
+  <data name="No favourite genre selected." xml:space="preserve"><value>Не е избран любим жанр.</value></data>
+  <data name="Favourite Book" xml:space="preserve"><value>Любима книга</value></data>
+  <data name="No favourite book selected." xml:space="preserve"><value>Не е избрана любима книга.</value></data>
+  <data name="Reading Statistics" xml:space="preserve"><value>Читателска статистика</value></data>
+  <data name="Books Read" xml:space="preserve"><value>Прочетени книги</value></data>
+  <data name="Currently Reading" xml:space="preserve"><value>В момента чете</value></data>
+  <data name="Want to Read" xml:space="preserve"><value>Иска да прочете</value></data>
+  <data name="Books in Reading Journey" xml:space="preserve"><value>Книги в читателското пътешествие</value></data>
+  <data name="Community Statistics" xml:space="preserve"><value>Статистика в общността</value></data>
+  <data name="Forums Started" xml:space="preserve"><value>Създадени форуми</value></data>
+  <data name="Topics Started" xml:space="preserve"><value>Създадени теми</value></data>
+  <data name="Replies Written" xml:space="preserve"><value>Написани отговори</value></data>
+  <data name="Favourite Quote" xml:space="preserve"><value>Любим цитат</value></data>
+  <data name="No favourite quote added." xml:space="preserve"><value>Не е добавен любим цитат.</value></data>
+  <data name="No bio added." xml:space="preserve"><value>Няма добавена биография.</value></data>
+  <data name="Back to My Profile" xml:space="preserve"><value>Обратно към моя профил</value></data>
+  <data name="Reviews written for books." xml:space="preserve"><value>Ревюта, написани за книги.</value></data>
+  <data name="Reviews" xml:space="preserve"><value>Ревюта</value></data>
+  <data name="This reader hasn't written any reviews yet." xml:space="preserve"><value>Този читател все още не е написал ревюта.</value></data>
+  <data name="Translate" xml:space="preserve"><value>Преведи</value></data>
+  <data name="Translating..." xml:space="preserve"><value>Превежда се...</value></data>
+  <data name="Show original" xml:space="preserve"><value>Покажи оригинала</value></data>
+  <data name="Translation unavailable" xml:space="preserve"><value>Преводът не е достъпен</value></data>
+  <data name="Translation unavailable — try again" xml:space="preserve"><value>Преводът не е достъпен — опитай пак</value></data>
+</root>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Delete Book" xml:space="preserve"><value>Изтриване на книга</value></data>
+  <data name="Are you sure you want to delete" xml:space="preserve"><value>Сигурен ли си, че искаш да изтриеш</value></data>
+  <data name="Delete" xml:space="preserve"><value>Изтрий</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отказ</value></data>
+</root>

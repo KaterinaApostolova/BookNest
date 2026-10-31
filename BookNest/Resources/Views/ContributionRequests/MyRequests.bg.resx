@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Contribution Requests" xml:space="preserve"><value>Моите заявки</value></data>
+  <data name="Requests and suggestions you have submitted to BookNest." xml:space="preserve"><value>Заявки и предложения, които си подал към BookNest.</value></data>
+  <data name="Reading Link" xml:space="preserve"><value>Връзка за четене</value></data>
+  <data name="Book Information" xml:space="preserve"><value>Информация за книга</value></data>
+  <data name="New Book" xml:space="preserve"><value>Нова книга</value></data>
+  <data name="Moderator Request" xml:space="preserve"><value>Заявка за модератор</value></data>
+  <data name="General Suggestion" xml:space="preserve"><value>Общо предложение</value></data>
+  <data name="Pending" xml:space="preserve"><value>Изчаква</value></data>
+  <data name="Approved" xml:space="preserve"><value>Одобрена</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Отхвърлена</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Решена</value></data>
+  <data name="View Details" xml:space="preserve"><value>Виж детайли</value></data>
+  <data name="You haven't submitted any requests yet." xml:space="preserve"><value>Все още не си подал заявки.</value></data>
+  <data name="Back to Profile" xml:space="preserve"><value>Обратно към профила</value></data>
+</root>

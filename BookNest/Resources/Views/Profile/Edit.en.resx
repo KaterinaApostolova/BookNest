@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Edit Profile" xml:space="preserve"><value>Edit Profile</value></data>
+  <data name="Update your profile information and privacy settings." xml:space="preserve"><value>Update your profile information and privacy settings.</value></data>
+  <data name="Optional. Add an image URL for your profile picture." xml:space="preserve"><value>Optional. Add an image URL for your profile picture.</value></data>
+  <data name="Tell other readers something about yourself..." xml:space="preserve"><value>Tell other readers something about yourself...</value></data>
+  <data name="Favourite Genre" xml:space="preserve"><value>Favourite Genre</value></data>
+  <data name="Optional. Tell other readers which genre you enjoy the most." xml:space="preserve"><value>Optional. Tell other readers which genre you enjoy the most.</value></data>
+  <data name="Favourite Book" xml:space="preserve"><value>Favourite Book</value></data>
+  <data name="Optional. Add the title of your favourite book." xml:space="preserve"><value>Optional. Add the title of your favourite book.</value></data>
+  <data name="A line from a book you love..." xml:space="preserve"><value>A line from a book you love...</value></data>
+  <data name="Optional. Up to 1000 characters." xml:space="preserve"><value>Optional. Up to 1000 characters.</value></data>
+  <data name="Profile Visibility" xml:space="preserve"><value>Profile Visibility</value></data>
+  <data name="Choose whether other users can view your public profile." xml:space="preserve"><value>Choose whether other users can view your public profile.</value></data>
+  <data name="Make my profile public" xml:space="preserve"><value>Make my profile public</value></data>
+  <data name="Change Password" xml:space="preserve"><value>Change Password</value></data>
+  <data name="Leave these fields empty if you don't want to change your password." xml:space="preserve"><value>Leave these fields empty if you don't want to change your password.</value></data>
+  <data name="Save Changes" xml:space="preserve"><value>Save Changes</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+</root>

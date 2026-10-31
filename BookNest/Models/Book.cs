@@ -31,19 +31,11 @@ public class Book
 
     public ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
 
-    [NotMapped]
-    public Author? Author => Authors.FirstOrDefault();
-
-    [NotMapped]
-    public Genre? Genre => Genres.FirstOrDefault();
-
     public ICollection<ReadingLink> ReadingLinks { get; set; } = new List<ReadingLink>();
 
     public ICollection<Review> Reviews { get; set; } = new List<Review>();
 
     public ICollection<ReadingList> ReadingLists { get; set; } = new List<ReadingList>();
-
-    public ICollection<BookDiscussion> Discussions { get; set; } = new List<BookDiscussion>();
 
     public ICollection<Forum> Forums { get; set; } = new List<Forum>();
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="User Details" xml:space="preserve"><value>Детайли за потребител</value></data>
+  <data name="View information about this BookNest user." xml:space="preserve"><value>Преглед на информацията за този потребител на BookNest.</value></data>
+  <data name="Back to Users" xml:space="preserve"><value>Обратно към потребителите</value></data>
+  <data name="Member since" xml:space="preserve"><value>Член от</value></data>
+  <data name="Account Status" xml:space="preserve"><value>Статус на акаунта</value></data>
+  <data name="Deactivated" xml:space="preserve"><value>Деактивиран</value></data>
+  <data name="Active" xml:space="preserve"><value>Активен</value></data>
+  <data name="Activate User" xml:space="preserve"><value>Активирай потребителя</value></data>
+  <data name="Are you sure you want to deactivate this user?" xml:space="preserve"><value>Сигурен ли си, че искаш да деактивираш този потребител?</value></data>
+  <data name="Deactivate User" xml:space="preserve"><value>Деактивирай потребителя</value></data>
+  <data name="Admin account protected" xml:space="preserve"><value>Администраторският акаунт е защитен</value></data>
+  <data name="Profile Information" xml:space="preserve"><value>Информация за профила</value></data>
+  <data name="Username" xml:space="preserve"><value>Потребителско име</value></data>
+  <data name="Email" xml:space="preserve"><value>Имейл</value></data>
+  <data name="Profile Visibility" xml:space="preserve"><value>Видимост на профила</value></data>
+  <data name="Public" xml:space="preserve"><value>Публичен</value></data>
+  <data name="Private" xml:space="preserve"><value>Частен</value></data>
+  <data name="Favourite Genre" xml:space="preserve"><value>Любим жанр</value></data>
+  <data name="Not specified" xml:space="preserve"><value>Не е посочено</value></data>
+  <data name="Favourite Book" xml:space="preserve"><value>Любима книга</value></data>
+  <data name="About" xml:space="preserve"><value>За потребителя</value></data>
+  <data name="No bio added." xml:space="preserve"><value>Няма добавена биография.</value></data>
+  <data name="Reading Statistics" xml:space="preserve"><value>Читателска статистика</value></data>
+  <data name="Books Read" xml:space="preserve"><value>Прочетени книги</value></data>
+  <data name="Currently Reading" xml:space="preserve"><value>В момента чете</value></data>
+  <data name="Want to Read" xml:space="preserve"><value>Иска да прочете</value></data>
+  <data name="Reviews" xml:space="preserve"><value>Ревюта</value></data>
+</root>

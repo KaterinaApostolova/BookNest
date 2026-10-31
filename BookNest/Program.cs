@@ -1,6 +1,5 @@
 using System.Globalization;
 using BookNest.Data;
-using BookNest.Interfaces;
 using BookNest.Models;
 using BookNest.Services;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +13,7 @@ builder.Services.AddControllersWithViews()
     .AddViewLocalization()
     .AddDataAnnotationsLocalization();
 builder.Services.Configure<LyraOptions>(builder.Configuration.GetSection("Lyra"));
+builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));
 
 builder.Services.AddDbContext<BookNestDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -27,21 +27,31 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<HomeViewService>();
-builder.Services.AddScoped<IReadingAssistantService, RuleBasedReadingAssistantService>();
-builder.Services.AddHttpClient<ILyraService, OllamaLyraService>(client =>
+builder.Services.AddScoped<LyraContextBuilder>();
+builder.Services.AddHttpClient<ILyraService, GroqLyraService>(client =>
 {
-    var url = builder.Configuration["Lyra:Ollama:Url"] ?? "http://localhost:11434/";
-    if (Uri.TryCreate(url, UriKind.Absolute, out var baseUri))
-    {
-        client.BaseAddress = baseUri;
-    }
-    client.Timeout = TimeSpan.FromMinutes(2);
+    client.BaseAddress = new Uri("https://api.groq.com/openai/v1/");
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
+builder.Services.AddHttpClient<IBookRecommendationService, GroqBookRecommendationService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.groq.com/openai/v1/");
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
+builder.Services.AddHttpClient<ITranslationService, GroqTranslationService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.groq.com/openai/v1/");
+    client.Timeout = TimeSpan.FromSeconds(20);
 });
 builder.Services.AddHttpClient<IWebSearchService, FreeWebSearchService>(client =>
 {
-    client.BaseAddress = new Uri("https://html.duckduckgo.com/");
-    client.DefaultRequestHeaders.UserAgent.ParseAdd("BookNest Lyra reading assistant");
-    client.Timeout = TimeSpan.FromSeconds(10);
+    client.BaseAddress = new Uri("https://api.tavily.com/");
+    client.Timeout = TimeSpan.FromSeconds(15);
+});
+builder.Services.AddHttpClient<IEmailSender, BrevoEmailSender>(client =>
+{
+    client.BaseAddress = new Uri("https://api.brevo.com/");
+    client.Timeout = TimeSpan.FromSeconds(15);
 });
 builder.Services.AddSingleton<QuoteService>();
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Book discussion for" xml:space="preserve"><value>Book discussion for</value></data>
+  <data name="Back to community" xml:space="preserve"><value>Back to community</value></data>
+  <data name="Add topic" xml:space="preserve"><value>Add topic</value></data>
+  <data name="No topics yet" xml:space="preserve"><value>No topics yet</value></data>
+  <data name="Start the conversation in this forum." xml:space="preserve"><value>Start the conversation in this forum.</value></data>
+  <data name="reply(s)" xml:space="preserve"><value>reply(s)</value></data>
+  <data name="Started by" xml:space="preserve"><value>Started by</value></data>
+  <data name="BookNest member" xml:space="preserve"><value>BookNest member</value></data>
+  <data name="on" xml:space="preserve"><value>on</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Delete this topic and its replies?" xml:space="preserve"><value>Delete this topic and its replies?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Delete topic" xml:space="preserve"><value>Delete topic</value></data>
+  <data name="Anonymous" xml:space="preserve"><value>Anonymous</value></data>
+  <data name="Community" xml:space="preserve"><value>Community</value></data>
+  <data name="Sort by" xml:space="preserve"><value>Sort by</value></data>
+  <data name="Newest" xml:space="preserve"><value>Newest</value></data>
+  <data name="Most Active" xml:space="preserve"><value>Most Active</value></data>
+  <data name="Most Replies" xml:space="preserve"><value>Most Replies</value></data>
+  <data name="Pinned" xml:space="preserve"><value>Pinned</value></data>
+  <data name="Locked" xml:space="preserve"><value>Locked</value></data>
+  <data name="views" xml:space="preserve"><value>views</value></data>
+  <data name="posts" xml:space="preserve"><value>posts</value></data>
+  <data name="Pin" xml:space="preserve"><value>Pin</value></data>
+  <data name="Unpin" xml:space="preserve"><value>Unpin</value></data>
+  <data name="Lock" xml:space="preserve"><value>Lock</value></data>
+  <data name="Unlock" xml:space="preserve"><value>Unlock</value></data>
+  <data name="Log in to add a topic" xml:space="preserve"><value>Log in to add a topic</value></data>
+</root>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Contribution Request" xml:space="preserve"><value>Contribution Request</value></data>
+  <data name="Request #" xml:space="preserve"><value>Request #</value></data>
+  <data name="Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Resolved</value></data>
+  <data name="User" xml:space="preserve"><value>User</value></data>
+  <data name="Unknown" xml:space="preserve"><value>Unknown</value></data>
+  <data name="Request Type" xml:space="preserve"><value>Request Type</value></data>
+  <data name="Reading Link" xml:space="preserve"><value>Reading Link</value></data>
+  <data name="Book Information" xml:space="preserve"><value>Book Information</value></data>
+  <data name="New Book" xml:space="preserve"><value>New Book</value></data>
+  <data name="General Suggestion" xml:space="preserve"><value>General Suggestion</value></data>
+  <data name="Moderator Request" xml:space="preserve"><value>Moderator Request</value></data>
+  <data name="Book" xml:space="preserve"><value>Book</value></data>
+  <data name="Not related to a specific book" xml:space="preserve"><value>Not related to a specific book</value></data>
+  <data name="Submitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="Link Description" xml:space="preserve"><value>Link Description</value></data>
+  <data name="Information Suggested" xml:space="preserve"><value>Information Suggested</value></data>
+  <data name="Book Suggestion" xml:space="preserve"><value>Book Suggestion</value></data>
+  <data name="Moderator Application" xml:space="preserve"><value>Moderator Application</value></data>
+  <data name="Suggestion" xml:space="preserve"><value>Suggestion</value></data>
+  <data name="Additional Information" xml:space="preserve"><value>Additional Information</value></data>
+  <data name="Source" xml:space="preserve"><value>Source</value></data>
+  <data name="Reading Link Details" xml:space="preserve"><value>Reading Link Details</value></data>
+  <data name="Website" xml:space="preserve"><value>Website</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Link Type" xml:space="preserve"><value>Link Type</value></data>
+  <data name="Approve" xml:space="preserve"><value>Approve</value></data>
+  <data name="Reject" xml:space="preserve"><value>Reject</value></data>
+  <data name="Mark as Resolved" xml:space="preserve"><value>Mark as Resolved</value></data>
+  <data name="Are you sure you want to delete this request?" xml:space="preserve"><value>Are you sure you want to delete this request?</value></data>
+  <data name="Delete Request" xml:space="preserve"><value>Delete Request</value></data>
+  <data name="Back to Requests" xml:space="preserve"><value>Back to Requests</value></data>
+</root>

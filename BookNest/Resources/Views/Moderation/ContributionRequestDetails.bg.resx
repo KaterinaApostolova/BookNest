@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Contribution Request" xml:space="preserve"><value>Заявка за принос</value></data>
+  <data name="Request #" xml:space="preserve"><value>Заявка №</value></data>
+  <data name="Pending" xml:space="preserve"><value>Изчаква</value></data>
+  <data name="Approved" xml:space="preserve"><value>Одобрена</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Отхвърлена</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Решена</value></data>
+  <data name="User" xml:space="preserve"><value>Потребител</value></data>
+  <data name="Unknown" xml:space="preserve"><value>Непознат</value></data>
+  <data name="Request Type" xml:space="preserve"><value>Вид заявка</value></data>
+  <data name="Reading Link" xml:space="preserve"><value>Връзка за четене</value></data>
+  <data name="Book Information" xml:space="preserve"><value>Информация за книга</value></data>
+  <data name="New Book" xml:space="preserve"><value>Нова книга</value></data>
+  <data name="General Suggestion" xml:space="preserve"><value>Общо предложение</value></data>
+  <data name="Moderator Request" xml:space="preserve"><value>Заявка за модератор</value></data>
+  <data name="Book" xml:space="preserve"><value>Книга</value></data>
+  <data name="Not related to a specific book" xml:space="preserve"><value>Не е свързана с конкретна книга</value></data>
+  <data name="Submitted" xml:space="preserve"><value>Подадена на</value></data>
+  <data name="Link Description" xml:space="preserve"><value>Описание на връзката</value></data>
+  <data name="Information Suggested" xml:space="preserve"><value>Предложена информация</value></data>
+  <data name="Book Suggestion" xml:space="preserve"><value>Предложение за книга</value></data>
+  <data name="Moderator Application" xml:space="preserve"><value>Кандидатура за модератор</value></data>
+  <data name="Suggestion" xml:space="preserve"><value>Предложение</value></data>
+  <data name="Additional Information" xml:space="preserve"><value>Допълнителна информация</value></data>
+  <data name="Source" xml:space="preserve"><value>Източник</value></data>
+  <data name="Reading Link Details" xml:space="preserve"><value>Детайли за връзката</value></data>
+  <data name="Website" xml:space="preserve"><value>Уебсайт</value></data>
+  <data name="Language" xml:space="preserve"><value>Език</value></data>
+  <data name="Link Type" xml:space="preserve"><value>Вид връзка</value></data>
+  <data name="Approve" xml:space="preserve"><value>Одобри</value></data>
+  <data name="Reject" xml:space="preserve"><value>Отхвърли</value></data>
+  <data name="Mark as Resolved" xml:space="preserve"><value>Отбележи като решена</value></data>
+  <data name="Are you sure you want to delete this request?" xml:space="preserve"><value>Сигурен ли си, че искаш да изтриеш тази заявка?</value></data>
+  <data name="Delete Request" xml:space="preserve"><value>Изтрий заявката</value></data>
+  <data name="Back to Requests" xml:space="preserve"><value>Обратно към заявките</value></data>
+</root>

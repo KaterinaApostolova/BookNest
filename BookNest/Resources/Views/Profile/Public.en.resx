@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Member since" xml:space="preserve"><value>Member since</value></data>
+  <data name="About" xml:space="preserve"><value>About</value></data>
+  <data name="Bio" xml:space="preserve"><value>Bio</value></data>
+  <data name="Favourite Genre" xml:space="preserve"><value>Favourite Genre</value></data>
+  <data name="No favourite genre selected." xml:space="preserve"><value>No favourite genre selected.</value></data>
+  <data name="Favourite Book" xml:space="preserve"><value>Favourite Book</value></data>
+  <data name="No favourite book selected." xml:space="preserve"><value>No favourite book selected.</value></data>
+  <data name="Reading Statistics" xml:space="preserve"><value>Reading Statistics</value></data>
+  <data name="Books Read" xml:space="preserve"><value>Books Read</value></data>
+  <data name="Currently Reading" xml:space="preserve"><value>Currently Reading</value></data>
+  <data name="Want to Read" xml:space="preserve"><value>Want to Read</value></data>
+  <data name="Books in Reading Journey" xml:space="preserve"><value>Books in Reading Journey</value></data>
+  <data name="Community Statistics" xml:space="preserve"><value>Community Statistics</value></data>
+  <data name="Forums Started" xml:space="preserve"><value>Forums Started</value></data>
+  <data name="Topics Started" xml:space="preserve"><value>Topics Started</value></data>
+  <data name="Replies Written" xml:space="preserve"><value>Replies Written</value></data>
+  <data name="Favourite Quote" xml:space="preserve"><value>Favourite Quote</value></data>
+  <data name="No favourite quote added." xml:space="preserve"><value>No favourite quote added.</value></data>
+  <data name="No bio added." xml:space="preserve"><value>No bio added.</value></data>
+  <data name="Back to My Profile" xml:space="preserve"><value>Back to My Profile</value></data>
+  <data name="Reviews written for books." xml:space="preserve"><value>Reviews written for books.</value></data>
+  <data name="Reviews" xml:space="preserve"><value>Reviews</value></data>
+  <data name="This reader hasn't written any reviews yet." xml:space="preserve"><value>This reader hasn't written any reviews yet.</value></data>
+  <data name="Translate" xml:space="preserve"><value>Translate</value></data>
+  <data name="Translating..." xml:space="preserve"><value>Translating...</value></data>
+  <data name="Show original" xml:space="preserve"><value>Show original</value></data>
+  <data name="Translation unavailable" xml:space="preserve"><value>Translation unavailable</value></data>
+  <data name="Translation unavailable — try again" xml:space="preserve"><value>Translation unavailable — try again</value></data>
+</root>

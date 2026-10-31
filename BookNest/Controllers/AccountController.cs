@@ -14,15 +14,18 @@ public class AccountController : Controller
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly QuoteService _quoteService;
+    private readonly IEmailSender _emailSender;
 
     public AccountController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
-        QuoteService quoteService)
+        QuoteService quoteService,
+        IEmailSender emailSender)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _quoteService = quoteService;
+        _emailSender = emailSender;
     }
 
     [HttpGet]
@@ -130,6 +133,11 @@ public class AccountController : Controller
                 user.UserName ??
                 model.UsernameOrEmail;
 
+            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                TempData["WelcomeRedirectUrl"] = returnUrl;
+            }
+
             return RedirectToAction(nameof(Welcome));
         }
 
@@ -151,32 +159,43 @@ public class AccountController : Controller
         }
 
         var userName = TempData["WelcomeUserName"] as string;
+        var redirectUrl = TempData["WelcomeRedirectUrl"] as string;
+        var safeRedirectUrl = !string.IsNullOrWhiteSpace(redirectUrl) && Url.IsLocalUrl(redirectUrl)
+            ? redirectUrl
+            : Url.Action("Index", "Home") ?? "/";
+
+        var isBulgarian = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "bg";
+
         var model = welcomeType switch
         {
             "register" => new WelcomeViewModel
             {
-                Title = "Welcome to BookNest.",
-                Subtitle = "Because no story should end with the last page.",
+                Title = isBulgarian ? "Добре дошъл в BookNest." : "Welcome to BookNest.",
+                Subtitle = isBulgarian ? "Защото никоя история не бива да свършва с последната страница." : "Because no story should end with the last page.",
                 Quote = _quoteService.GetQuote(QuoteCollection.Register),
-                RedirectDelayMilliseconds = 7000
+                RedirectDelayMilliseconds = 7000,
+                RedirectUrl = safeRedirectUrl
             },
             "login" => new WelcomeViewModel
             {
-                Title = $"Welcome back, {userName ?? "reader"}!",
+                Title = isBulgarian ? $"Добре дошъл отново, {userName ?? "читателю"}!" : $"Welcome back, {userName ?? "reader"}!",
                 Quote = _quoteService.GetQuote(QuoteCollection.Login),
-                RedirectDelayMilliseconds = 7000
+                RedirectDelayMilliseconds = 7000,
+                RedirectUrl = safeRedirectUrl
             },
             "logout" => new WelcomeViewModel
             {
-                Title = "See you soon.",
+                Title = isBulgarian ? "До скоро." : "See you soon.",
                 Quote = _quoteService.GetQuote(QuoteCollection.Logout),
-                RedirectDelayMilliseconds = 7000
+                RedirectDelayMilliseconds = 7000,
+                RedirectUrl = safeRedirectUrl
             },
             _ => new WelcomeViewModel
             {
-                Title = "Welcome to BookNest.",
+                Title = isBulgarian ? "Добре дошъл в BookNest." : "Welcome to BookNest.",
                 Quote = _quoteService.GetQuote(QuoteCollection.Register),
-                RedirectDelayMilliseconds = 7000
+                RedirectDelayMilliseconds = 7000,
+                RedirectUrl = safeRedirectUrl
             }
         };
 
@@ -205,13 +224,76 @@ public class AccountController : Controller
         }
 
         var user = await _userManager.FindByEmailAsync(model.Email);
-        if (user is null)
+
+        // Always show the same message, whether or not the account exists —
+        // this avoids leaking which emails are registered on BookNest.
+        if (user is not null)
         {
-            TempData["InfoMessage"] = "If an account exists for this email, a password reset link would be sent. Email is not configured in this demo setup.";
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = System.Net.WebUtility.UrlEncode(token);
+            var resetUrl = Url.Action(
+                nameof(ResetPassword),
+                "Account",
+                new { userId = user.Id, token = encodedToken },
+                protocol: Request.Scheme);
+
+            var htmlBody = $"""
+                <p>Hello {System.Net.WebUtility.HtmlEncode(user.FullName ?? user.UserName)},</p>
+                <p>We received a request to reset your BookNest password. Click the link below to choose a new one:</p>
+                <p><a href="{resetUrl}">Reset your password</a></p>
+                <p>If you didn't request this, you can safely ignore this email — your password will stay the same.</p>
+                <p>— BookNest</p>
+                """;
+
+            await _emailSender.SendEmailAsync(user.Email!, "Reset your BookNest password", htmlBody);
+        }
+
+        TempData["InfoMessage"] = "If an account exists for that email, a password reset link has been sent.";
+        return RedirectToAction(nameof(Login));
+    }
+
+    [HttpGet]
+    public IActionResult ResetPassword(string? userId, string? token)
+    {
+        if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+        {
             return RedirectToAction(nameof(Login));
         }
 
-        TempData["InfoMessage"] = "Password reset is prepared. Email delivery is not configured in this demo, so no message was sent.";
+        return View(new ResetPasswordViewModel { UserId = userId, Token = token });
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var user = await _userManager.FindByIdAsync(model.UserId);
+        if (user is null)
+        {
+            // Don't reveal whether the account exists.
+            TempData["InfoMessage"] = "Your password has been reset.";
+            return RedirectToAction(nameof(Login));
+        }
+
+        var decodedToken = System.Net.WebUtility.UrlDecode(model.Token);
+        var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.Password);
+
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
+
+        TempData["InfoMessage"] = "Your password has been reset. You can now log in.";
         return RedirectToAction(nameof(Login));
     }
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Edit Reading Link" xml:space="preserve"><value>Редакция на връзка</value></data>
+  <data name="Website" xml:space="preserve"><value>Уебсайт</value></data>
+  <data name="Language" xml:space="preserve"><value>Език</value></data>
+  <data name="URL" xml:space="preserve"><value>URL адрес</value></data>
+  <data name="Link Type" xml:space="preserve"><value>Вид връзка</value></data>
+  <data name="Save Changes" xml:space="preserve"><value>Запази промените</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отказ</value></data>
+</root>

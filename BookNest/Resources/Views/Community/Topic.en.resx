@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Back to forum" xml:space="preserve"><value>Back to forum</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Delete this topic and its replies?" xml:space="preserve"><value>Delete this topic and its replies?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Started by" xml:space="preserve"><value>Started by</value></data>
+  <data name="BookNest member" xml:space="preserve"><value>BookNest member</value></data>
+  <data name="on" xml:space="preserve"><value>on</value></data>
+  <data name="Delete this reply?" xml:space="preserve"><value>Delete this reply?</value></data>
+  <data name="Write a reply" xml:space="preserve"><value>Write a reply</value></data>
+  <data name="Post reply" xml:space="preserve"><value>Post reply</value></data>
+  <data name="Please" xml:space="preserve"><value>Please</value></data>
+  <data name="log in" xml:space="preserve"><value>log in</value></data>
+  <data name="to join the discussion." xml:space="preserve"><value>to join the discussion.</value></data>
+  <data name="Post anonymously" xml:space="preserve"><value>Post anonymously</value></data>
+  <data name="Anonymous" xml:space="preserve"><value>Anonymous</value></data>
+  <data name="Community" xml:space="preserve"><value>Community</value></data>
+  <data name="Delete topic" xml:space="preserve"><value>Delete topic</value></data>
+  <data name="Pinned" xml:space="preserve"><value>Pinned</value></data>
+  <data name="Locked" xml:space="preserve"><value>Locked</value></data>
+  <data name="views" xml:space="preserve"><value>views</value></data>
+  <data name="posts" xml:space="preserve"><value>posts</value></data>
+  <data name="Pin" xml:space="preserve"><value>Pin</value></data>
+  <data name="Unpin" xml:space="preserve"><value>Unpin</value></data>
+  <data name="Lock" xml:space="preserve"><value>Lock</value></data>
+  <data name="Unlock" xml:space="preserve"><value>Unlock</value></data>
+  <data name="Edited" xml:space="preserve"><value>Edited</value></data>
+  <data name="This topic is locked. New replies are no longer accepted." xml:space="preserve"><value>This topic is locked. New replies are no longer accepted.</value></data>
+  <data name="Log in to join the discussion." xml:space="preserve"><value>Log in to join the discussion.</value></data>
+  <data name="Log in to reply" xml:space="preserve"><value>Log in to reply</value></data>
+  <data name="Translate" xml:space="preserve"><value>Translate</value></data>
+  <data name="Translating..." xml:space="preserve"><value>Translating...</value></data>
+  <data name="Show original" xml:space="preserve"><value>Show original</value></data>
+  <data name="Translation unavailable — try again" xml:space="preserve"><value>Translation unavailable — try again</value></data>
+</root>

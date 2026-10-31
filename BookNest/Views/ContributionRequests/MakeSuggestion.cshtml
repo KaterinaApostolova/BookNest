@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.ViewModels.ContributionRequestViewModel
 
 @{
-    ViewData["Title"] = "Make a Suggestion";
+    ViewData["Title"] = Localizer["Make a Suggestion"];
 }
 
 <div class="container mt-5">
@@ -12,13 +14,11 @@
             <div class="card border-0 shadow-sm rounded-4 p-4">
 
                 <h1 class="h4 mb-2">
-                    Make a Suggestion
+                    @Localizer["Make a Suggestion"]
                 </h1>
 
                 <p class="text-muted mb-4">
-                    Help us improve BookNest by sharing an idea,
-                    suggesting a book, providing additional information,
-                    or requesting moderator access.
+                    @Localizer["Help us improve BookNest by sharing an idea, suggesting a book, providing additional information, or requesting moderator access."]
                 </p>
 
                 <form asp-action="CreateContributionRequest"
@@ -30,7 +30,7 @@
 
                         <label asp-for="RequestType"
                                class="form-label">
-                            What would you like to suggest?
+                            @Localizer["What would you like to suggest?"]
                         <span class="text-danger">*</span>
                         </label> 
 
@@ -38,15 +38,15 @@
                                 class="form-select">
 
                             <option value="@ContributionRequestTypes.NewBook">
-                                Suggest a New Book
+                                @Localizer["Suggest a New Book"]
                             </option>
 
                             <option value="@ContributionRequestTypes.GeneralSuggestion">
-                                General Suggestion/Feedback
+                                @Localizer["General Suggestion/Feedback"]
                             </option>
 
                             <option value="@ContributionRequestTypes.AdminRequest">
-                                Request Moderator Access
+                                @Localizer["Request Moderator Access"]
                             </option>
 
                         </select>
@@ -62,14 +62,14 @@
 
                         <label asp-for="Message"
                                class="form-label">
-                            Your suggestion
+                            @Localizer["Your suggestion"]
                         <span class="text-danger">*</span>
                         </label> 
 
                         <textarea asp-for="Message"
                                   class="form-control"
                                   rows="7"
-                                  placeholder="Describe your suggestion..."></textarea>
+                                  placeholder="@Localizer["Describe your suggestion..."]"></textarea>
 
                         <span asp-validation-for="Message"
                               class="text-danger">
@@ -82,13 +82,13 @@
 
                         <label asp-for="AdditionalInformation"
                                class="form-label">
-                            Additional Information
+                            @Localizer["Additional Information"]
                         </label>
 
                         <textarea asp-for="AdditionalInformation"
                                   class="form-control"
                                   rows="4"
-                                  placeholder="Optional additional information..."></textarea>
+                                  placeholder="@Localizer["Optional additional information..."]"></textarea>
 
                         <span asp-validation-for="AdditionalInformation"
                               class="text-danger">
@@ -101,12 +101,12 @@
 
                         <label asp-for="SourceUrl"
                                class="form-label">
-                            Source / Link
+                            @Localizer["Source / Link"]
                         </label>
 
                         <input asp-for="SourceUrl"
                                class="form-control"
-                               placeholder="https://... (optional)" />
+                               placeholder="https://... (@Localizer["optional"])" />
 
                         <span asp-validation-for="SourceUrl"
                               class="text-danger">
@@ -119,13 +119,13 @@
 
                         <button type="submit"
                                 class="btn btn-primary">
-                            Send Suggestion
+                            @Localizer["Send Suggestion"]
                         </button>
 
                         <a asp-controller="Profile"
                            asp-action="Profile"
                            class="btn btn-outline-secondary">
-                            Cancel
+                            @Localizer["Cancel"]
                         </a>
 
                     </div>

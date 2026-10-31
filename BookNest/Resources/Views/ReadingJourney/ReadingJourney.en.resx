@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Reading Journey" xml:space="preserve"><value>Reading Journey</value></data>
+  <data name="Organize your books and move the same title between Want to Read, Currently Reading, and Finished." xml:space="preserve"><value>Organize your books and move the same title between Want to Read, Currently Reading, and Finished.</value></data>
+  <data name="Browse Books" xml:space="preserve"><value>Browse Books</value></data>
+  <data name="Want to Read" xml:space="preserve"><value>Want to Read</value></data>
+  <data name="Add your favorite books to this list from the book details page." xml:space="preserve"><value>Add your favorite books to this list from the book details page.</value></data>
+  <data name="Start Reading" xml:space="preserve"><value>Start Reading</value></data>
+  <data name="Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Currently Reading" xml:space="preserve"><value>Currently Reading</value></data>
+  <data name="Move a book here when you begin reading it." xml:space="preserve"><value>Move a book here when you begin reading it.</value></data>
+  <data name="Mark Finished" xml:space="preserve"><value>Mark Finished</value></data>
+  <data name="Finished" xml:space="preserve"><value>Finished</value></data>
+  <data name="Books you finish will appear here." xml:space="preserve"><value>Books you finish will appear here.</value></data>
+  <data name="Read Again" xml:space="preserve"><value>Read Again</value></data>
+  <data name="You finished" xml:space="preserve"><value>You finished</value></data>
+  <data name="Want to talk about it?" xml:space="preserve"><value>Want to talk about it?</value></data>
+  <data name="Discuss in Community" xml:space="preserve"><value>Discuss in Community</value></data>
+  <data name="Ask Lyra about it" xml:space="preserve"><value>Ask Lyra about it</value></data>
+</root>

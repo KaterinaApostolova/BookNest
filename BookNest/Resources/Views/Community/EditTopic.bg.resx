@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Edit Topic" xml:space="preserve"><value>Редакция на тема</value></data>
+  <data name="Edit topic" xml:space="preserve"><value>Редакция на тема</value></data>
+  <data name="In" xml:space="preserve"><value>В</value></data>
+  <data name="Topic title" xml:space="preserve"><value>Заглавие на темата</value></data>
+  <data name="Topic content" xml:space="preserve"><value>Съдържание на темата</value></data>
+  <data name="Save changes" xml:space="preserve"><value>Запази промените</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отказ</value></data>
+  <data name="Post anonymously" xml:space="preserve"><value>Публикувай анонимно</value></data>
+</root>

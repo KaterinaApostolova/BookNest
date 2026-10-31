@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Community" xml:space="preserve"><value>Общност</value></data>
+  <data name="Add forum" xml:space="preserve"><value>Добавяне на форум</value></data>
+  <data name="Choose a forum to join the conversation." xml:space="preserve"><value>Избери форум, за да се включиш в разговора.</value></data>
+  <data name="There are no forums yet. Start the first one." xml:space="preserve"><value>Все още няма форуми. Създай първия.</value></data>
+  <data name="Join other readers in this forum." xml:space="preserve"><value>Присъедини се към други читатели в този форум.</value></data>
+  <data name="topic(s)," xml:space="preserve"><value>теми,</value></data>
+  <data name="reply" xml:space="preserve"><value>отговор</value></data>
+  <data name="replies" xml:space="preserve"><value>отговора</value></data>
+  <data name="Latest:" xml:space="preserve"><value>Последна:</value></data>
+  <data name="Open forum" xml:space="preserve"><value>Отвори форума</value></data>
+  <data name="Delete this forum and all its topics and replies?" xml:space="preserve"><value>Да се изтрие ли този форум с всичките му теми и отговори?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Изтрий</value></data>
+  <data name="Log in to add a forum" xml:space="preserve"><value>Влез, за да добавиш форум</value></data>
+</root>

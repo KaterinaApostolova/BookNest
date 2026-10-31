@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Make a Suggestion" xml:space="preserve"><value>Направи предложение</value></data>
+  <data name="Help us improve BookNest by sharing an idea, suggesting a book, providing additional information, or requesting moderator access." xml:space="preserve"><value>Помогни ни да подобрим BookNest, като споделиш идея, предложиш книга, добавиш допълнителна информация или заявиш модераторски права.</value></data>
+  <data name="What would you like to suggest?" xml:space="preserve"><value>Какво искаш да предложиш?</value></data>
+  <data name="Suggest a New Book" xml:space="preserve"><value>Предложи нова книга</value></data>
+  <data name="General Suggestion/Feedback" xml:space="preserve"><value>Общо предложение/обратна връзка</value></data>
+  <data name="Request Moderator Access" xml:space="preserve"><value>Заяви модераторски достъп</value></data>
+  <data name="Your suggestion" xml:space="preserve"><value>Твоето предложение</value></data>
+  <data name="Describe your suggestion..." xml:space="preserve"><value>Опиши предложението си...</value></data>
+  <data name="Additional Information" xml:space="preserve"><value>Допълнителна информация</value></data>
+  <data name="Optional additional information..." xml:space="preserve"><value>Незадължителна допълнителна информация...</value></data>
+  <data name="Source / Link" xml:space="preserve"><value>Източник / връзка</value></data>
+  <data name="optional" xml:space="preserve"><value>незадължително</value></data>
+  <data name="Send Suggestion" xml:space="preserve"><value>Изпрати предложение</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отказ</value></data>
+</root>

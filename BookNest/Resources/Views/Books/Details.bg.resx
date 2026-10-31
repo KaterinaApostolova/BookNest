@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="By" xml:space="preserve"><value>От</value></data>
+  <data name="Genres:" xml:space="preserve"><value>Жанрове:</value></data>
+  <data name="Publication Year:" xml:space="preserve"><value>Година на издаване:</value></data>
+  <data name="Not available" xml:space="preserve"><value>Няма данни</value></data>
+  <data name="Average Rating:" xml:space="preserve"><value>Средна оценка:</value></data>
+  <data name="Not rated yet" xml:space="preserve"><value>Все още няма оценка</value></data>
+  <data name="Community Rating:" xml:space="preserve"><value>Оценка от общността:</value></data>
+  <data name="reviews" xml:space="preserve"><value>ревюта</value></data>
+  <data name="No community rating yet" xml:space="preserve"><value>Все още няма оценка от общността</value></data>
+  <data name="No description available yet." xml:space="preserve"><value>Все още няма описание.</value></data>
+  <data name="Add to Reading Journey" xml:space="preserve"><value>Добави в читателското пътешествие</value></data>
+  <data name="Login to add to Reading Journey" xml:space="preserve"><value>Влез, за да добавиш в читателското пътешествие</value></data>
+  <data name="Book Discussion" xml:space="preserve"><value>Дискусия за книгата</value></data>
+  <data name="Ask Lyra about this book" xml:space="preserve"><value>Попитай Лира за тази книга</value></data>
+  <data name="Reading Links" xml:space="preserve"><value>Връзки за четене</value></data>
+  <data name="Add Reading Link" xml:space="preserve"><value>Добави връзка</value></data>
+  <data name="Open" xml:space="preserve"><value>Отвори</value></data>
+  <data name="Edit" xml:space="preserve"><value>Редактирай</value></data>
+  <data name="Delete this reading link?" xml:space="preserve"><value>Да се изтрие ли тази връзка?</value></data>
+  <data name="Delete" xml:space="preserve"><value>Изтрий</value></data>
+  <data name="No reading links are available yet." xml:space="preserve"><value>Все още няма връзки за четене.</value></data>
+  <data name="Add the first reading link for this book." xml:space="preserve"><value>Добави първата връзка за тази книга.</value></data>
+  <data name="Suggest a Reading Link" xml:space="preserve"><value>Предложи връзка за четене</value></data>
+  <data name="Suggest Book Information" xml:space="preserve"><value>Предложи информация за книгата</value></data>
+  <data name="Login to Make a Suggestion" xml:space="preserve"><value>Влез, за да направиш предложение</value></data>
+  <data name="Reviews" xml:space="preserve"><value>Ревюта</value></data>
+  <data name="See what other readers think about this book." xml:space="preserve"><value>Виж какво мислят другите читатели за тази книга.</value></data>
+  <data name="Write a Review" xml:space="preserve"><value>Напиши ревю</value></data>
+  <data name="Login to Review" xml:space="preserve"><value>Влез, за да напишеш ревю</value></data>
+  <data name="Anonymous Reader" xml:space="preserve"><value>Анонимен читател</value></data>
+  <data name="No reviews yet." xml:space="preserve"><value>Все още няма ревюта.</value></data>
+  <data name="Be the first to review this book" xml:space="preserve"><value>Бъди първият, който ще напише ревю</value></data>
+  <data name="You may also like" xml:space="preserve"><value>Може да харесаш и</value></data>
+  <data name="Open Details" xml:space="preserve"><value>Виж детайли</value></data>
+  <data name="Translate" xml:space="preserve"><value>Преведи</value></data>
+  <data name="Translating..." xml:space="preserve"><value>Превежда се...</value></data>
+  <data name="Show original" xml:space="preserve"><value>Покажи оригинала</value></data>
+  <data name="Translation unavailable" xml:space="preserve"><value>Преводът не е достъпен</value></data>
+  <data name="Translation unavailable — try again" xml:space="preserve"><value>Преводът не е достъпен — опитай пак</value></data>
+</root>

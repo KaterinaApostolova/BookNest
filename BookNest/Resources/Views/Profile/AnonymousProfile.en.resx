@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Anonymous Profile" xml:space="preserve"><value>Anonymous Profile</value></data>
+  <data name="This profile is private" xml:space="preserve"><value>This profile is private</value></data>
+  <data name="This reader has chosen to keep their profile private. Their profile information, reading activity and reviews are not publicly available." xml:space="preserve"><value>This reader has chosen to keep their profile private. Their profile information, reading activity and reviews are not publicly available.</value></data>
+  <data name="Browse Books" xml:space="preserve"><value>Browse Books</value></data>
+</root>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Register" xml:space="preserve"><value>Register</value></data>
+  <data name="Join BookNest" xml:space="preserve"><value>Join BookNest</value></data>
+  <data name="Full Name" xml:space="preserve"><value>Full Name</value></data>
+  <data name="Username" xml:space="preserve"><value>Username</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Confirm Password</value></data>
+  <data name="Create account" xml:space="preserve"><value>Create account</value></data>
+</root>

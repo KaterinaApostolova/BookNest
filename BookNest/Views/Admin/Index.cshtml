@@ -1,5 +1,7 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
-    ViewData["Title"] = "Admin Panel";
+    ViewData["Title"] = Localizer["Admin Panel"];
 }
 
 <div class="row g-4">
@@ -8,22 +10,22 @@
     <div class="col-md-6">
         <div class="card shadow-sm rounded-4 p-4 h-100">
 
-            <h2 class="h4">Manage Books</h2>
+            <h2 class="h4">@Localizer["Manage Books"]</h2>
 
             <p class="text-muted">
-                Create, edit, and remove books from the catalog.
+                @Localizer["Create, edit, and remove books from the catalog."]
             </p>
 
             <a class="btn btn-primary"
                asp-controller="Books"
                asp-action="Create">
-                Create Book
+                @Localizer["Create Book"]
             </a>
 
             <a class="btn btn-outline-secondary ms-2"
                asp-controller="Books"
                asp-action="Index">
-                View Books
+                @Localizer["View Books"]
             </a>
 
         </div>
@@ -34,18 +36,16 @@
     <div class="col-md-6">
       <div class="card shadow-sm rounded-4 p-4 h-100">
 
-        <h2 class="h4">Moderation</h2>
+        <h2 class="h4">@Localizer["Moderation"]</h2>
 
         <p class="text-muted">
-            Review user suggestions, reading link requests,
-            book information, new book suggestions and
-            moderator applications.
+            @Localizer["Review user suggestions, reading link requests, book information, new book suggestions and moderator applications."]
         </p>
 
         <a asp-controller="Moderation"
            asp-action="ContributionRequests"
            class="btn btn-primary">
-            Manage Requests
+            @Localizer["Manage Requests"]
         </a>
 
     </div>
@@ -57,20 +57,20 @@
     <div class="card shadow-sm rounded-4 p-4 h-100">
 
         <h2 class="h4 mb-2">
-            Users
+            @Localizer["Users"]
         </h2>
 
         <p class="text-muted">
-            There are
+            @Localizer["There are"]
             <strong>@ViewBag.UsersCount</strong>
-            registered users in the system.
+            @Localizer["registered users in the system."]
         </p>
 
         <a asp-controller="Admin"
            asp-action="Users"
            class="btn btn-primary">
 
-            Manage Users
+            @Localizer["Manage Users"]
 
         </a>
 

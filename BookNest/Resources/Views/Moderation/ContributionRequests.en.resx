@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Contribution Requests" xml:space="preserve"><value>Contribution Requests</value></data>
+  <data name="Review suggestions and requests submitted by users." xml:space="preserve"><value>Review suggestions and requests submitted by users.</value></data>
+  <data name="Status" xml:space="preserve"><value>Status</value></data>
+  <data name="All statuses" xml:space="preserve"><value>All statuses</value></data>
+  <data name="Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Resolved</value></data>
+  <data name="Request Type" xml:space="preserve"><value>Request Type</value></data>
+  <data name="All types" xml:space="preserve"><value>All types</value></data>
+  <data name="Reading Link" xml:space="preserve"><value>Reading Link</value></data>
+  <data name="Book Information" xml:space="preserve"><value>Book Information</value></data>
+  <data name="New Book" xml:space="preserve"><value>New Book</value></data>
+  <data name="General Suggestion/Feedback" xml:space="preserve"><value>General Suggestion/Feedback</value></data>
+  <data name="Admin Request" xml:space="preserve"><value>Admin Request</value></data>
+  <data name="Filter" xml:space="preserve"><value>Filter</value></data>
+  <data name="No contribution requests found." xml:space="preserve"><value>No contribution requests found.</value></data>
+  <data name="User" xml:space="preserve"><value>User</value></data>
+  <data name="Type" xml:space="preserve"><value>Type</value></data>
+  <data name="Book" xml:space="preserve"><value>Book</value></data>
+  <data name="Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Unknown user" xml:space="preserve"><value>Unknown user</value></data>
+  <data name="General Suggestion" xml:space="preserve"><value>General Suggestion</value></data>
+  <data name="Moderator Request" xml:space="preserve"><value>Moderator Request</value></data>
+  <data name="View" xml:space="preserve"><value>View</value></data>
+</root>

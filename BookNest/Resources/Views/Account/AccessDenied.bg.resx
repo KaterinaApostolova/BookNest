@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Access Denied" xml:space="preserve"><value>Отказан достъп</value></data>
+  <data name="Access denied" xml:space="preserve"><value>Отказан достъп</value></data>
+  <data name="You do not have permission to view this page." xml:space="preserve"><value>Нямаш права да разглеждаш тази страница.</value></data>
+  <data name="Return Home" xml:space="preserve"><value>Обратно към началото</value></data>
+</root>

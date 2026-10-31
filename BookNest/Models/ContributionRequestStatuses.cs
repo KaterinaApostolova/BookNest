@@ -1,3 +1,4 @@
+namespace BookNest.Models;
 public static class ContributionRequestStatuses
 {
     public const string Pending = "Pending";

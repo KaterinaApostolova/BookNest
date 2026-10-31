@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Edit Review" xml:space="preserve"><value>Edit Review</value></data>
+  <data name="Book:" xml:space="preserve"><value>Book:</value></data>
+  <data name="Rating" xml:space="preserve"><value>Rating</value></data>
+  <data name="Your Review" xml:space="preserve"><value>Your Review</value></data>
+  <data name="Save Changes" xml:space="preserve"><value>Save Changes</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Post anonymously" xml:space="preserve"><value>Post anonymously</value></data>
+</root>

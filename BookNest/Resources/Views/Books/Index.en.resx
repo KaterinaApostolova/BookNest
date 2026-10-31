@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Books" xml:space="preserve"><value>Books</value></data>
+  <data name="Create Book" xml:space="preserve"><value>Create Book</value></data>
+  <data name="Search by title or author" xml:space="preserve"><value>Search by title or author</value></data>
+  <data name="Search books" xml:space="preserve"><value>Search books</value></data>
+  <data name="Filter by genre" xml:space="preserve"><value>Filter by genre</value></data>
+  <data name="All genres" xml:space="preserve"><value>All genres</value></data>
+  <data name="Sort" xml:space="preserve"><value>Sort</value></data>
+  <data name="A-Z" xml:space="preserve"><value>A-Z</value></data>
+  <data name="Z-A" xml:space="preserve"><value>Z-A</value></data>
+  <data name="Highest Rated" xml:space="preserve"><value>Highest Rated</value></data>
+  <data name="Newest First" xml:space="preserve"><value>Newest First</value></data>
+  <data name="Apply" xml:space="preserve"><value>Apply</value></data>
+  <data name="By" xml:space="preserve"><value>By</value></data>
+  <data name="Genre:" xml:space="preserve"><value>Genre:</value></data>
+  <data name="Publication Year:" xml:space="preserve"><value>Publication Year:</value></data>
+  <data name="N/A" xml:space="preserve"><value>N/A</value></data>
+  <data name="No description available yet." xml:space="preserve"><value>No description available yet.</value></data>
+  <data name="Open Details" xml:space="preserve"><value>Open Details</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+</root>

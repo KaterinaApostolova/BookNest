@@ -1,3 +1,4 @@
+namespace BookNest.Models;
 public static class ContributionRequestTypes
 {
     public const string ReadingLink = "ReadingLink";

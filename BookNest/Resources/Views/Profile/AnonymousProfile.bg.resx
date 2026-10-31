@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Anonymous Profile" xml:space="preserve"><value>Анонимен профил</value></data>
+  <data name="This profile is private" xml:space="preserve"><value>Този профил е частен</value></data>
+  <data name="This reader has chosen to keep their profile private. Their profile information, reading activity and reviews are not publicly available." xml:space="preserve"><value>Този читател е избрал профилът му да е частен. Информацията, читателската активност и ревютата му не са публично достъпни.</value></data>
+  <data name="Browse Books" xml:space="preserve"><value>Разгледай книгите</value></data>
+</root>

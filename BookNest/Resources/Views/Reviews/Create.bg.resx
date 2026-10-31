@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Write a Review" xml:space="preserve"><value>Напиши ревю</value></data>
+  <data name="Book:" xml:space="preserve"><value>Книга:</value></data>
+  <data name="Rating" xml:space="preserve"><value>Оценка</value></data>
+  <data name="Your Review" xml:space="preserve"><value>Твоето ревю</value></data>
+  <data name="What did you think about this book?" xml:space="preserve"><value>Какво мислиш за тази книга?</value></data>
+  <data name="Publish Review" xml:space="preserve"><value>Публикувай ревю</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отказ</value></data>
+  <data name="Post anonymously" xml:space="preserve"><value>Публикувай анонимно</value></data>
+</root>

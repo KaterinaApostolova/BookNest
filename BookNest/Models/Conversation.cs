@@ -12,10 +12,6 @@ public class Conversation
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    public int? BookDiscussionId { get; set; }
-
-    public BookDiscussion? BookDiscussion { get; set; }
-
     public string? UserId { get; set; }
 
     public ApplicationUser? User { get; set; }

@@ -1,16 +1,18 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.ViewModels.ContributionRequestViewModel
 
 @{
-    ViewData["Title"] = "Make a Suggestion";
+    ViewData["Title"] = Localizer["Make a Suggestion"];
 
     var title = Model.RequestType switch
     {
-        "ReadingLink" => "Suggest a Reading Link",
-        "BookInformation" => "Suggest Book Information",
-        "NewBook" => "Suggest a New Book",
-        "GeneralSuggestion" => "Send a Suggestion",
-        "AdminRequest" => "Request Moderator Access",
-        _ => "Make a Suggestion"
+        "ReadingLink" => Localizer["Suggest a Reading Link"],
+        "BookInformation" => Localizer["Suggest Book Information"],
+        "NewBook" => Localizer["Suggest a New Book"],
+        "GeneralSuggestion" => Localizer["Send a Suggestion"],
+        "AdminRequest" => Localizer["Request Moderator Access"],
+        _ => Localizer["Make a Suggestion"]
     };
 }
 
@@ -27,7 +29,7 @@
                 @if (!string.IsNullOrWhiteSpace(Model.BookTitle))
                 {
                     <p class="text-muted mb-4">
-                        Book:
+                        @Localizer["Book:"]
                         <strong>@Model.BookTitle</strong>
                     </p>
                 }
@@ -47,7 +49,7 @@
                         <div class="mb-3">
                             <label asp-for="WebsiteName"
                                    class="form-label">
-                                Website
+                                @Localizer["Website"]
                             </label>
                             <span class="text-danger">*</span>
                             <input asp-for="WebsiteName"
@@ -61,7 +63,7 @@
                         <div class="mb-3">
                             <label asp-for="Language"
                                    class="form-label">
-                                Language
+                                @Localizer["Language"]
                             </label>
                             <span class="text-danger">*</span>
                             <input asp-for="Language"
@@ -75,7 +77,7 @@
                         <div class="mb-3">
                             <label asp-for="SourceUrl"
                                    class="form-label">
-                                Reading Link
+                                @Localizer["Reading Link"]
                             </label>
                              <span class="text-danger">*</span>
                             <input asp-for="SourceUrl"
@@ -89,17 +91,17 @@
                         <div class="mb-3">
                             <label asp-for="LinkType"
                                    class="form-label">
-                                Link Type
+                                @Localizer["Link Type"]
                             </label>
                             <span class="text-danger">*</span>
                             <select asp-for="LinkType"
                                     class="form-select">
 
-                                <option value="">Select type</option>
-                                <option value="Read Online">Read Online</option>
-                                <option value="Borrow">Borrow</option>
-                                <option value="Buy">Buy</option>
-                                <option value="Other">Other</option>
+                                <option value="">@Localizer["Select type"]</option>
+                                <option value="Read Online">@Localizer["Read Online"]</option>
+                                <option value="Borrow">@Localizer["Borrow"]</option>
+                                <option value="Buy">@Localizer["Buy"]</option>
+                                <option value="Other">@Localizer["Other"]</option>
 
                             </select>
 
@@ -110,13 +112,13 @@
                         <div class="mb-3">
                             <label asp-for="Message"
                                    class="form-label">
-                                Additional Information
+                                @Localizer["Additional Information"]
                             </label>
                             <span class="text-danger">*</span>
                             <textarea asp-for="Message"
                                       class="form-control"
                                       rows="4"
-                                      placeholder="Tell us anything useful about this reading link..."></textarea>
+                                      placeholder="@Localizer["Tell us anything useful about this reading link..."]"></textarea>
 
                             <span asp-validation-for="Message"
                                   class="text-danger"></span>
@@ -129,15 +131,15 @@
                                    class="form-label">
                                 @if (Model.RequestType == ContributionRequestTypes.AdminRequest)
                                 {
-                                    <span>Why would you like to become a moderator?</span>
+                                    <span>@Localizer["Why would you like to become a moderator?"]</span>
                                 }
                                 else if (Model.RequestType == ContributionRequestTypes.NewBook)
                                 {
-                                    <span>Which book would you like to suggest?</span>
+                                    <span>@Localizer["Which book would you like to suggest?"]</span>
                                 }
                                 else
                                 {
-                                    <span>What would you like to suggest?</span>
+                                    <span>@Localizer["What would you like to suggest?"]</span>
                                 }
 
                                 <span class="text-danger">*</span>
@@ -146,7 +148,7 @@
                             <textarea asp-for="Message"
                                       class="form-control"
                                       rows="6"
-                                      placeholder="Tell us your suggestion..."></textarea>
+                                      placeholder="@Localizer["Tell us your suggestion..."]"></textarea>
 
                             <span asp-validation-for="Message"
                                   class="text-danger"></span>
@@ -155,13 +157,13 @@
                         <div class="mb-3">
                             <label asp-for="AdditionalInformation"
                                    class="form-label">
-                                Additional Information
+                                @Localizer["Additional Information"]
                             </label>
 
                             <textarea asp-for="AdditionalInformation"
                                       class="form-control"
                                       rows="4"
-                                      placeholder="Add any additional details that may help the moderators..."></textarea>
+                                      placeholder="@Localizer["Add any additional details that may help the moderators..."]"></textarea>
 
                             <span asp-validation-for="AdditionalInformation"
                                   class="text-danger"></span>
@@ -170,18 +172,18 @@
                         <div class="mb-3">
                             <label asp-for="SourceUrl"
                                    class="form-label">
-                                Source / Link
+                                @Localizer["Source / Link"]
                             </label>
 
                             <input asp-for="SourceUrl"
                                    class="form-control"
-                                   placeholder="https://... (optional)" />
+                                   placeholder="https://... (@Localizer["optional"])" />
 
                             <span asp-validation-for="SourceUrl"
                                   class="text-danger"></span>
 
                             <div class="form-text">
-                                Optional. Add a source if you have one.
+                                @Localizer["Optional. Add a source if you have one."]
                             </div>
                         </div>
                     }
@@ -190,7 +192,7 @@
 
                         <button type="submit"
                                 class="btn btn-primary">
-                            Send
+                            @Localizer["Send"]
                         </button>
 
                         @if (Model.BookId.HasValue)
@@ -199,7 +201,7 @@
                                asp-action="Details"
                                asp-route-id="@Model.BookId"
                                class="btn btn-secondary">
-                                Cancel
+                                @Localizer["Cancel"]
                             </a>
                         }
                         else
@@ -207,7 +209,7 @@
                             <a asp-controller="Profile"
                                asp-action="Profile"
                                class="btn btn-secondary">
-                                Cancel
+                                @Localizer["Cancel"]
                             </a>
                         }
 

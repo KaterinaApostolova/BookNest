@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace BookNest.Controllers;
 
@@ -143,6 +142,13 @@ public class ReadingJourneyController : Controller
         readingItem.ReadingStatusId = status.Id;
 
         await _context.SaveChangesAsync();
+
+        if (status.Name == "Completed")
+        {
+            var book = await _context.Books.AsNoTracking().FirstOrDefaultAsync(b => b.Id == bookId);
+            TempData["CompletedBookId"] = bookId;
+            TempData["CompletedBookTitle"] = book?.Title ?? string.Empty;
+        }
 
         return RedirectToAction(nameof(ReadingJourney));
     }

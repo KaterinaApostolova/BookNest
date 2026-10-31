@@ -11,4 +11,6 @@ public class ForumPostViewModel
     [Required]
     [StringLength(4000)]
     public string Content { get; set; } = string.Empty;
+
+    public bool IsAnonymous { get; set; }
 }

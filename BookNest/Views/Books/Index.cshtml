@@ -1,43 +1,45 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model IEnumerable<BookNest.Models.Book>
 
 @{
-    ViewData["Title"] = "Books";
+    ViewData["Title"] = Localizer["Books"];
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="mb-0">Books</h2>
+    <h2 class="mb-0">@Localizer["Books"]</h2>
     @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
     {
-        <a class="btn btn-primary" asp-action="Create">Create Book</a>
+        <a class="btn btn-primary" asp-action="Create">@Localizer["Create Book"]</a>
     }
 </div>
 
 <form method="get" class="row g-3 align-items-end mb-4">
     <div class="col-md-4">
-        <label class="form-label">Search by title or author</label>
-        <input name="searchTerm" value="@ViewBag.SearchTerm" class="form-control" placeholder="Search books" />
+        <label class="form-label">@Localizer["Search by title or author"]</label>
+        <input name="searchTerm" value="@ViewBag.SearchTerm" class="form-control" placeholder="@Localizer["Search books"]" />
     </div>
     <div class="col-md-3">
-        <label class="form-label">Filter by genre</label>
+        <label class="form-label">@Localizer["Filter by genre"]</label>
         <select name="genreId" class="form-select">
-            <option value="">All genres</option>
+            <option value="">@Localizer["All genres"]</option>
             @foreach (var genre in (IEnumerable<BookNest.Models.Genre>)ViewBag.Genres)
             {
-                <option value="@genre.Id" selected="@(genre.Id == (int?)ViewBag.GenreId)">@genre.Name</option>
+                <option value="@genre.Id" selected="@(genre.Id == (int?)ViewBag.GenreId)">@BookNest.Services.GenreTranslator.Localize(genre.Name)</option>
             }
         </select>
     </div>
     <div class="col-md-3">
-        <label class="form-label">Sort</label>
+        <label class="form-label">@Localizer["Sort"]</label>
         <select name="sortOrder" class="form-select">
-            <option value="asc" selected="@(ViewBag.SortOrder == "asc")">A-Z</option>
-            <option value="z-a" selected="@(ViewBag.SortOrder == "z-a")">Z-A</option>
-            <option value="highest-rated" selected="@(ViewBag.SortOrder == "highest-rated")">Highest Rated</option>
-            <option value="newest-first" selected="@(ViewBag.SortOrder == "newest-first")">Newest First</option>
+            <option value="asc" selected="@(ViewBag.SortOrder == "asc")">@Localizer["A-Z"]</option>
+            <option value="z-a" selected="@(ViewBag.SortOrder == "z-a")">@Localizer["Z-A"]</option>
+            <option value="highest-rated" selected="@(ViewBag.SortOrder == "highest-rated")">@Localizer["Highest Rated"]</option>
+            <option value="newest-first" selected="@(ViewBag.SortOrder == "newest-first")">@Localizer["Newest First"]</option>
         </select>
     </div>
     <div class="col-md-2">
-        <button type="submit" class="btn btn-outline-primary w-100">Apply</button>
+        <button type="submit" class="btn btn-outline-primary w-100">@Localizer["Apply"]</button>
     </div>
 </form>
 
@@ -49,15 +51,15 @@
                 <img src="@(string.IsNullOrWhiteSpace(book.CoverImageUrl) ? "/images/books/cover-placeholder.svg" : book.CoverImageUrl)" class="card-img-top rounded-top-4" alt="@book.Title" onerror="this.src='/images/books/cover-placeholder.svg'" />
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@book.Title</h5>
-                    <p class="text-muted mb-2">By @string.Join(", ", book.Authors.Select(a => a.Name))</p>
-                    <p class="small text-secondary mb-1">Genre: @string.Join(", ", book.Genres.Select(g => g.Name))</p>
-                    <p class="small text-secondary mb-3">Publication Year: @(book.PublicationYear?.ToString() ?? "N/A")</p>
-                    <p class="card-text">@(string.IsNullOrWhiteSpace(book.Description) ? "No description available yet." : book.Description)</p>
+                    <p class="text-muted mb-2">@Localizer["By"] @string.Join(", ", book.Authors.Select(a => a.Name))</p>
+                    <p class="small text-secondary mb-1">@Localizer["Genre:"] @string.Join(", ", book.Genres.Select(g => BookNest.Services.GenreTranslator.Localize(g.Name)))</p>
+                    <p class="small text-secondary mb-3">@Localizer["Publication Year:"] @(book.PublicationYear?.ToString() ?? Localizer["N/A"].Value)</p>
+                    <p class="card-text">@(string.IsNullOrWhiteSpace(book.Description) ? Localizer["No description available yet."].Value : book.Description)</p>
                     <div class="mt-auto d-flex gap-2">
-                        <a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@book.Id">Open Details</a>
+                        <a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@book.Id">@Localizer["Open Details"]</a>
                         @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
                         {
-                            <a class="btn btn-outline-secondary btn-sm" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
+                            <a class="btn btn-outline-secondary btn-sm" asp-action="Edit" asp-route-id="@book.Id">@Localizer["Edit"]</a>
                         }
                     </div>
                 </div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Contribution Request" xml:space="preserve"><value>Моята заявка</value></data>
+  <data name="Request #" xml:space="preserve"><value>Заявка №</value></data>
+  <data name="Pending" xml:space="preserve"><value>Изчаква</value></data>
+  <data name="Approved" xml:space="preserve"><value>Одобрена</value></data>
+  <data name="Rejected" xml:space="preserve"><value>Отхвърлена</value></data>
+  <data name="Resolved" xml:space="preserve"><value>Решена</value></data>
+  <data name="Request Type" xml:space="preserve"><value>Вид заявка</value></data>
+  <data name="Reading Link" xml:space="preserve"><value>Връзка за четене</value></data>
+  <data name="Book Information" xml:space="preserve"><value>Информация за книга</value></data>
+  <data name="New Book" xml:space="preserve"><value>Нова книга</value></data>
+  <data name="Moderator Request" xml:space="preserve"><value>Заявка за модератор</value></data>
+  <data name="General Suggestion" xml:space="preserve"><value>Общо предложение</value></data>
+  <data name="Book" xml:space="preserve"><value>Книга</value></data>
+  <data name="Not related to a specific book" xml:space="preserve"><value>Не е свързана с конкретна книга</value></data>
+  <data name="Submitted" xml:space="preserve"><value>Подадена на</value></data>
+  <data name="Your Request" xml:space="preserve"><value>Твоята заявка</value></data>
+  <data name="Additional Information" xml:space="preserve"><value>Допълнителна информация</value></data>
+  <data name="Reading Link Details" xml:space="preserve"><value>Детайли за връзката</value></data>
+  <data name="Website" xml:space="preserve"><value>Уебсайт</value></data>
+  <data name="Language" xml:space="preserve"><value>Език</value></data>
+  <data name="Link Type" xml:space="preserve"><value>Вид връзка</value></data>
+  <data name="Link" xml:space="preserve"><value>Връзка</value></data>
+  <data name="Open Link" xml:space="preserve"><value>Отвори връзката</value></data>
+  <data name="Back to My Requests" xml:space="preserve"><value>Обратно към моите заявки</value></data>
+  <data name="Are you sure you want to delete this request?" xml:space="preserve"><value>Сигурен ли си, че искаш да изтриеш тази заявка?</value></data>
+  <data name="Delete Request" xml:space="preserve"><value>Изтрий заявката</value></data>
+</root>

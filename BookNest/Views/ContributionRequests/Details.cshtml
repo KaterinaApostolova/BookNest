@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.Models.ContributionRequest
 
 @{
-    ViewData["Title"] = "My Contribution Request";
+    ViewData["Title"] = Localizer["My Contribution Request"];
 }
 
 <div class="container mt-5 mb-5">
@@ -17,11 +19,11 @@
                     <div>
 
                         <h1 class="h4 mb-1">
-                            My Contribution Request
+                            @Localizer["My Contribution Request"]
                         </h1>
 
                         <p class="text-muted mb-0">
-                            Request #@Model.Id
+                            @Localizer["Request #"]@Model.Id
                         </p>
 
                     </div>
@@ -30,25 +32,25 @@
                     @if (Model.Status == ContributionRequestStatuses.Pending)
                     {
                         <span class="badge bg-warning text-dark">
-                            Pending
+                            @Localizer["Pending"]
                         </span>
                     }
                     else if (Model.Status == ContributionRequestStatuses.Approved)
                     {
                         <span class="badge bg-success">
-                            Approved
+                            @Localizer["Approved"]
                         </span>
                     }
                     else if (Model.Status == ContributionRequestStatuses.Rejected)
                     {
                         <span class="badge bg-danger">
-                            Rejected
+                            @Localizer["Rejected"]
                         </span>
                     }
                     else
                     {
                         <span class="badge bg-secondary">
-                            Resolved
+                            @Localizer["Resolved"]
                         </span>
                     }
 
@@ -58,46 +60,46 @@
                 <dl class="row">
 
                     <dt class="col-sm-4">
-                        Request Type
+                        @Localizer["Request Type"]
                     </dt>
 
                     <dd class="col-sm-8">
 
                         @if (Model.RequestType == ContributionRequestTypes.ReadingLink)
                         {
-                            <span>Reading Link</span>
+                            <span>@Localizer["Reading Link"]</span>
                         }
                         else if (Model.RequestType == ContributionRequestTypes.BookInformation)
                         {
-                            <span>Book Information</span>
+                            <span>@Localizer["Book Information"]</span>
                         }
                         else if (Model.RequestType == ContributionRequestTypes.NewBook)
                         {
-                            <span>New Book</span>
+                            <span>@Localizer["New Book"]</span>
                         }
                         else if (Model.RequestType == ContributionRequestTypes.AdminRequest)
                         {
-                            <span>Moderator Request</span>
+                            <span>@Localizer["Moderator Request"]</span>
                         }
                         else
                         {
-                            <span>General Suggestion</span>
+                            <span>@Localizer["General Suggestion"]</span>
                         }
 
                     </dd>
 
 
                     <dt class="col-sm-4">
-                        Book
+                        @Localizer["Book"]
                     </dt>
 
                     <dd class="col-sm-8">
-                        @(Model.Book?.Title ?? "Not related to a specific book")
+                        @(Model.Book?.Title ?? Localizer["Not related to a specific book"].Value)
                     </dd>
 
 
                     <dt class="col-sm-4">
-                        Submitted
+                        @Localizer["Submitted"]
                     </dt>
 
                     <dd class="col-sm-8">
@@ -113,7 +115,7 @@
                 <div class="mb-4">
 
                     <h2 class="h6">
-                        Your Request
+                        @Localizer["Your Request"]
                     </h2>
 
                     <div class="bg-light rounded-4 p-3">
@@ -128,7 +130,7 @@
                     <div class="mb-4">
 
                         <h2 class="h6">
-                            Additional Information
+                            @Localizer["Additional Information"]
                         </h2>
 
                         <div class="bg-light rounded-4 p-3">
@@ -144,13 +146,13 @@
                     <div class="mb-4">
 
                         <h2 class="h6">
-                            Reading Link Details
+                            @Localizer["Reading Link Details"]
                         </h2>
 
                         <dl class="row">
 
                             <dt class="col-sm-4">
-                                Website
+                                @Localizer["Website"]
                             </dt>
 
                             <dd class="col-sm-8">
@@ -159,7 +161,7 @@
 
 
                             <dt class="col-sm-4">
-                                Language
+                                @Localizer["Language"]
                             </dt>
 
                             <dd class="col-sm-8">
@@ -168,7 +170,7 @@
 
 
                             <dt class="col-sm-4">
-                                Link Type
+                                @Localizer["Link Type"]
                             </dt>
 
                             <dd class="col-sm-8">
@@ -179,7 +181,7 @@
                             @if (!string.IsNullOrWhiteSpace(Model.SourceUrl))
                             {
                                 <dt class="col-sm-4">
-                                    Link
+                                    @Localizer["Link"]
                                 </dt>
 
                                 <dd class="col-sm-8">
@@ -187,7 +189,7 @@
                                     <a href="@Model.SourceUrl"
                                        target="_blank"
                                        rel="noopener noreferrer">
-                                        Open Link
+                                        @Localizer["Open Link"]
                                     </a>
 
                                 </dd>
@@ -203,7 +205,7 @@
 
                     <a asp-action="MyRequests"
                        class="btn btn-outline-secondary">
-                        Back to My Requests
+                        @Localizer["Back to My Requests"]
                     </a>
 
 
@@ -213,13 +215,13 @@
                               asp-route-id="@Model.Id"
                               method="post"
                               class="d-inline"
-                              onsubmit="return confirm('Are you sure you want to delete this request?');">
+                              onsubmit="return confirm('@Localizer["Are you sure you want to delete this request?"]');">
 
                             @Html.AntiForgeryToken()
 
                             <button type="submit"
                                     class="btn btn-outline-danger">
-                                Delete Request
+                                @Localizer["Delete Request"]
                             </button>
 
                         </form>

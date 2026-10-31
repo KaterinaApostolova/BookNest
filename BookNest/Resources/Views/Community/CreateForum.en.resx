@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Add Forum" xml:space="preserve"><value>Add Forum</value></data>
+  <data name="Add forum" xml:space="preserve"><value>Add forum</value></data>
+  <data name="Back to community" xml:space="preserve"><value>Back to community</value></data>
+  <data name="Forum name" xml:space="preserve"><value>Forum name</value></data>
+  <data name="Description" xml:space="preserve"><value>Description</value></data>
+  <data name="optional" xml:space="preserve"><value>optional</value></data>
+  <data name="Create forum" xml:space="preserve"><value>Create forum</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+</root>

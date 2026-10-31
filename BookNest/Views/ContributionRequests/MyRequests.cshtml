@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model IEnumerable<BookNest.Models.ContributionRequest>
 
 @{
-    ViewData["Title"] = "My Contribution Requests";
+    ViewData["Title"] = Localizer["My Contribution Requests"];
 }
 
 <div class="container mt-5 mb-5">
@@ -13,11 +15,11 @@
             <div class="card border-0 shadow-sm rounded-4 p-4">
 
                 <h1 class="h4 mb-1">
-                    My Contribution Requests
+                    @Localizer["My Contribution Requests"]
                 </h1>
 
                 <p class="text-muted mb-4">
-                    Requests and suggestions you have submitted to BookNest.
+                    @Localizer["Requests and suggestions you have submitted to BookNest."]
                 </p>
 
 
@@ -36,23 +38,23 @@
                                         <h2 class="h6 mb-1">
                                             @if (request.RequestType == ContributionRequestTypes.ReadingLink)
                                             {
-                                                <span>Reading Link</span>
+                                                <span>@Localizer["Reading Link"]</span>
                                             }
                                             else if (request.RequestType == ContributionRequestTypes.BookInformation)
                                             {
-                                                <span>Book Information</span>
+                                                <span>@Localizer["Book Information"]</span>
                                             }
                                             else if (request.RequestType == ContributionRequestTypes.NewBook)
                                             {
-                                                <span>New Book</span>
+                                                <span>@Localizer["New Book"]</span>
                                             }
                                             else if (request.RequestType == ContributionRequestTypes.AdminRequest)
                                             {
-                                                <span>Moderator Request</span>
+                                                <span>@Localizer["Moderator Request"]</span>
                                             }
                                             else
                                             {
-                                                <span>General Suggestion</span>
+                                                <span>@Localizer["General Suggestion"]</span>
                                             }
                                         </h2>
 
@@ -76,25 +78,25 @@
                                         @if (request.Status == ContributionRequestStatuses.Pending)
                                         {
                                             <span class="badge bg-warning text-dark">
-                                                Pending
+                                                @Localizer["Pending"]
                                             </span>
                                         }
                                         else if (request.Status == ContributionRequestStatuses.Approved)
                                         {
                                             <span class="badge bg-success">
-                                                Approved
+                                                @Localizer["Approved"]
                                             </span>
                                         }
                                         else if (request.Status == ContributionRequestStatuses.Rejected)
                                         {
                                             <span class="badge bg-danger">
-                                                Rejected
+                                                @Localizer["Rejected"]
                                             </span>
                                         }
                                         else
                                         {
                                             <span class="badge bg-secondary">
-                                                Resolved
+                                                @Localizer["Resolved"]
                                             </span>
                                         }
 
@@ -112,7 +114,7 @@
                                    asp-action="Details"
                                    asp-route-id="@request.Id"
                                    class="btn btn-outline-primary btn-sm">
-                                    View Details
+                                    @Localizer["View Details"]
                                 </a>
 
                             </div>
@@ -123,7 +125,7 @@
                 else
                 {
                     <div class="text-muted">
-                        You haven't submitted any requests yet.
+                        @Localizer["You haven't submitted any requests yet."]
                     </div>
                 }
 
@@ -133,7 +135,7 @@
                     <a asp-controller="Profile"
                        asp-action="Profile"
                        class="btn btn-outline-secondary">
-                        Back to Profile
+                        @Localizer["Back to Profile"]
                     </a>
 
                 </div>

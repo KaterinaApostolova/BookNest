@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Manage Users" xml:space="preserve"><value>Manage Users</value></data>
+  <data name="View and manage BookNest users." xml:space="preserve"><value>View and manage BookNest users.</value></data>
+  <data name="Back to Dashboard" xml:space="preserve"><value>Back to Dashboard</value></data>
+  <data name="Search by username, name or email..." xml:space="preserve"><value>Search by username, name or email...</value></data>
+  <data name="Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Username" xml:space="preserve"><value>Username</value></data>
+  <data name="Full Name" xml:space="preserve"><value>Full Name</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Role" xml:space="preserve"><value>Role</value></data>
+  <data name="Action" xml:space="preserve"><value>Action</value></data>
+  <data name="Deactivated" xml:space="preserve"><value>Deactivated</value></data>
+  <data name="Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Admin" xml:space="preserve"><value>Admin</value></data>
+  <data name="User" xml:space="preserve"><value>User</value></data>
+  <data name="Details" xml:space="preserve"><value>Details</value></data>
+  <data name="No users found" xml:space="preserve"><value>No users found</value></data>
+  <data name="Try a different search." xml:space="preserve"><value>Try a different search.</value></data>
+</root>

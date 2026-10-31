@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="New Topic" xml:space="preserve"><value>New Topic</value></data>
+  <data name="New topic" xml:space="preserve"><value>New topic</value></data>
+  <data name="In" xml:space="preserve"><value>In</value></data>
+  <data name="Topic title" xml:space="preserve"><value>Topic title</value></data>
+  <data name="Topic content" xml:space="preserve"><value>Topic content</value></data>
+  <data name="Create topic" xml:space="preserve"><value>Create topic</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Post anonymously" xml:space="preserve"><value>Post anonymously</value></data>
+</root>

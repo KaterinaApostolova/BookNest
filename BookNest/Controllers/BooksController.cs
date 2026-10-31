@@ -1,5 +1,4 @@
 using BookNest.Data;
-using BookNest.Interfaces;
 using BookNest.Models;
 using BookNest.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -13,11 +12,43 @@ namespace BookNest.Controllers;
 public class BooksController : Controller
 {
     private readonly BookNestDbContext _context;
+    private readonly BookNest.Services.ITranslationService _translationService;
 
     public BooksController(
-        BookNestDbContext context)
+        BookNestDbContext context,
+        BookNest.Services.ITranslationService translationService)
     {
         _context = context;
+        _translationService = translationService;
+    }
+
+    // GET: Books/TranslateDescription/5?targetLanguage=en
+    [HttpGet]
+    public async Task<IActionResult> TranslateDescription(int id, string targetLanguage, CancellationToken cancellationToken)
+    {
+        if (targetLanguage != "en" && targetLanguage != "bg")
+        {
+            return BadRequest();
+        }
+
+        var book = await _context.Books
+            .AsNoTracking()
+            .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
+
+        if (book is null || string.IsNullOrWhiteSpace(book.Description))
+        {
+            return NotFound();
+        }
+
+        var languageName = targetLanguage == "en" ? "English" : "Bulgarian";
+        var translated = await _translationService.TranslateAsync(book.Description, languageName, cancellationToken);
+
+        if (translated is null)
+        {
+            return StatusCode(503, new { error = "Translation is currently unavailable." });
+        }
+
+        return Json(new { translated });
     }
 
     public async Task<IActionResult> Index(string? searchTerm, int? genreId, string? sortOrder)
@@ -192,6 +223,16 @@ public class BooksController : Controller
 
         _context.Books.Add(book);
 
+        await _context.SaveChangesAsync();
+
+        var forumName = $"{book.Title} Discussion";
+        _context.Forums.Add(new Forum
+        {
+            Name = forumName,
+            NormalizedName = forumName.Trim().ToUpperInvariant(),
+            Description = $"Discuss {book.Title} with other readers.",
+            BookId = book.Id
+        });
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
@@ -389,13 +430,6 @@ public class BooksController : Controller
         await _context.SaveChangesAsync();
         TempData["InfoMessage"] = $"Book '{book.Title}' was deleted.";
         return RedirectToAction(nameof(Index));
-    }
-
-    [Authorize]
-    [HttpGet]
-    public IActionResult BookBuddy()
-    {
-        return RedirectToAction("Index", "Lyra");
     }
 
     private async Task<List<Book>> GetSimilarBooksAsync(Book currentBook)

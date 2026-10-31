@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Admin Panel" xml:space="preserve"><value>Административен панел</value></data>
+  <data name="Manage Books" xml:space="preserve"><value>Управление на книги</value></data>
+  <data name="Create, edit, and remove books from the catalog." xml:space="preserve"><value>Създавай, редактирай и премахвай книги от каталога.</value></data>
+  <data name="Create Book" xml:space="preserve"><value>Създай книга</value></data>
+  <data name="View Books" xml:space="preserve"><value>Виж книгите</value></data>
+  <data name="Moderation" xml:space="preserve"><value>Модерация</value></data>
+  <data name="Review user suggestions, reading link requests, book information, new book suggestions and moderator applications." xml:space="preserve"><value>Преглеждай потребителски предложения, заявки за връзки, информация за книги, предложения за нови книги и кандидатури за модератор.</value></data>
+  <data name="Manage Requests" xml:space="preserve"><value>Управление на заявки</value></data>
+  <data name="Users" xml:space="preserve"><value>Потребители</value></data>
+  <data name="There are" xml:space="preserve"><value>Има</value></data>
+  <data name="registered users in the system." xml:space="preserve"><value>регистрирани потребители в системата.</value></data>
+  <data name="Manage Users" xml:space="preserve"><value>Управление на потребители</value></data>
+</root>

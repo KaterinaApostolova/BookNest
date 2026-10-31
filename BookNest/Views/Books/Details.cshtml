@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model BookNest.Models.Book
 
 @{
@@ -10,21 +12,25 @@
     </div>
     <div class="col-lg-8">
         <h2 class="mb-3">@Model.Title</h2>
-        <p class="text-muted mb-3">By @string.Join(", ", Model.Authors.Select(a => a.Name))</p>
-        <p><strong>Genres:</strong> @string.Join(", ", Model.Genres.Select(g => g.Name))</p>
-        <p><strong>Publication Year:</strong> @(Model.PublicationYear?.ToString() ?? "Not available")</p>
-        <p><strong>Average Rating:</strong> @(Model.AverageRating?.ToString("0.0") ?? "Not rated yet")</p>
-        <p><strong>Community Rating:</strong> @(Model.Reviews.Any() ? Model.Reviews.Count().ToString() + " reviews" : "No community rating yet")</p>
-        <p class="lead">@(string.IsNullOrWhiteSpace(Model.Description) ? "No description available yet." : Model.Description)</p>
+        <p class="text-muted mb-3">@Localizer["By"] @string.Join(", ", Model.Authors.Select(a => a.Name))</p>
+        <p><strong>@Localizer["Genres:"]</strong> @string.Join(", ", Model.Genres.Select(g => BookNest.Services.GenreTranslator.Localize(g.Name)))</p>
+        <p><strong>@Localizer["Publication Year:"]</strong> @(Model.PublicationYear?.ToString() ?? Localizer["Not available"].Value)</p>
+        <p><strong>@Localizer["Average Rating:"]</strong> @(Model.AverageRating?.ToString("0.0") ?? Localizer["Not rated yet"].Value)</p>
+        <p><strong>@Localizer["Community Rating:"]</strong> @(Model.Reviews.Any() ? $"{Model.Reviews.Count()} {Localizer["reviews"].Value}" : Localizer["No community rating yet"].Value)</p>
+        <p class="lead book-description" data-book-id="@Model.Id" data-original-text="@Model.Description">@(string.IsNullOrWhiteSpace(Model.Description) ? Localizer["No description available yet."].Value : Model.Description)</p>
+        @if (!string.IsNullOrWhiteSpace(Model.Description))
+        {
+            <button type="button" class="btn btn-link btn-sm p-0 mb-3 translate-description-btn">@Localizer["Translate"]</button>
+        }
 
         <div class="mt-4 d-flex gap-2 flex-wrap">
            @if (User.Identity?.IsAuthenticated == true)
 {
-           <form asp-controller="ReadingJourney"asp-action="AddToReadingJourney" method="post">
+           <form asp-controller="ReadingJourney" asp-action="AddToReadingJourney" method="post">
              <input type="hidden" name="bookId" value="@Model.Id" />
 
                 <button type="submit" class="btn btn-primary mt-2">
-                  Add to Reading Journey
+                  @Localizer["Add to Reading Journey"]
                 </button>
            </form>
            }
@@ -33,24 +39,24 @@
              <a class="btn btn-primary"
                asp-controller="Account"
                asp-action="Login">
-               Login to add to Reading Journey
+               @Localizer["Login to add to Reading Journey"]
              </a>
           }
         </div>
 
         <div class="mt-3">
-            <a asp-controller="Lyra" asp-action="BookDiscussion" asp-route-bookId="@Model.Id" class="btn btn-outline-primary">
-                Book Discussion
+            <a asp-controller="Community" asp-action="BookDiscussion" asp-route-bookId="@Model.Id" class="btn btn-outline-primary">
+                @Localizer["Book Discussion"]
             </a>
             <a asp-controller="Lyra" asp-action="Index" asp-route-bookId="@Model.Id" class="btn btn-outline-primary">
-                Ask Lyra about this book
+                @Localizer["Ask Lyra about this book"]
             </a>
         </div>
 
       <div class="mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="mb-0">Reading Links</h4>
+        <h4 class="mb-0">@Localizer["Reading Links"]</h4>
 
         @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
         {
@@ -58,7 +64,7 @@
                asp-action="AddReadingLink" 
                asp-route-bookId="@Model.Id" 
                class="btn btn-primary btn-sm">
-                Add Reading Link
+                @Localizer["Add Reading Link"]
             </a>
         }
     </div>
@@ -97,7 +103,7 @@
                                    href="@link.Url"
                                    target="_blank"
                                    rel="noopener noreferrer">
-                                    Open
+                                    @Localizer["Open"]
                                 </a>
 
                                 @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
@@ -106,7 +112,7 @@
                                        asp-action="EditReadingLink"
                                        asp-route-id="@link.Id"
                                        class="btn btn-outline-secondary btn-sm">
-                                        Edit
+                                        @Localizer["Edit"]
                                     </a>
 
                                     <form asp-controller="ReadingLinks"
@@ -119,8 +125,8 @@
 
                                         <button type="submit"
                                                 class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('Delete this reading link?');">
-                                            Delete
+                                                onclick="return confirm('@Localizer["Delete this reading link?"]');">
+                                            @Localizer["Delete"]
                                         </button>
 
                                     </form>
@@ -139,13 +145,13 @@
     else
     {
         <p class="text-muted">
-            No reading links are available yet.
+            @Localizer["No reading links are available yet."]
         </p>
 
         @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
         {
             <p class="text-muted small">
-                Add the first reading link for this book.
+                @Localizer["Add the first reading link for this book."]
             </p>
         }
     }
@@ -161,7 +167,7 @@
            asp-route-id="@Model.Id"
            asp-route-type="@ContributionRequestTypes.ReadingLink"
            class="btn btn-outline-primary">
-            Suggest a Reading Link
+            @Localizer["Suggest a Reading Link"]
         </a>
 
         <a asp-controller="ContributionRequests"
@@ -169,7 +175,7 @@
            asp-route-id="@Model.Id"
            asp-route-type="@ContributionRequestTypes.BookInformation"
            class="btn btn-outline-secondary">
-            Suggest Book Information
+            @Localizer["Suggest Book Information"]
         </a>
 
     </div>
@@ -181,7 +187,7 @@ else if (User.Identity?.IsAuthenticated != true)
         <a asp-controller="Account"
            asp-action="Login"
            class="btn btn-outline-primary">
-            Login to Make a Suggestion
+            @Localizer["Login to Make a Suggestion"]
         </a>
 
     </div>
@@ -197,10 +203,10 @@ else if (User.Identity?.IsAuthenticated != true)
     <div class="d-flex justify-content-between align-items-center mb-4">
 
         <div>
-            <h2 class="h4 mb-1">Reviews</h2>
+            <h2 class="h4 mb-1">@Localizer["Reviews"]</h2>
 
             <p class="text-muted mb-0">
-                See what other readers think about this book.
+                @Localizer["See what other readers think about this book."]
             </p>
         </div>
 
@@ -215,7 +221,7 @@ else if (User.Identity?.IsAuthenticated != true)
                    asp-action="Create"
                    asp-route-bookId="@Model.Id"
                    class="btn btn-primary">
-                    Write a Review
+                    @Localizer["Write a Review"]
                 </a>
             }
         }
@@ -224,7 +230,7 @@ else if (User.Identity?.IsAuthenticated != true)
             <a asp-controller="Account"
                asp-action="Login"
                class="btn btn-outline-primary">
-                Login to Review
+                @Localizer["Login to Review"]
             </a>
         }
 
@@ -242,22 +248,10 @@ else if (User.Identity?.IsAuthenticated != true)
                     <div class="d-flex justify-content-between align-items-start">
 
                         <div>
-                             @if (review.User.IsProfilePublic)
-                              {
-                                 <a asp-controller="Profile"
-                                    asp-action="Public"
-                                    asp-route-username="@review.User.UserName"
-                                    class="text-decoration-none fw-semibold">
-                                    @review.User.UserName
-                                 </a>
-                             }
-                             else
-                             {
-                                <span class="fw-semibold">
-                                   Anonymous Reader
-                                </span>
-                             }
-                                         
+                            <span class="fw-semibold">
+                                <partial name="_AuthorDisplay" model="@(new BookNest.ViewModels.AuthorDisplayViewModel { UserName = review.User != null ? review.User.UserName : null, AvatarUrl = review.User?.ProfilePictureUrl, IsProfilePublic = review.User != null && review.User.IsProfilePublic, IsAnonymous = review.IsAnonymous, FallbackLabel = Localizer["Anonymous Reader"].Value, AnonymousLabel = Localizer["Anonymous Reader"].Value })" />
+                            </span>
+
                             <div class="small text-muted">
                                 @review.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
                             </div>
@@ -272,9 +266,15 @@ else if (User.Identity?.IsAuthenticated != true)
 
                     </div>
 
-                    <p class="mt-3 mb-3">
+                    <p class="mt-3 mb-3 review-content" data-review-id="@review.Id" data-original-text="@review.Content">
                         @review.Content
                     </p>
+
+                    <button type="button"
+                            class="btn btn-link btn-sm p-0 mb-3 translate-review-btn"
+                            data-review-id="@review.Id">
+                        @Localizer["Translate"]
+                    </button>
 
                     @{
                         var currentUserId =
@@ -301,7 +301,7 @@ else if (User.Identity?.IsAuthenticated != true)
                                    asp-action="Edit"
                                    asp-route-id="@review.Id"
                                    class="btn btn-outline-secondary btn-sm">
-                                    Edit
+                                    @Localizer["Edit"]
                                 </a>
                             }
 
@@ -309,7 +309,7 @@ else if (User.Identity?.IsAuthenticated != true)
                                asp-action="Delete"
                                asp-route-id="@review.Id"
                                class="btn btn-outline-danger btn-sm">
-                                Delete
+                                @Localizer["Delete"]
                             </a>
 
                         </div>
@@ -325,7 +325,7 @@ else if (User.Identity?.IsAuthenticated != true)
         <div class="text-center py-4">
 
             <p class="text-muted mb-3">
-                No reviews yet.
+                @Localizer["No reviews yet."]
             </p>
 
             @if (User.Identity?.IsAuthenticated == true)
@@ -334,7 +334,7 @@ else if (User.Identity?.IsAuthenticated != true)
                    asp-action="Create"
                    asp-route-bookId="@Model.Id"
                    class="btn btn-outline-primary">
-                    Be the first to review this book
+                    @Localizer["Be the first to review this book"]
                 </a>
             }
 
@@ -346,7 +346,7 @@ else if (User.Identity?.IsAuthenticated != true)
 @if (ViewBag.SimilarBooks is IEnumerable<BookNest.Models.Book> similarBooks && similarBooks.Any())
 {
     <div class="mt-5">
-        <h3 class="h4 mb-3">You may also like</h3>
+        <h3 class="h4 mb-3">@Localizer["You may also like"]</h3>
         <div class="row g-4">
             @foreach (var similarBook in similarBooks)
             {
@@ -354,13 +354,96 @@ else if (User.Identity?.IsAuthenticated != true)
                     <a class="card h-100 border-0 shadow-sm rounded-4 text-decoration-none text-dark" asp-action="Details" asp-route-id="@similarBook.Id">
                         <div class="card-body">
                             <h5 class="card-title">@similarBook.Title</h5>
-                            <p class="text-muted mb-2">By @string.Join(", ", similarBook.Authors.Select(a => a.Name))</p>
-                            <p class="small text-secondary">@string.Join(", ", similarBook.Genres.Select(g => g.Name))</p>
-                            <span class="btn btn-outline-primary btn-sm">Open Details</span>
+                            <p class="text-muted mb-2">@Localizer["By"] @string.Join(", ", similarBook.Authors.Select(a => a.Name))</p>
+                            <p class="small text-secondary">@string.Join(", ", similarBook.Genres.Select(g => BookNest.Services.GenreTranslator.Localize(g.Name)))</p>
+                            <span class="btn btn-outline-primary btn-sm">@Localizer["Open Details"]</span>
                         </div>
                     </a>
                 </div>
             }
         </div>
     </div>
+}
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.translate-review-btn').forEach(function (button) {
+            button.addEventListener('click', async function () {
+                const reviewId = button.dataset.reviewId;
+                const paragraph = document.querySelector('.review-content[data-review-id="' + reviewId + '"]');
+                const targetLanguage = document.documentElement.lang === 'bg' ? 'bg' : 'en';
+                const originalText = paragraph.dataset.originalText;
+
+                if (button.dataset.translated === 'true') {
+                    paragraph.textContent = originalText;
+                    button.textContent = '@Localizer["Translate"]';
+                    button.dataset.translated = 'false';
+                    return;
+                }
+
+                button.disabled = true;
+                const previousLabel = button.textContent;
+                button.textContent = '@Localizer["Translating..."]';
+
+                try {
+                    const response = await fetch('/Reviews/Translate/' + reviewId + '?targetLanguage=' + targetLanguage, {
+                        method: 'GET'
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Translation failed');
+                    }
+
+                    const data = await response.json();
+                    paragraph.textContent = data.translated;
+                    button.textContent = '@Localizer["Show original"]';
+                    button.dataset.translated = 'true';
+                } catch (error) {
+                    button.textContent = '@Localizer["Translation unavailable — try again"]';
+                } finally {
+                    button.disabled = false;
+                }
+            });
+        });
+
+        var descTranslateBtn = document.querySelector('.translate-description-btn');
+        if (descTranslateBtn) {
+            descTranslateBtn.addEventListener('click', async function () {
+                var paragraph = document.querySelector('.book-description');
+                var bookId = paragraph.dataset.bookId;
+                var targetLanguage = document.documentElement.lang === 'bg' ? 'bg' : 'en';
+                var originalText = paragraph.dataset.originalText;
+
+                if (descTranslateBtn.dataset.translated === 'true') {
+                    paragraph.textContent = originalText;
+                    descTranslateBtn.textContent = '@Localizer["Translate"]';
+                    descTranslateBtn.dataset.translated = 'false';
+                    return;
+                }
+
+                descTranslateBtn.disabled = true;
+                var previousLabel = descTranslateBtn.textContent;
+                descTranslateBtn.textContent = '@Localizer["Translating..."]';
+
+                try {
+                    var response = await fetch('/Books/TranslateDescription/' + bookId + '?targetLanguage=' + targetLanguage, {
+                        method: 'GET'
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Translation failed');
+                    }
+
+                    var data = await response.json();
+                    paragraph.textContent = data.translated;
+                    descTranslateBtn.textContent = '@Localizer["Show original"]';
+                    descTranslateBtn.dataset.translated = 'true';
+                } catch (error) {
+                    descTranslateBtn.textContent = '@Localizer["Translation unavailable — try again"]';
+                } finally {
+                    descTranslateBtn.disabled = false;
+                }
+            });
+        }
+    </script>
 }
